@@ -150,9 +150,16 @@ export class Inited {
         return new Promise<any>((resolve, reject) => {
             console.log("Executing command: " + command);
             const commandArr: Array<string> = command.split(" ");
+            console.log(commandArr);
             let spawn;
             if (commandArr.length > 1) {
-                spawn = child_process.spawn(commandArr[0], commandArr.splice(1));
+                console.log("Creating spawn with more commands");
+                try {
+                    spawn = child_process.spawn(commandArr[0], commandArr.splice(1));
+                } catch (ex) {
+                    console.log("Error while creating spawn");
+                    console.log(ex);
+                }
             } else {
                 spawn = child_process.spawn(command);
             }

@@ -2,13 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3836fdff-0af8-40ec-ae2c-6884f4a51f5a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/index.d.ts" afterPath="$PROJECT_DIR$/dist/index.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/index.js" afterPath="$PROJECT_DIR$/dist/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/inited.d.ts" afterPath="$PROJECT_DIR$/dist/inited.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/inited.js" afterPath="$PROJECT_DIR$/dist/inited.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/utils.d.ts" afterPath="$PROJECT_DIR$/dist/utils.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/utils.js" afterPath="$PROJECT_DIR$/dist/utils.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/inited.ts" afterPath="$PROJECT_DIR$/src/inited.ts" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -38,8 +31,8 @@
       <file leaf-file-name="inited.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/inited.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="154" column="78" lean-forward="false" selection-start-line="154" selection-start-column="78" selection-end-line="154" selection-end-column="78" />
+            <state relative-caret-position="306">
+              <caret line="160" column="36" lean-forward="false" selection-start-line="160" selection-start-column="36" selection-end-line="160" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -247,12 +240,12 @@
       <workItem from="1502184309655" duration="15526000" />
       <workItem from="1502203140141" duration="1121000" />
       <workItem from="1502211494619" duration="606000" />
-      <workItem from="1502218800155" duration="398000" />
+      <workItem from="1502218800155" duration="708000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17651000" />
+    <option name="totallyTimeSpent" value="17961000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="157" y="53" width="1400" height="907" extended-state="0" />
@@ -523,8 +516,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/inited.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="154" column="78" lean-forward="false" selection-start-line="154" selection-start-column="78" selection-end-line="154" selection-end-column="78" />
+        <state relative-caret-position="306">
+          <caret line="160" column="36" lean-forward="false" selection-start-line="160" selection-start-column="36" selection-end-line="160" selection-end-column="36" />
           <folding />
         </state>
       </provider>
