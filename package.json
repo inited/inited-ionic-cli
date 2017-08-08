@@ -6,11 +6,10 @@
   "scripts": {
     "install": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "index": "node ./dist/index.js",
     "tsc": "tsc"
   },
   "bin": {
-    "inited": "dist/index.js"
+    "inited": "bin/inited.js"
   },
   "author": "",
   "license": "ISC",
