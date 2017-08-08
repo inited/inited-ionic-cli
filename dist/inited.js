@@ -39,6 +39,7 @@ var fs = require("fs");
 var util = require("util");
 var child_process = require("child_process");
 var utils_1 = require("./utils");
+var rmfr = require("rmfr");
 var Inited = (function () {
     function Inited() {
     }
@@ -321,33 +322,30 @@ var Inited = (function () {
     };
     Inited.prototype.removePlatformsAndPlugins = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var rmdir, ex_6, ex_7;
+            var ex_6, ex_7;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        rmdir = util.promisify(fs.rmdir);
-                        _a.label = 1;
+                        _a.trys.push([0, 2, , 3]);
+                        return [4 /*yield*/, rmfr("platforms")];
                     case 1:
-                        _a.trys.push([1, 3, , 4]);
-                        return [4 /*yield*/, rmdir("platforms")];
-                    case 2:
                         _a.sent();
-                        return [3 /*break*/, 4];
-                    case 3:
+                        return [3 /*break*/, 3];
+                    case 2:
                         ex_6 = _a.sent();
                         console.log("Failed to remove platforms directory: " + ex_6);
-                        return [3 /*break*/, 4];
+                        return [3 /*break*/, 3];
+                    case 3:
+                        _a.trys.push([3, 5, , 6]);
+                        return [4 /*yield*/, rmfr("plugins")];
                     case 4:
-                        _a.trys.push([4, 6, , 7]);
-                        return [4 /*yield*/, rmdir("plugins")];
-                    case 5:
                         _a.sent();
-                        return [3 /*break*/, 7];
-                    case 6:
+                        return [3 /*break*/, 6];
+                    case 5:
                         ex_7 = _a.sent();
                         console.log("Failed to remove plugins directory: " + ex_7);
-                        return [3 /*break*/, 7];
-                    case 7: return [2 /*return*/];
+                        return [3 /*break*/, 6];
+                    case 6: return [2 /*return*/];
                 }
             });
         });

@@ -10,15 +10,11 @@ function run() {
     else {
         var inited = new inited_1.Inited();
         console.log(inited);
-        switch (arg) {
-            case "aprepare":
-                inited.aprepare();
-                break;
-            case "iprepare":
-                inited.iprepare();
-                break;
-            default:
-                console.log("Don't know what to do.");
+        if (inited[arg] != undefined) {
+            inited[arg].call(inited);
+        }
+        else {
+            console.log("Don't know, what to do.");
         }
     }
 }

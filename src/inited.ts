@@ -2,6 +2,7 @@ import fs = require("fs");
 import util = require("util");
 import child_process = require("child_process");
 import { Utils } from "./utils";
+import rmfr = require("rmfr");
 
 export class Inited {
 
@@ -146,14 +147,13 @@ export class Inited {
     }
 
     private async removePlatformsAndPlugins(): Promise<any> {
-        let rmdir = util.promisify(fs.rmdir);
         try {
-            await rmdir("platforms");
+            await rmfr("platforms");
         } catch (ex) {
             console.log("Failed to remove platforms directory: " + ex);
         }
         try {
-            await rmdir("plugins");
+            await rmfr("plugins");
         } catch (ex) {
             console.log("Failed to remove plugins directory: " + ex);
         }

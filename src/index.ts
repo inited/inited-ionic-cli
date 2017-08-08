@@ -8,15 +8,10 @@ export function run() {
     } else {
         let inited: Inited = new Inited();
         console.log(inited);
-        switch(arg) {
-            case "aprepare":
-                inited.aprepare();
-                break;
-            case "iprepare":
-                inited.iprepare();
-                break;
-            default:
-                console.log("Don't know what to do.");
+        if (inited[arg] != undefined) {
+            inited[arg].call(inited);
+        } else {
+            console.log("Don't know, what to do.");
         }
     }
 }
