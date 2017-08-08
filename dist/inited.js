@@ -92,31 +92,28 @@ var Inited = (function () {
     };
     Inited.prototype.adist = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var _a, jsstdout, jsstderr, _b, rstdout, rstderr, _c, zstdout, zstderr, ex_2;
-            return __generator(this, function (_d) {
-                switch (_d.label) {
+            var ex_2;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
                     case 0: return [4 /*yield*/, this.distFor("android")];
                     case 1:
-                        _d.sent();
-                        _d.label = 2;
+                        _a.sent();
+                        _a.label = 2;
                     case 2:
-                        _d.trys.push([2, 6, , 7]);
+                        _a.trys.push([2, 6, , 7]);
                         return [4 /*yield*/, this.exec("jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore cert/my-release-key.keystore -storepass Heslo123 platforms/android/build/outputs/apk/android-release-unsigned.apk alias_name")];
                     case 3:
-                        _a = _d.sent(), jsstdout = _a.jsstdout, jsstderr = _a.jsstderr;
-                        this.logOutErr(jsstdout, jsstderr);
+                        _a.sent();
                         return [4 /*yield*/, this.exec("rm -f " + utils_1.Utils.projectName + ".apk")];
                     case 4:
-                        _b = _d.sent(), rstdout = _b.rstdout, rstderr = _b.rstderr;
-                        this.logOutErr(rstdout, rstderr);
+                        _a.sent();
                         return [4 /*yield*/, this.exec("$ANDROID_HOME/build-tools/22.0.1/zipalign -v 4 $APP " + utils_1.Utils.projectName + ".apk")];
                     case 5:
-                        _c = _d.sent(), zstdout = _c.zstdout, zstderr = _c.zstderr;
-                        this.logOutErr(zstdout, zstderr);
+                        _a.sent();
                         return [3 /*break*/, 7];
                     case 6:
-                        ex_2 = _d.sent();
-                        this.logOutErr("Error while running adist.", ex_2);
+                        ex_2 = _a.sent();
+                        console.error("Error while running adist: " + ex_2);
                         return [3 /*break*/, 7];
                     case 7: return [2 /*return*/];
                 }
@@ -232,19 +229,18 @@ var Inited = (function () {
     };
     Inited.prototype.prepareFor = function (platform) {
         return __awaiter(this, void 0, void 0, function () {
-            var _a, stdout, stderr, ex_3;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
+            var ex_3;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
                     case 0:
-                        _b.trys.push([0, 2, , 3]);
+                        _a.trys.push([0, 2, , 3]);
                         this.removePlatformsAndPlugins();
                         return [4 /*yield*/, this.exec("ionic cordova platform add " + platform)];
                     case 1:
-                        _a = _b.sent(), stdout = _a.stdout, stderr = _a.stderr;
-                        this.logOutErr(stdout, stderr);
+                        _a.sent();
                         return [3 /*break*/, 3];
                     case 2:
-                        ex_3 = _b.sent();
+                        ex_3 = _a.sent();
                         this.logError("Error while running prepare for " + platform, ex_3);
                         return [3 /*break*/, 3];
                     case 3: return [2 /*return*/];
@@ -254,18 +250,17 @@ var Inited = (function () {
     };
     Inited.prototype.buildFor = function (platform) {
         return __awaiter(this, void 0, void 0, function () {
-            var _a, stdout, stderr, ex_4;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
+            var ex_4;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
                     case 0:
-                        _b.trys.push([0, 2, , 3]);
+                        _a.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, this.exec("ionic cordova build " + platform + " --device --prod --aot --minifyjs --minifycss --optimizejs")];
                     case 1:
-                        _a = _b.sent(), stdout = _a.stdout, stderr = _a.stderr;
-                        this.logOutErr(stdout, stderr);
+                        _a.sent();
                         return [3 /*break*/, 3];
                     case 2:
-                        ex_4 = _b.sent();
+                        ex_4 = _a.sent();
                         this.logError("Error while running build for " + platform, ex_4);
                         return [3 /*break*/, 3];
                     case 3: return [2 /*return*/];
@@ -283,18 +278,17 @@ var Inited = (function () {
     };
     Inited.prototype.distFor = function (platform) {
         return __awaiter(this, void 0, void 0, function () {
-            var _a, stdout, stderr, ex_5;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
+            var ex_5;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
                     case 0:
-                        _b.trys.push([0, 2, , 3]);
+                        _a.trys.push([0, 2, , 3]);
                         return [4 /*yield*/, this.exec("ionic cordova build " + platform + " --device --prod --aot --minifyjs --minifycss --optimizejs --release")];
                     case 1:
-                        _a = _b.sent(), stdout = _a.stdout, stderr = _a.stderr;
-                        this.logOutErr(stdout, stderr);
+                        _a.sent();
                         return [3 /*break*/, 3];
                     case 2:
-                        ex_5 = _b.sent();
+                        ex_5 = _a.sent();
                         this.logError("Error while running dist for " + platform, ex_5);
                         return [3 /*break*/, 3];
                     case 3: return [2 /*return*/];
@@ -312,13 +306,7 @@ var Inited = (function () {
     };
     Inited.prototype.logError = function (message, error) {
         console.log(message);
-        console.log(error.Error);
-        console.log(error.stdout);
-        console.log(error.stderr);
-    };
-    Inited.prototype.logOutErr = function (stdout, stderr) {
-        console.log(stdout);
-        console.log(stderr);
+        console.log(error);
     };
     Inited.prototype.removePlatformsAndPlugins = function () {
         return __awaiter(this, void 0, void 0, function () {
@@ -354,7 +342,15 @@ var Inited = (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 return [2 /*return*/, new Promise(function (resolve, reject) {
-                        var spawn = child_process.spawn(command);
+                        console.log("Executing command: " + command);
+                        var commandArr = command.split(" ");
+                        var spawn;
+                        if (commandArr.length > 1) {
+                            spawn = child_process.spawn(commandArr[0], commandArr.splice(0, 1));
+                        }
+                        else {
+                            spawn = child_process.spawn(command);
+                        }
                         spawn.stdout.on('data', function (data) {
                             console.log(data.toString());
                         });

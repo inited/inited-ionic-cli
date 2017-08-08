@@ -21,7 +21,6 @@ export declare class Inited {
     private distFor(platform);
     private pubFile(src, dest);
     private logError(message, error);
-    private logOutErr(stdout, stderr);
     private removePlatformsAndPlugins();
     private exec(command);
 }

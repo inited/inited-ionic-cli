@@ -6,7 +6,8 @@
   "scripts": {
     "install": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "inited": "node ./bin/inited.js"
   },
   "bin": {
     "inited": "bin/inited.js"
@@ -19,6 +20,7 @@
     "rmfr": "^1.0.3"
   },
   "devDependencies": {
+    "ionic": "^3.7.0",
     "typings": "^2.1.1"
   },
   "files": [

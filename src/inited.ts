@@ -30,14 +30,11 @@ export class Inited {
     public async adist() {
         await this.distFor("android");
         try {
-            const {jsstdout, jsstderr} = await this.exec("jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore cert/my-release-key.keystore -storepass Heslo123 platforms/android/build/outputs/apk/android-release-unsigned.apk alias_name");
-            this.logOutErr(jsstdout, jsstderr);
-            const {rstdout, rstderr} = await this.exec("rm -f " + Utils.projectName + ".apk");
-            this.logOutErr(rstdout, rstderr);
-            const {zstdout, zstderr} = await this.exec("$ANDROID_HOME/build-tools/22.0.1/zipalign -v 4 $APP " + Utils.projectName + ".apk")
-            this.logOutErr(zstdout, zstderr);
+            await this.exec("jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore cert/my-release-key.keystore -storepass Heslo123 platforms/android/build/outputs/apk/android-release-unsigned.apk alias_name");
+            await this.exec("rm -f " + Utils.projectName + ".apk");
+            await this.exec("$ANDROID_HOME/build-tools/22.0.1/zipalign -v 4 $APP " + Utils.projectName + ".apk")
         } catch (ex) {
-            this.logOutErr("Error while running adist.", ex);
+            console.error("Error while running adist: " + ex);
         }
     }
 
@@ -101,8 +98,7 @@ export class Inited {
     private async prepareFor(platform: string): Promise<any> {
         try {
             this.removePlatformsAndPlugins();
-            const {stdout, stderr} = await this.exec("ionic cordova platform add " + platform);
-            this.logOutErr(stdout, stderr);
+            await this.exec("ionic cordova platform add " + platform);
         } catch (ex) {
             this.logError("Error while running prepare for " + platform, ex);
         }
@@ -110,8 +106,7 @@ export class Inited {
 
     private async buildFor(platform: string): Promise<any> {
         try {
-            const {stdout, stderr} = await this.exec("ionic cordova build " + platform + " --device --prod --aot --minifyjs --minifycss --optimizejs");
-            this.logOutErr(stdout, stderr);
+            await this.exec("ionic cordova build " + platform + " --device --prod --aot --minifyjs --minifycss --optimizejs");
         } catch (ex) {
             this.logError("Error while running build for " + platform, ex);
         }
@@ -123,8 +118,7 @@ export class Inited {
 
     private async distFor(platform: string): Promise<any> {
         try {
-            const {stdout, stderr} = await this.exec("ionic cordova build " + platform + " --device --prod --aot --minifyjs --minifycss --optimizejs --release");
-            this.logOutErr(stdout, stderr);
+            await this.exec("ionic cordova build " + platform + " --device --prod --aot --minifyjs --minifycss --optimizejs --release");
         } catch (ex) {
             this.logError("Error while running dist for " + platform, ex);
         }
@@ -136,14 +130,7 @@ export class Inited {
 
     private logError(message: string, error: any) {
         console.log(message);
-        console.log(error.Error);
-        console.log(error.stdout);
-        console.log(error.stderr);
-    }
-
-    private logOutErr(stdout, stderr) {
-        console.log(stdout);
-        console.log(stderr);
+        console.log(error);
     }
 
     private async removePlatformsAndPlugins(): Promise<any> {
@@ -159,9 +146,16 @@ export class Inited {
         }
     }
 
-    private async exec(command): Promise<any> {
+    private async exec(command: string): Promise<any> {
         return new Promise<any>((resolve, reject) => {
-            const spawn = child_process.spawn(command);
+            console.log("Executing command: " + command);
+            const commandArr: Array<string> = command.split(" ");
+            let spawn;
+            if (commandArr.length > 1) {
+                spawn = child_process.spawn(commandArr[0], commandArr.splice(0, 1));
+            } else {
+                spawn = child_process.spawn(command);
+            }
             spawn.stdout.on('data', data => {
                 console.log(data.toString());
             });
