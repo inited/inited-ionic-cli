@@ -152,7 +152,7 @@ export class Inited {
             const commandArr: Array<string> = command.split(" ");
             let spawn;
             if (commandArr.length > 1) {
-                spawn = child_process.spawn(commandArr[0], commandArr.splice(1, ));
+                spawn = child_process.spawn(commandArr[0], commandArr.splice(1));
             } else {
                 spawn = child_process.spawn(command);
             }
