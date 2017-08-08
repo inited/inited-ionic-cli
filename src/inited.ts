@@ -160,7 +160,17 @@ export class Inited {
     }
 
     private async exec(command): Promise<any> {
-        const exec = util.promisify(child_process.exec);
-        return exec(command);
+        return new Promise<any>((resolve, reject) => {
+            const spawn = child_process.spawn(command);
+            spawn.stdout.on('data', data => {
+                console.log(data.toString());
+            });
+            spawn.stderr.on('data', data => {
+                console.error(data.toString());
+            });
+            spawn.on('exit', code => {
+                resolve();
+            });
+        });
     }
 }

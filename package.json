@@ -16,7 +16,6 @@
   "dependencies": {
     "@types/node": "^8.0.19",
     "cordova-common": "^2.0.3",
-    "ionic": "^3.7.0",
     "rmfr": "^1.0.3"
   },
   "devDependencies": {

@@ -352,10 +352,19 @@ var Inited = (function () {
     };
     Inited.prototype.exec = function (command) {
         return __awaiter(this, void 0, void 0, function () {
-            var exec;
             return __generator(this, function (_a) {
-                exec = util.promisify(child_process.exec);
-                return [2 /*return*/, exec(command)];
+                return [2 /*return*/, new Promise(function (resolve, reject) {
+                        var spawn = child_process.spawn(command);
+                        spawn.stdout.on('data', function (data) {
+                            console.log(data.toString());
+                        });
+                        spawn.stderr.on('data', function (data) {
+                            console.error(data.toString());
+                        });
+                        spawn.on('exit', function (code) {
+                            resolve();
+                        });
+                    })];
             });
         });
     };
