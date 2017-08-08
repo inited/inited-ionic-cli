@@ -1,0 +1,21 @@
+{
+  "name": "inited",
+  "version": "1.0.0",
+  "description": "Inited cli for ionic 2 projects",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "index": "node ./dist/index.js",
+    "tsc": "tsc"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^8.0.19",
+    "cordova-common": "^2.0.3",
+    "ionic": "^3.7.0"
+  },
+  "devDependencies": {
+    "typings": "^2.1.1"
+  }
+}

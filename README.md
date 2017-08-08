@@ -1,1 +1,1 @@
-## inited-ionic-cli
+Inited CLI for Ionic projects
