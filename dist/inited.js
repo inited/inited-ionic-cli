@@ -235,7 +235,7 @@ var Inited = (function () {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
                         this.removePlatformsAndPlugins();
-                        return [4 /*yield*/, this.exec("ionic cordova platform add " + platform)];
+                        return [4 /*yield*/, this.exec("ionic cordova platform add " + platform + " --nofetch")];
                     case 1:
                         _a.sent();
                         return [3 /*break*/, 3];

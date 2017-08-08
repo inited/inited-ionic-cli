@@ -98,7 +98,7 @@ export class Inited {
     private async prepareFor(platform: string): Promise<any> {
         try {
             this.removePlatformsAndPlugins();
-            await this.exec("ionic cordova platform add " + platform);
+            await this.exec("ionic cordova platform add " + platform + " --nofetch");
         } catch (ex) {
             this.logError("Error while running prepare for " + platform, ex);
         }
