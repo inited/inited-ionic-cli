@@ -8,6 +8,9 @@
     "index": "node ./dist/index.js",
     "tsc": "tsc"
   },
+  "bin": {
+    "inited": "dist/index.js"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
