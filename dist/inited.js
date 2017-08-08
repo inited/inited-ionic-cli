@@ -346,7 +346,7 @@ var Inited = (function () {
                         var commandArr = command.split(" ");
                         var spawn;
                         if (commandArr.length > 1) {
-                            spawn = child_process.spawn(commandArr[0], commandArr.splice(0, 1));
+                            spawn = child_process.spawn(commandArr[0], commandArr.splice(1));
                         }
                         else {
                             spawn = child_process.spawn(command);
