@@ -4,7 +4,6 @@
   "description": "Inited cli for ionic 2 projects",
   "main": "dist/index.js",
   "scripts": {
-    "install": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
     "tsc": "tsc",
     "inited": "node ./bin/inited.js"
@@ -21,6 +20,7 @@
   },
   "devDependencies": {
     "ionic": "^3.7.0",
+    "typescript": "^2.4.2",
     "typings": "^2.1.1"
   },
   "files": [

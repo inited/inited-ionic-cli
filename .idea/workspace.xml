@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3836fdff-0af8-40ec-ae2c-6884f4a51f5a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/inited.js" afterPath="$PROJECT_DIR$/dist/inited.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/inited.ts" afterPath="$PROJECT_DIR$/src/inited.ts" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/package-lock.json" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -20,7 +21,7 @@
       <file leaf-file-name="index.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/index.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
+            <state relative-caret-position="119">
               <caret line="8" column="42" lean-forward="false" selection-start-line="8" selection-start-column="42" selection-end-line="8" selection-end-column="42" />
               <folding>
                 <element signature="e#0#34#0" expanded="true" />
@@ -29,11 +30,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="inited.ts" pinned="false" current-in-tab="true">
+      <file leaf-file-name="inited.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/inited.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="100" column="68" lean-forward="true" selection-start-line="100" selection-start-column="68" selection-end-line="100" selection-end-column="83" />
+            <state relative-caret-position="-942">
+              <caret line="92" column="0" lean-forward="false" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="17" lean-forward="false" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -42,8 +53,8 @@
       <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="14" lean-forward="false" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
+            <state relative-caret-position="255">
+              <caret line="15" column="19" lean-forward="true" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -52,7 +63,7 @@
       <file leaf-file-name="utils.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/utils.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
+            <state relative-caret-position="17">
               <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
               <folding />
             </state>
@@ -62,7 +73,7 @@
       <file leaf-file-name="tsconfig.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tsconfig.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
+            <state relative-caret-position="136">
               <caret line="8" column="14" lean-forward="false" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
               <folding />
             </state>
@@ -101,8 +112,9 @@
         <option value="$PROJECT_DIR$/bin/inited.js" />
         <option value="$PROJECT_DIR$/src/index.ts" />
         <option value="$PROJECT_DIR$/tsconfig.json" />
-        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/inited.ts" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -168,12 +180,12 @@
         <subPane>
           <expand>
             <path>
-              <item name="cli" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cli" type="462c0819:PsiDirectoryNode" />
+              <item name="inited-ionic-cli" type="b2602c69:ProjectViewProjectNode" />
+              <item name="inited-ionic-cli" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="cli" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cli" type="462c0819:PsiDirectoryNode" />
+              <item name="inited-ionic-cli" type="b2602c69:ProjectViewProjectNode" />
+              <item name="inited-ionic-cli" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -192,6 +204,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.tslint" value="" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -228,26 +241,27 @@
       <updated>1502184308150</updated>
       <workItem from="1502184309655" duration="15526000" />
       <workItem from="1502203140141" duration="1121000" />
+      <workItem from="1502211494619" duration="119000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16647000" />
+    <option name="totallyTimeSpent" value="16766000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="157" y="53" width="1400" height="907" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32998747" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -259,92 +273,6 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
-    <option name="exactExcludedFiles">
-      <list>
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/app/main.js.map" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/app/app.module.js" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/app/app.module.js.map" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/app/app.component.js.map" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/app/main.js" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/app/app.component.js" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/model/UserLevel.js" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/model/UserRole.js" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/model/Article.js" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/model/UserRole.js.map" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/model/Event.js" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/model/Tip.js" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/model/User.js.map" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/model/Event.js.map" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/model/Article.js.map" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/model/Tip.js.map" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/model/UserLevel.js.map" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/model/User.js" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/pipes/truncate.js.map" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/pipes/truncate.js" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/providers/posts-provider.js" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/providers/posts-provider.js.map" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/providers/notifications-provider.js" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/providers/terms-provider.js.map" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/providers/utils-provider.js.map" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/providers/cf7db-provider.js" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/providers/notifications-provider.js.map" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/providers/users-provider.js" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/providers/terms-provider.js" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/providers/cf7db-provider.js.map" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/providers/utils-provider.js" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/providers/users-provider.js.map" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/pages/login/login.module.js.map" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/pages/login/login.js.map" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/pages/login/login.js" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/pages/login/login.module.js" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/pages/articles/articles.module.js" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/pages/articles/articles.module.js.map" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/pages/articles/articles.js" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/pages/articles/articles.js.map" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/pages/calendar/calendar.js" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/pages/calendar/calendar.module.js.map" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/pages/calendar/calendar.js.map" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/pages/calendar/calendar.module.js" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/pages/event-tip/event-tip.js" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/pages/event-tip/event-tip.module.js.map" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/pages/event-tip/event-tip.js.map" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/pages/event-tip/event-tip.module.js" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/pages/new-event/new-event.js" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/pages/new-event/new-event.js.map" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/pages/new-event/new-event.module.js.map" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/pages/new-event/new-event.module.js" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/pages/new-article/new-article.js.map" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/pages/new-article/new-article.module.js" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/pages/new-article/new-article.module.js.map" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/pages/new-article/new-article.js" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/pages/add-location/add-location.js.map" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/pages/add-location/add-location.js" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/pages/add-location/add-location.module.js.map" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/pages/add-location/add-location.module.js" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/pages/event-detail/event-detail.js.map" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/pages/event-detail/event-detail.module.js" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/pages/event-detail/event-detail.js" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/pages/event-detail/event-detail.module.js.map" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/pages/registration/registration.module.js.map" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/pages/registration/registration.js.map" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/pages/registration/registration.js" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/pages/registration/registration.module.js" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/pages/add-organizer/add-organizer.module.js" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/pages/add-organizer/add-organizer.js" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/pages/add-organizer/add-organizer.js.map" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/pages/add-organizer/add-organizer.module.js.map" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/pages/article-detail/article-detail.module.js.map" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/pages/article-detail/article-detail.js" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/pages/article-detail/article-detail.module.js" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/pages/article-detail/article-detail.js.map" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/components/ion-datepicker/ion-datepicker.js.map" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/components/ion-datepicker/ion-datepicker.module.js.map" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/components/ion-datepicker/ion-datepicker.js" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/components/ion-datepicker/ion-datepicker.module.js" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/components/ion-datepicker/popover-calendar-page/popover-calendar-page.js" />
-        <option value="$PROJECT_DIR$/../Stánkař/stankar/src/components/ion-datepicker/popover-calendar-page/popover-calendar-page.js.map" />
-      </list>
-    </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -354,6 +282,48 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/index.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="8" column="42" lean-forward="false" selection-start-line="8" selection-start-column="42" selection-end-line="8" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="14" lean-forward="false" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tsconfig.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="14" lean-forward="false" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/inited.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1700">
+          <caret line="100" column="68" lean-forward="true" selection-start-line="100" selection-start-column="68" selection-end-line="100" selection-end-column="83" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/index.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -388,60 +358,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/ionic/dist/index.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/ionic/dist/definitions.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/ionic/dist/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="859">
-          <caret line="59" column="10" lean-forward="false" selection-start-line="59" selection-start-column="10" selection-end-line="59" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/.bin/ionic">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/ionic/dist/index.d.ts" />
+    <entry file="file://$PROJECT_DIR$/node_modules/ionic/dist/definitions.d.ts" />
+    <entry file="file://$PROJECT_DIR$/node_modules/ionic/dist/index.js" />
+    <entry file="file://$PROJECT_DIR$/node_modules/.bin/ionic" />
     <entry file="file://$PROJECT_DIR$/node_modules/utils.ts" />
     <entry file="file://$PROJECT_DIR$/src/utils.js" />
     <entry file="file://$PROJECT_DIR$/src/index.js" />
     <entry file="file://$PROJECT_DIR$/aprepare.sh" />
     <entry file="file://$PROJECT_DIR$/config.xml" />
-    <entry file="file://$PROJECT_DIR$/node_modules/@types/node/index.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="5198" column="20" lean-forward="false" selection-start-line="5198" selection-start-column="20" selection-end-line="5198" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package-lock.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/@types/node/index.d.ts" />
     <entry file="file://$PROJECT_DIR$/bin/inited.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -449,7 +379,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -457,7 +386,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -473,7 +401,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -485,20 +412,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/rimraf/rimraf.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/rmfr/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-281">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/rimraf/rimraf.js" />
+    <entry file="file://$PROJECT_DIR$/node_modules/rmfr/package.json" />
     <entry file="file://$PROJECT_DIR$/dist/inited.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -509,23 +424,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tsconfig.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
+        <state relative-caret-position="136">
           <caret line="8" column="14" lean-forward="false" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="14" lean-forward="false" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/utils.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
+        <state relative-caret-position="17">
           <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding />
         </state>
@@ -533,7 +440,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/index.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
+        <state relative-caret-position="119">
           <caret line="8" column="42" lean-forward="false" selection-start-line="8" selection-start-column="42" selection-end-line="8" selection-end-column="42" />
           <folding>
             <element signature="e#0#34#0" expanded="true" />
@@ -543,8 +450,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/inited.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="100" column="68" lean-forward="true" selection-start-line="100" selection-start-column="68" selection-end-line="100" selection-end-column="83" />
+        <state relative-caret-position="-942">
+          <caret line="92" column="0" lean-forward="false" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package-lock.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="19" lean-forward="true" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="17" lean-forward="false" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
           <folding />
         </state>
       </provider>
