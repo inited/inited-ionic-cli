@@ -7,10 +7,16 @@ export function run() {
         console.log("Don't know, what to do.");
     } else {
         let inited: Inited = new Inited();
-        if (inited[arg] != undefined) {
-            inited[arg].call();
-        } else {
-            console.log("Don't know, what to do.");
+        console.log(inited);
+        switch(arg) {
+            case "aprepare":
+                inited.aprepare();
+                break;
+            case "iprepare":
+                inited.iprepare();
+                break;
+            default:
+                console.log("Don't know what to do.");
         }
     }
 }
