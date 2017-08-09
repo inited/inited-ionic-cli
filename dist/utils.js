@@ -150,7 +150,7 @@ var Utils = (function () {
                         }
                         spawn.stdout.on('data', function (data) {
                             console.log(data.toString());
-                            if (data.includes("Install now?")) {
+                            if (data.includes(" (Y/n)")) {
                                 spawn.stdin.write("Y\n");
                             }
                         });
