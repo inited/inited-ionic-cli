@@ -99,7 +99,7 @@ export class Inited {
         try {
             await this.installAndPrune();
             await this.removePlatformsAndPlugins();
-            await this.exec("cordova platform add " + platform + " --nofetch");
+            await this.exec("inited cordova platform add " + platform + " --nofetch");
         } catch (ex) {
             this.logError("Error while running prepare for " + platform, ex);
         }
