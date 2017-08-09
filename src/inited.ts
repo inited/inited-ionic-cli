@@ -107,7 +107,8 @@ export class Inited {
 
     private async buildFor(platform: string): Promise<any> {
         try {
-            await this.exec("ionic cordova build " + platform + " --device --prod --aot --minifyjs --minifycss --optimizejs");
+            await this.exec("ionic build " + platform + " --device --prod --aot --minifyjs --minifycss --optimizejs");
+            await this.exec("cordova build " + platform + " --device");
         } catch (ex) {
             this.logError("Error while running build for " + platform, ex);
         }
@@ -119,7 +120,8 @@ export class Inited {
 
     private async distFor(platform: string): Promise<any> {
         try {
-            await this.exec("ionic cordova build " + platform + " --device --prod --aot --minifyjs --minifycss --optimizejs --release");
+            await this.exec("ionic build " + platform + " --device --prod --aot --minifyjs --minifycss --optimizejs --release");
+            await this.exec("cordova build " + platform + " --device --release");
         } catch (ex) {
             this.logError("Error while running dist for " + platform, ex);
         }

@@ -304,16 +304,19 @@ var Inited = (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, this.exec("ionic cordova build " + platform + " --device --prod --aot --minifyjs --minifycss --optimizejs")];
+                        _a.trys.push([0, 3, , 4]);
+                        return [4 /*yield*/, this.exec("ionic build " + platform + " --device --prod --aot --minifyjs --minifycss --optimizejs")];
                     case 1:
                         _a.sent();
-                        return [3 /*break*/, 3];
+                        return [4 /*yield*/, this.exec("cordova build " + platform + " --device")];
                     case 2:
+                        _a.sent();
+                        return [3 /*break*/, 4];
+                    case 3:
                         ex_4 = _a.sent();
                         this.logError("Error while running build for " + platform, ex_4);
-                        return [3 /*break*/, 3];
-                    case 3: return [2 /*return*/];
+                        return [3 /*break*/, 4];
+                    case 4: return [2 /*return*/];
                 }
             });
         });
@@ -336,16 +339,19 @@ var Inited = (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, this.exec("ionic cordova build " + platform + " --device --prod --aot --minifyjs --minifycss --optimizejs --release")];
+                        _a.trys.push([0, 3, , 4]);
+                        return [4 /*yield*/, this.exec("ionic build " + platform + " --device --prod --aot --minifyjs --minifycss --optimizejs --release")];
                     case 1:
                         _a.sent();
-                        return [3 /*break*/, 3];
+                        return [4 /*yield*/, this.exec("cordova build " + platform + " --device --release")];
                     case 2:
+                        _a.sent();
+                        return [3 /*break*/, 4];
+                    case 3:
                         ex_5 = _a.sent();
                         this.logError("Error while running dist for " + platform, ex_5);
-                        return [3 /*break*/, 3];
-                    case 3: return [2 /*return*/];
+                        return [3 /*break*/, 4];
+                    case 4: return [2 /*return*/];
                 }
             });
         });
