@@ -80,10 +80,15 @@ var Inited = (function () {
     };
     Inited.prototype.abuild = function () {
         return __awaiter(this, void 0, void 0, function () {
+            var rename;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.buildFor("android")];
                     case 1:
+                        _a.sent();
+                        rename = util.promisify(fs.rename);
+                        return [4 /*yield*/, rename("./platforms/android/build/outputs/apk/android-debug.apk", "./" + utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + "-$BUILD_NUMBER.apk")];
+                    case 2:
                         _a.sent();
                         return [2 /*return*/];
                 }

@@ -25,6 +25,8 @@ export class Inited {
 
     public async abuild() {
         await this.buildFor("android");
+        const rename = util.promisify(fs.rename);
+        await rename("./platforms/android/build/outputs/apk/android-debug.apk", "./" + Utils.projectName + "-" + Utils.appVersion + "-$BUILD_NUMBER.apk");
     }
 
     public async adist() {
