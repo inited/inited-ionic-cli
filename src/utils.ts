@@ -79,7 +79,7 @@ export class Utils {
             spawn.stdout.on('data', (data: string) => {
                 console.log(data.toString());
                 if (data.includes("Install now?")) {
-                    spawn.stdin.write("y");
+                    spawn.stdin.write("Y");
                 }
             });
             spawn.stderr.on('data', data => {
