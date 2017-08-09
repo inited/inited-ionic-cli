@@ -84,10 +84,12 @@ var Inited = (function () {
             var mvasync;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0:
-                        mvasync = util.promisify(mv);
-                        return [4 /*yield*/, mvasync("./platforms/android/build/outputs/apk/android-debug.apk", "./" + utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + "-" + utils_1.Utils.buildNumber + ".apk")];
+                    case 0: return [4 /*yield*/, this.buildFor("android")];
                     case 1:
+                        _a.sent();
+                        mvasync = util.promisify(mv);
+                        return [4 /*yield*/, mvasync(process.cwd() + "/platforms/android/build/outputs/apk/android-debug.apk", process.cwd() + "/" + utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + "-" + utils_1.Utils.buildNumber + ".apk")];
+                    case 2:
                         _a.sent();
                         return [2 /*return*/];
                 }
