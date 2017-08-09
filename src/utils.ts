@@ -1,7 +1,11 @@
 import cordovaCommon = require("cordova-common");
+import process = require("process");
+import fs = require("fs");
 
 export class Utils {
     public static get projectName(): string {
+        console.log(process);
+        console.log(process.env);
         return process.env.npm_package_name;
     }
 
