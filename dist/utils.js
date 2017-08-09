@@ -138,9 +138,7 @@ var Utils = (function () {
                         if (commandArr.length > 1) {
                             try {
                                 var commandParams = commandArr.splice(1);
-                                spawn = child_process.spawn(/^win/.test(process.platform) ? commandArr[0] + ".cmd" : commandArr[0], commandParams, {
-                                    shell: true
-                                });
+                                spawn = child_process.spawn(/^win/.test(process.platform) ? commandArr[0] + ".cmd" : commandArr[0], commandParams);
                             }
                             catch (ex) {
                                 console.log("Error while creating spawn");
@@ -152,6 +150,10 @@ var Utils = (function () {
                         }
                         spawn.stdout.on('data', function (data) {
                             console.log(data.toString());
+                            if (data.includes("Install now?")) {
+                                spawn.stdin.write("y");
+                                spawn.stdin.end();
+                            }
                         });
                         spawn.stderr.on('data', function (data) {
                             console.error(data.toString());

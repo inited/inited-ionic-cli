@@ -4,6 +4,7 @@ import replace = require("replace-in-file");
 import child_process = require("child_process");
 import fs = require("fs");
 import util = require("util");
+import { ChildProcess } from "child_process";
 
 export class Utils {
     public static get projectName(): string {
@@ -67,9 +68,7 @@ export class Utils {
             if (commandArr.length > 1) {
                 try {
                     const commandParams = commandArr.splice(1);
-                    spawn = child_process.spawn(/^win/.test(process.platform)? commandArr[0] + ".cmd": commandArr[0], commandParams, {
-                        shell: true
-                    });
+                    spawn = child_process.spawn(/^win/.test(process.platform)? commandArr[0] + ".cmd": commandArr[0], commandParams);
                 } catch (ex) {
                     console.log("Error while creating spawn");
                     console.log(ex);
@@ -77,8 +76,12 @@ export class Utils {
             } else {
                 spawn = child_process.spawn(command);
             }
-            spawn.stdout.on('data', data => {
+            spawn.stdout.on('data', (data: string) => {
                 console.log(data.toString());
+                if (data.includes("Install now?")) {
+                    spawn.stdin.write("y");
+                    spawn.stdin.end();
+                }
             });
             spawn.stderr.on('data', data => {
                 console.error(data.toString());
