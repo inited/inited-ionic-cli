@@ -67,7 +67,9 @@ export class Utils {
             if (commandArr.length > 1) {
                 try {
                     const commandParams = commandArr.splice(1);
-                    spawn = child_process.spawn(/^win/.test(process.platform)? commandArr[0] + ".cmd": commandArr[0], commandParams);
+                    spawn = child_process.spawn(/^win/.test(process.platform)? commandArr[0] + ".cmd": commandArr[0], commandParams, {
+                        shell: true
+                    });
                 } catch (ex) {
                     console.log("Error while creating spawn");
                     console.log(ex);
