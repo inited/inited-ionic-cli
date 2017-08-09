@@ -21,6 +21,7 @@ export declare class Inited {
     private distFor(platform);
     private pubFile(src, dest);
     private logError(message, error);
+    private installAndPrune();
     private removePlatformsAndPlugins();
     private exec(command);
 }

@@ -234,8 +234,9 @@ var Inited = (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
+                        this.installAndPrune();
                         this.removePlatformsAndPlugins();
-                        return [4 /*yield*/, this.exec("ionic cordova platform add " + platform + " --nofetch")];
+                        return [4 /*yield*/, this.exec("cordova platform add " + platform + " --nofetch")];
                     case 1:
                         _a.sent();
                         return [3 /*break*/, 3];
@@ -308,9 +309,32 @@ var Inited = (function () {
         console.log(message);
         console.log(error);
     };
+    Inited.prototype.installAndPrune = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var ex_6;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        _a.trys.push([0, 3, , 4]);
+                        return [4 /*yield*/, this.exec("npm install")];
+                    case 1:
+                        _a.sent();
+                        return [4 /*yield*/, this.exec("npm prune")];
+                    case 2:
+                        _a.sent();
+                        return [3 /*break*/, 4];
+                    case 3:
+                        ex_6 = _a.sent();
+                        console.log("Failed install and prune: " + ex_6);
+                        return [3 /*break*/, 4];
+                    case 4: return [2 /*return*/];
+                }
+            });
+        });
+    };
     Inited.prototype.removePlatformsAndPlugins = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var ex_6, ex_7;
+            var ex_7, ex_8;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -320,8 +344,8 @@ var Inited = (function () {
                         _a.sent();
                         return [3 /*break*/, 3];
                     case 2:
-                        ex_6 = _a.sent();
-                        console.log("Failed to remove platforms directory: " + ex_6);
+                        ex_7 = _a.sent();
+                        console.log("Failed to remove platforms directory: " + ex_7);
                         return [3 /*break*/, 3];
                     case 3:
                         _a.trys.push([3, 5, , 6]);
@@ -330,8 +354,8 @@ var Inited = (function () {
                         _a.sent();
                         return [3 /*break*/, 6];
                     case 5:
-                        ex_7 = _a.sent();
-                        console.log("Failed to remove plugins directory: " + ex_7);
+                        ex_8 = _a.sent();
+                        console.log("Failed to remove plugins directory: " + ex_8);
                         return [3 /*break*/, 6];
                     case 6: return [2 /*return*/];
                 }
@@ -344,9 +368,17 @@ var Inited = (function () {
                 return [2 /*return*/, new Promise(function (resolve, reject) {
                         console.log("Executing command: " + command);
                         var commandArr = command.split(" ");
+                        console.log(commandArr);
                         var spawn;
                         if (commandArr.length > 1) {
-                            spawn = child_process.spawn(commandArr[0], commandArr.splice(1));
+                            console.log("Creating spawn with more commands");
+                            try {
+                                spawn = child_process.spawn(commandArr[0], commandArr.splice(1));
+                            }
+                            catch (ex) {
+                                console.log("Error while creating spawn");
+                                console.log(ex);
+                            }
                         }
                         else {
                             spawn = child_process.spawn(command);

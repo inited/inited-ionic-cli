@@ -97,8 +97,9 @@ export class Inited {
 
     private async prepareFor(platform: string): Promise<any> {
         try {
+            this.installAndPrune();
             this.removePlatformsAndPlugins();
-            await this.exec("ionic cordova platform add " + platform + " --nofetch");
+            await this.exec("cordova platform add " + platform + " --nofetch");
         } catch (ex) {
             this.logError("Error while running prepare for " + platform, ex);
         }
@@ -131,6 +132,15 @@ export class Inited {
     private logError(message: string, error: any) {
         console.log(message);
         console.log(error);
+    }
+
+    private async installAndPrune(): Promise<any> {
+        try {
+            await this.exec("npm install");
+            await this.exec("npm prune");
+        } catch (ex) {
+            console.log("Failed install and prune: " + ex);
+        }
     }
 
     private async removePlatformsAndPlugins(): Promise<any> {
