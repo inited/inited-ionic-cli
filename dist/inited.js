@@ -279,10 +279,10 @@ var Inited = (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 4, , 5]);
-                        return [4 /*yield*/, this.installAndPrune()];
+                        return [4 /*yield*/, this.removePlatformsAndPlugins()];
                     case 1:
                         _a.sent();
-                        return [4 /*yield*/, this.removePlatformsAndPlugins()];
+                        return [4 /*yield*/, this.installAndPrune()];
                     case 2:
                         _a.sent();
                         return [4 /*yield*/, this.exec("ionic cordova platform add " + platform + " --nofetch")];
