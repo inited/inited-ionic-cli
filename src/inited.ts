@@ -3,7 +3,6 @@ import util = require("util");
 import child_process = require("child_process");
 import { Utils } from "./utils";
 import rmfr = require("rmfr");
-import mv = require("mv");
 
 export class Inited {
 
@@ -25,7 +24,10 @@ export class Inited {
     }
 
     public async abuild() {
+        console.log("Building app for android");
         await this.buildFor("android");
+        console.log("Build succeeded");
+        console.log("Moving android app from platforms/android/build/outputs/apk/android-debug.apk to " + Utils.projectName + "-" + Utils.appVersion + "-$BUILD_NUMBER.apk");
         await this.exec("mv platforms/android/build/outputs/apk/android-debug.apk " + Utils.projectName + "-" + Utils.appVersion + "-$BUILD_NUMBER.apk");
     }
 
