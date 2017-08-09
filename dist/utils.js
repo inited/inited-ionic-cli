@@ -152,7 +152,6 @@ var Utils = (function () {
                             console.log(data.toString());
                             if (data.includes("Install now?")) {
                                 spawn.stdin.write("y");
-                                spawn.stdin.end();
                             }
                         });
                         spawn.stderr.on('data', function (data) {
