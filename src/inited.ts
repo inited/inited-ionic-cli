@@ -7,33 +7,32 @@ import mv = require("mv");
 
 export class Inited {
 
-    private static platforms: Array<string> = ["android", "ios", "windows"];
-
-    public async initialize(args): Promise<any> {
+    public async initialize(args: Array<any>): Promise<any> {
         try {
-            let actions: Array<string> = ["abuild", "adist", "aprepare", "apub", "arelease",
-                                            "ibuild", "idist", "iprepare", "ipub", "irelease",
-                                            "wbuild", "wdist", "wprepare", "wpub", "wrelease"];
+            let platforms: Array<string> = ["android", "ios"];
+            let argPlatforms: Array<string> = [];
             if (args) {
-                actions = [];
                 for(const arg of args) {
-                    switch (arg) {
-                        case "android":
-                            actions.push("abuild", "adist", "aprepare", "apub", "arelease");
-                            break;
-                        case "ios":
-                            actions.push("ibuild", "idist", "iprepare", "ipub", "irelease");
-                            break;
-                        case "windows":
-                            actions.push("wbuild", "wdist", "wprepare", "wpub", "wrelease");
+                    const keyValue = arg.split("=");
+                    if (keyValue.length == 2) {
+                        await this.set(keyValue);
+                    } else if (keyValue.length == 1) {
+                        argPlatforms.push(arg);
                     }
+                }
+
+                if (argPlatforms.length > 0) {
+                    platforms = argPlatforms;
                 }
             }
             const writeFile = util.promisify(fs.writeFile);
-            for(const action of actions) {
-                await writeFile(process.cwd() + "/" + action + ".sh", "#!/usr/bin/env bash\n\ninited " + action, {
-                    mode: "755"
-                });
+            for(const platform of platforms) {
+                const prefix: string = process.cwd() + "/" + platform.charAt(0);
+                await writeFile(prefix + "build.sh", "#!/usr/bin/env bash\n\ninited build " + platform, {mode: "755"});
+                await writeFile(prefix + "dist.sh", "#!/usr/bin/env bash\n\ninited dist " + platform, {mode: "755"});
+                await writeFile(prefix + "prepare.sh", "#!/usr/bin/env bash\n\ninited prepare " + platform, {mode: "755"});
+                await writeFile(prefix + "pub.sh", "#!/usr/bin/env bash\n\ninited pub " + platform, {mode: "755"});
+                await writeFile(prefix + "release.sh", "#!/usr/bin/env bash\n\ninited release " + platform, {mode: "755"});
             }
         } catch (ex) {
             console.log("Error while initializing: " + ex);
@@ -41,86 +40,105 @@ export class Inited {
 
     }
 
-    public async abuild() {
-        await this.buildFor("android");
-        const mvasync = util.promisify(mv);
-        await mvasync(process.cwd() + "/platforms/android/build/outputs/apk/android-debug.apk", process.cwd() + "/" + Utils.projectName + "-" + Utils.appVersion + "-" + Utils.buildNumber + ".apk");
-    }
-
-    public async adist() {
-        await this.distFor("android");
-        try {
-            await Utils.exec("jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore cert/my-release-key.keystore -storepass Heslo123 platforms/android/build/outputs/apk/android-release-unsigned.apk alias_name");
-            await Utils.exec("rm -f " + Utils.projectName + ".apk");
-            await Utils.exec("$ANDROID_HOME/build-tools/22.0.1/zipalign -v 4 $APP " + Utils.projectName + ".apk")
-        } catch (ex) {
-            console.error("Error while running adist: " + ex);
-        }
-    }
-
-    public async aprepare(): Promise<any> {
-        await this.prepareFor("android");
-    }
-
-    public async apub() {
-        const fileName: string = Utils.projectName + "-" + Utils.appVersion + "-" + Utils.buildNumber + ".apk";
-        await this.pubFile(fileName, fileName);
-    }
-
-    public async arelease() {
-        const source: string = Utils.projectName + "-" + Utils.appVersion + "-" + Utils.buildNumber + ".apk";
-        const destination: string = Utils.projectName + "-" + Utils.appVersion + ".apk";
-        await this.pubFile(source, destination);
-    }
-
-    public async ibuild() {
-        await this.buildFor("ios");
-        await this.buildIOS(Utils.projectName + "-" + Utils.appVersion + "-" + Utils.buildNumber);
-    }
-
-    public async idist() {
-        await Utils.exec("security unlock-keychain -p h login.keychain");
-        await this.distFor("ios");
-        await this.buildIOS(Utils.projectName)
-    }
-
-    public async iprepare() {
-        await this.prepareFor("ios");
-    }
-
-    public async ipub() {
-        const fileName: string = Utils.projectName + "-" + Utils.appVersion + "-" + Utils.buildNumber + ".ipa";
-        await this.pubFile(fileName, fileName);
-    }
-
-    public async irelease() {
-        const source: string = Utils.projectName + "-" + Utils.appVersion + "-" + Utils.buildNumber + ".ipa";
-        const destination: string = Utils.projectName + "-" + Utils.appVersion + ".ipa";
-        await this.pubFile(source, destination);
-    }
-
-    public async setversion(args) {
-        if (args[0]) {
-            await Utils.setAppVersion(args[0]);
+    public async build(args: Array<string>) {
+        if (args) {
+            await this.buildFor(args[0]);
+            switch (args[0]) {
+                case "android":
+                    await this.androidMove();
+                    break;
+                case "ios":
+                    await this.buildIOS(Utils.projectName + "-" + Utils.appVersion + "-" + Utils.buildNumber);
+                    break;
+            }
         } else {
-            console.error("You have to provide version as next argument");
+            console.error("Tell me platform to build");
         }
     }
 
-    public async wbuild() {
-        await this.buildFor("windows");
+    public async dist(args: Array<string>) {
+        if (args) {
+            await this.preDist(args[0]);
+            await this.distFor(args[0]);
+            await this.postDist(args[0]);
+        } else {
+            console.error("Tell me platform to dist");
+        }
     }
 
-    public wdist() {
-
+    public async prepare(args: Array<string>) {
+        if (args) {
+            await this.prepareFor(args[0]);
+        } else {
+            console.error("Tell me platform to prepare");
+        }
     }
 
-    public async wprepare(): Promise<any> {
-        await this.prepareFor("windows");
+    public async pub(args: Array<string>) {
+        if (args) {
+            let fileName: string = "";
+            switch (args[0]) {
+                case "android":
+                    fileName = Utils.projectName + "-" + Utils.appVersion + "-" + Utils.buildNumber + ".apk";
+                    break;
+                case "ios":
+                    fileName = Utils.projectName + "-" + Utils.appVersion + "-" + Utils.buildNumber + ".ipa";
+                    break;
+            }
+            if (fileName.trim() != "") {
+                await this.pubFile(fileName, fileName);
+            } else {
+                console.error("Sorry, don´t know what to upload");
+            }
+        } else {
+            console.error("Tell me platform to publish");
+        }
     }
 
-    public async wrelease() {
+    public async release(args: Array<string>) {
+        if (args) {
+            let source: string = "";
+            let destination: string = "";
+            switch (args[0]) {
+                case "android":
+                    source = Utils.projectName + "-" + Utils.appVersion + "-" + Utils.buildNumber + ".apk";
+                    destination = Utils.projectName + "-" + Utils.appVersion + ".apk";
+                    break;
+                case "ios":
+                    source = Utils.projectName + "-" + Utils.appVersion + "-" + Utils.buildNumber + ".ipa";
+                    destination = Utils.projectName + "-" + Utils.appVersion + ".ipa";
+                    break;
+            }
 
+            if (source.trim() != "" && destination.trim() != "") {
+                await this.pubFile(source, destination);
+            } else {
+                console.error("Sorry, don´t know what to upload");
+            }
+        } else {
+            console.error("Tell me platform to release");
+        }
+    }
+
+    public async set(args) {
+        if (!args || args.length < 2) {
+            console.error("You have to provide key and value to change");
+        } else {
+            switch (args[0]) {
+                case "version":
+                    await Utils.setAppVersion(args[1]);
+                    break;
+                case "appName":
+                    Utils.setAppName(args[1]);
+                    break;
+                case "projectName":
+                    await Utils.setProjectName(args[1]);
+                    break;
+                case "id":
+                    Utils.setId(args[1]);
+                    break;
+            }
+        }
     }
 
     private async prepareFor(platform: string): Promise<any> {
@@ -148,6 +166,16 @@ export class Inited {
         await Utils.exec("/usr/bin/xcrun -v -v -sdk iphoneos PackageApplication \"$(pwd)/platforms/ios/build/device/$APPNAME.app\" -o \"$(pwd)/" + file + ".ipa\"")
     }
 
+    private async preDist(platform: string): Promise<any> {
+        switch (platform) {
+            case "ios":
+                await Utils.exec("security unlock-keychain -p h login.keychain");
+                break;
+            case "android":
+                break;
+        }
+    }
+
     private async distFor(platform: string): Promise<any> {
         try {
             if (Utils.isIonicApp()) {
@@ -159,6 +187,19 @@ export class Inited {
         }
     }
 
+    private async postDist(platform: string): Promise<any> {
+        switch (platform) {
+            case "android":
+                await Utils.exec("jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore cert/my-release-key.keystore -storepass Heslo123 platforms/android/build/outputs/apk/android-release-unsigned.apk alias_name");
+                await Utils.exec("rm -f " + Utils.projectName + ".apk");
+                await Utils.exec("$ANDROID_HOME/build-tools/22.0.1/zipalign -v 4 $APP " + Utils.projectName + ".apk");
+                break;
+            case "ios":
+                await this.buildIOS(Utils.projectName);
+                break;
+        }
+    }
+
     private async pubFile(src: string, dest: string) {
         await Utils.exec("scp " + src + " inited@ini.inited.cz:public_html/ios/" + dest)
     }
@@ -166,6 +207,11 @@ export class Inited {
     private logError(message: string, error: any) {
         console.log(message);
         console.log(error);
+    }
+
+    private async androidMove() {
+        const mvasync = util.promisify(mv);
+        await mvasync(process.cwd() + "/platforms/android/build/outputs/apk/android-debug.apk", process.cwd() + "/" + Utils.projectName + "-" + Utils.appVersion + "-" + Utils.buildNumber + ".apk");
     }
 
     private async installAndPrune(): Promise<any> {

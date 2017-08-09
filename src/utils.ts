@@ -10,12 +10,24 @@ export class Utils {
         return this.packageJson.name;
     }
 
+    public static async setProjectName(value: string): Promise<any> {
+        const config = this.config;
+        const pckg = this.packageJson;
+        if (config.name() == pckg.name) {
+            Utils.setAppName(value);
+        }
+        await replace({
+            files: process.cwd() + "/package.json",
+            from: /"name": ".*"/,
+            to: "\"name\": " + value + "\""
+        });
+    }
+
     public static get appVersion(): string {
         return this.config.version();
     }
 
     public static async setAppVersion(value: string): Promise<any> {
-        console.log("Setting version: " + value);
         const config = this.config;
         config.setVersion(value);
         config.write();
@@ -31,8 +43,20 @@ export class Utils {
         return this.config.name();
     }
 
+    public static setAppName(value: string): void {
+        const config = this.config;
+        config.setName(value);
+        config.write();
+    }
+
     public static get buildNumber(): string {
         return process.env.BUILD_NUMBER? process.env.BUILD_NUMBER: "";
+    }
+
+    public static setId(value: string): void {
+        const config = this.config;
+        config.setPackageName(value);
+        config.write();
     }
 
     public static async exec(command: string): Promise<any> {

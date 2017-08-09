@@ -50,6 +50,29 @@ var Utils = (function () {
         enumerable: true,
         configurable: true
     });
+    Utils.setProjectName = function (value) {
+        return __awaiter(this, void 0, void 0, function () {
+            var config, pckg;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        config = this.config;
+                        pckg = this.packageJson;
+                        if (config.name() == pckg.name) {
+                            Utils.setAppName(value);
+                        }
+                        return [4 /*yield*/, replace({
+                                files: process.cwd() + "/package.json",
+                                from: /"name": ".*"/,
+                                to: "\"name\": " + value + "\""
+                            })];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
     Object.defineProperty(Utils, "appVersion", {
         get: function () {
             return this.config.version();
@@ -63,7 +86,6 @@ var Utils = (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        console.log("Setting version: " + value);
                         config = this.config;
                         config.setVersion(value);
                         config.write();
@@ -89,6 +111,11 @@ var Utils = (function () {
         enumerable: true,
         configurable: true
     });
+    Utils.setAppName = function (value) {
+        var config = this.config;
+        config.setName(value);
+        config.write();
+    };
     Object.defineProperty(Utils, "buildNumber", {
         get: function () {
             return process.env.BUILD_NUMBER ? process.env.BUILD_NUMBER : "";
@@ -96,6 +123,11 @@ var Utils = (function () {
         enumerable: true,
         configurable: true
     });
+    Utils.setId = function (value) {
+        var config = this.config;
+        config.setPackageName(value);
+        config.write();
+    };
     Utils.exec = function (command) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {

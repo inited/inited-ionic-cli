@@ -45,275 +45,259 @@ var Inited = (function () {
     }
     Inited.prototype.initialize = function (args) {
         return __awaiter(this, void 0, void 0, function () {
-            var actions, _i, args_1, arg, writeFile, _a, actions_1, action, ex_1;
+            var platforms, argPlatforms, _i, args_1, arg, keyValue, writeFile, _a, platforms_1, platform, prefix, ex_1;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
-                        _b.trys.push([0, 5, , 6]);
-                        actions = ["abuild", "adist", "aprepare", "apub", "arelease",
-                            "ibuild", "idist", "iprepare", "ipub", "irelease",
-                            "wbuild", "wdist", "wprepare", "wpub", "wrelease"];
-                        if (args) {
-                            actions = [];
-                            for (_i = 0, args_1 = args; _i < args_1.length; _i++) {
-                                arg = args_1[_i];
-                                switch (arg) {
-                                    case "android":
-                                        actions.push("abuild", "adist", "aprepare", "apub", "arelease");
-                                        break;
-                                    case "ios":
-                                        actions.push("ibuild", "idist", "iprepare", "ipub", "irelease");
-                                        break;
-                                    case "windows":
-                                        actions.push("wbuild", "wdist", "wprepare", "wpub", "wrelease");
-                                }
-                            }
-                        }
-                        writeFile = util.promisify(fs.writeFile);
-                        _a = 0, actions_1 = actions;
+                        _b.trys.push([0, 15, , 16]);
+                        platforms = ["android", "ios"];
+                        argPlatforms = [];
+                        if (!args) return [3 /*break*/, 6];
+                        _i = 0, args_1 = args;
                         _b.label = 1;
                     case 1:
-                        if (!(_a < actions_1.length)) return [3 /*break*/, 4];
-                        action = actions_1[_a];
-                        return [4 /*yield*/, writeFile(process.cwd() + "/" + action + ".sh", "#!/usr/bin/env bash\n\ninited " + action, {
-                                mode: "755"
-                            })];
+                        if (!(_i < args_1.length)) return [3 /*break*/, 5];
+                        arg = args_1[_i];
+                        keyValue = arg.split("=");
+                        if (!(keyValue.length == 2)) return [3 /*break*/, 3];
+                        return [4 /*yield*/, this.set(keyValue)];
                     case 2:
                         _b.sent();
-                        _b.label = 3;
+                        return [3 /*break*/, 4];
                     case 3:
-                        _a++;
+                        if (keyValue.length == 1) {
+                            argPlatforms.push(arg);
+                        }
+                        _b.label = 4;
+                    case 4:
+                        _i++;
                         return [3 /*break*/, 1];
-                    case 4: return [3 /*break*/, 6];
                     case 5:
+                        if (argPlatforms.length > 0) {
+                            platforms = argPlatforms;
+                        }
+                        _b.label = 6;
+                    case 6:
+                        writeFile = util.promisify(fs.writeFile);
+                        _a = 0, platforms_1 = platforms;
+                        _b.label = 7;
+                    case 7:
+                        if (!(_a < platforms_1.length)) return [3 /*break*/, 14];
+                        platform = platforms_1[_a];
+                        prefix = process.cwd() + "/" + platform.charAt(0);
+                        return [4 /*yield*/, writeFile(prefix + "build.sh", "#!/usr/bin/env bash\n\ninited build " + platform, { mode: "755" })];
+                    case 8:
+                        _b.sent();
+                        return [4 /*yield*/, writeFile(prefix + "dist.sh", "#!/usr/bin/env bash\n\ninited dist " + platform, { mode: "755" })];
+                    case 9:
+                        _b.sent();
+                        return [4 /*yield*/, writeFile(prefix + "prepare.sh", "#!/usr/bin/env bash\n\ninited prepare " + platform, { mode: "755" })];
+                    case 10:
+                        _b.sent();
+                        return [4 /*yield*/, writeFile(prefix + "pub.sh", "#!/usr/bin/env bash\n\ninited pub " + platform, { mode: "755" })];
+                    case 11:
+                        _b.sent();
+                        return [4 /*yield*/, writeFile(prefix + "release.sh", "#!/usr/bin/env bash\n\ninited release " + platform, { mode: "755" })];
+                    case 12:
+                        _b.sent();
+                        _b.label = 13;
+                    case 13:
+                        _a++;
+                        return [3 /*break*/, 7];
+                    case 14: return [3 /*break*/, 16];
+                    case 15:
                         ex_1 = _b.sent();
                         console.log("Error while initializing: " + ex_1);
+                        return [3 /*break*/, 16];
+                    case 16: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    Inited.prototype.build = function (args) {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        if (!args) return [3 /*break*/, 7];
+                        return [4 /*yield*/, this.buildFor(args[0])];
+                    case 1:
+                        _b.sent();
+                        _a = args[0];
+                        switch (_a) {
+                            case "android": return [3 /*break*/, 2];
+                            case "ios": return [3 /*break*/, 4];
+                        }
                         return [3 /*break*/, 6];
-                    case 6: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    Inited.prototype.abuild = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var mvasync;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.buildFor("android")];
-                    case 1:
-                        _a.sent();
-                        mvasync = util.promisify(mv);
-                        return [4 /*yield*/, mvasync(process.cwd() + "/platforms/android/build/outputs/apk/android-debug.apk", process.cwd() + "/" + utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + "-" + utils_1.Utils.buildNumber + ".apk")];
-                    case 2:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    Inited.prototype.adist = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var ex_2;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.distFor("android")];
-                    case 1:
-                        _a.sent();
-                        _a.label = 2;
-                    case 2:
-                        _a.trys.push([2, 6, , 7]);
-                        return [4 /*yield*/, utils_1.Utils.exec("jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore cert/my-release-key.keystore -storepass Heslo123 platforms/android/build/outputs/apk/android-release-unsigned.apk alias_name")];
+                    case 2: return [4 /*yield*/, this.androidMove()];
                     case 3:
-                        _a.sent();
-                        return [4 /*yield*/, utils_1.Utils.exec("rm -f " + utils_1.Utils.projectName + ".apk")];
-                    case 4:
-                        _a.sent();
-                        return [4 /*yield*/, utils_1.Utils.exec("$ANDROID_HOME/build-tools/22.0.1/zipalign -v 4 $APP " + utils_1.Utils.projectName + ".apk")];
+                        _b.sent();
+                        return [3 /*break*/, 6];
+                    case 4: return [4 /*yield*/, this.buildIOS(utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + "-" + utils_1.Utils.buildNumber)];
                     case 5:
-                        _a.sent();
-                        return [3 /*break*/, 7];
-                    case 6:
-                        ex_2 = _a.sent();
-                        console.error("Error while running adist: " + ex_2);
-                        return [3 /*break*/, 7];
-                    case 7: return [2 /*return*/];
+                        _b.sent();
+                        return [3 /*break*/, 6];
+                    case 6: return [3 /*break*/, 8];
+                    case 7:
+                        console.error("Tell me platform to build");
+                        _b.label = 8;
+                    case 8: return [2 /*return*/];
                 }
             });
         });
     };
-    Inited.prototype.aprepare = function () {
+    Inited.prototype.dist = function (args) {
         return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.prepareFor("android")];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    Inited.prototype.apub = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var fileName;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        fileName = utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + "-" + utils_1.Utils.buildNumber + ".apk";
-                        return [4 /*yield*/, this.pubFile(fileName, fileName)];
+                        if (!args) return [3 /*break*/, 4];
+                        return [4 /*yield*/, this.preDist(args[0])];
                     case 1:
                         _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    Inited.prototype.arelease = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var source, destination;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        source = utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + "-" + utils_1.Utils.buildNumber + ".apk";
-                        destination = utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + ".apk";
-                        return [4 /*yield*/, this.pubFile(source, destination)];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    Inited.prototype.ibuild = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.buildFor("ios")];
-                    case 1:
-                        _a.sent();
-                        return [4 /*yield*/, this.buildIOS(utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + "-" + utils_1.Utils.buildNumber)];
+                        return [4 /*yield*/, this.distFor(args[0])];
                     case 2:
                         _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    Inited.prototype.idist = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, utils_1.Utils.exec("security unlock-keychain -p h login.keychain")];
-                    case 1:
-                        _a.sent();
-                        return [4 /*yield*/, this.distFor("ios")];
-                    case 2:
-                        _a.sent();
-                        return [4 /*yield*/, this.buildIOS(utils_1.Utils.projectName)];
+                        return [4 /*yield*/, this.postDist(args[0])];
                     case 3:
                         _a.sent();
-                        return [2 /*return*/];
+                        return [3 /*break*/, 5];
+                    case 4:
+                        console.error("Tell me platform to dist");
+                        _a.label = 5;
+                    case 5: return [2 /*return*/];
                 }
             });
         });
     };
-    Inited.prototype.iprepare = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.prepareFor("ios")];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    Inited.prototype.ipub = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var fileName;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        fileName = utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + "-" + utils_1.Utils.buildNumber + ".ipa";
-                        return [4 /*yield*/, this.pubFile(fileName, fileName)];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    Inited.prototype.irelease = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var source, destination;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        source = utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + "-" + utils_1.Utils.buildNumber + ".ipa";
-                        destination = utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + ".ipa";
-                        return [4 /*yield*/, this.pubFile(source, destination)];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    Inited.prototype.setversion = function (args) {
+    Inited.prototype.prepare = function (args) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (!args[0]) return [3 /*break*/, 2];
-                        return [4 /*yield*/, utils_1.Utils.setAppVersion(args[0])];
+                        if (!args) return [3 /*break*/, 2];
+                        return [4 /*yield*/, this.prepareFor(args[0])];
                     case 1:
                         _a.sent();
                         return [3 /*break*/, 3];
                     case 2:
-                        console.error("You have to provide version as next argument");
+                        console.error("Tell me platform to prepare");
                         _a.label = 3;
                     case 3: return [2 /*return*/];
                 }
             });
         });
     };
-    Inited.prototype.wbuild = function () {
+    Inited.prototype.pub = function (args) {
         return __awaiter(this, void 0, void 0, function () {
+            var fileName;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.buildFor("windows")];
+                    case 0:
+                        if (!args) return [3 /*break*/, 4];
+                        fileName = "";
+                        switch (args[0]) {
+                            case "android":
+                                fileName = utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + "-" + utils_1.Utils.buildNumber + ".apk";
+                                break;
+                            case "ios":
+                                fileName = utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + "-" + utils_1.Utils.buildNumber + ".ipa";
+                                break;
+                        }
+                        if (!(fileName.trim() != "")) return [3 /*break*/, 2];
+                        return [4 /*yield*/, this.pubFile(fileName, fileName)];
                     case 1:
                         _a.sent();
-                        return [2 /*return*/];
+                        return [3 /*break*/, 3];
+                    case 2:
+                        console.error("Sorry, don´t know what to upload");
+                        _a.label = 3;
+                    case 3: return [3 /*break*/, 5];
+                    case 4:
+                        console.error("Tell me platform to publish");
+                        _a.label = 5;
+                    case 5: return [2 /*return*/];
                 }
             });
         });
     };
-    Inited.prototype.wdist = function () {
-    };
-    Inited.prototype.wprepare = function () {
+    Inited.prototype.release = function (args) {
         return __awaiter(this, void 0, void 0, function () {
+            var source, destination;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.prepareFor("windows")];
+                    case 0:
+                        if (!args) return [3 /*break*/, 4];
+                        source = "";
+                        destination = "";
+                        switch (args[0]) {
+                            case "android":
+                                source = utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + "-" + utils_1.Utils.buildNumber + ".apk";
+                                destination = utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + ".apk";
+                                break;
+                            case "ios":
+                                source = utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + "-" + utils_1.Utils.buildNumber + ".ipa";
+                                destination = utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + ".ipa";
+                                break;
+                        }
+                        if (!(source.trim() != "" && destination.trim() != "")) return [3 /*break*/, 2];
+                        return [4 /*yield*/, this.pubFile(source, destination)];
                     case 1:
                         _a.sent();
-                        return [2 /*return*/];
+                        return [3 /*break*/, 3];
+                    case 2:
+                        console.error("Sorry, don´t know what to upload");
+                        _a.label = 3;
+                    case 3: return [3 /*break*/, 5];
+                    case 4:
+                        console.error("Tell me platform to release");
+                        _a.label = 5;
+                    case 5: return [2 /*return*/];
                 }
             });
         });
     };
-    Inited.prototype.wrelease = function () {
+    Inited.prototype.set = function (args) {
         return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/];
+            var _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        if (!(!args || args.length < 2)) return [3 /*break*/, 1];
+                        console.error("You have to provide key and value to change");
+                        return [3 /*break*/, 8];
+                    case 1:
+                        _a = args[0];
+                        switch (_a) {
+                            case "version": return [3 /*break*/, 2];
+                            case "appName": return [3 /*break*/, 4];
+                            case "projectName": return [3 /*break*/, 5];
+                            case "id": return [3 /*break*/, 7];
+                        }
+                        return [3 /*break*/, 8];
+                    case 2: return [4 /*yield*/, utils_1.Utils.setAppVersion(args[1])];
+                    case 3:
+                        _b.sent();
+                        return [3 /*break*/, 8];
+                    case 4:
+                        utils_1.Utils.setAppName(args[1]);
+                        return [3 /*break*/, 8];
+                    case 5: return [4 /*yield*/, utils_1.Utils.setProjectName(args[1])];
+                    case 6:
+                        _b.sent();
+                        return [3 /*break*/, 8];
+                    case 7:
+                        utils_1.Utils.setId(args[1]);
+                        return [3 /*break*/, 8];
+                    case 8: return [2 /*return*/];
+                }
             });
         });
     };
     Inited.prototype.prepareFor = function (platform) {
         return __awaiter(this, void 0, void 0, function () {
-            var ex_3;
+            var ex_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -329,8 +313,8 @@ var Inited = (function () {
                         _a.sent();
                         return [3 /*break*/, 5];
                     case 4:
-                        ex_3 = _a.sent();
-                        this.logError("Error while running prepare for " + platform, ex_3);
+                        ex_2 = _a.sent();
+                        this.logError("Error while running prepare for " + platform, ex_2);
                         return [3 /*break*/, 5];
                     case 5: return [2 /*return*/];
                 }
@@ -339,7 +323,7 @@ var Inited = (function () {
     };
     Inited.prototype.buildFor = function (platform) {
         return __awaiter(this, void 0, void 0, function () {
-            var ex_4;
+            var ex_3;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -354,8 +338,8 @@ var Inited = (function () {
                         _a.sent();
                         return [3 /*break*/, 5];
                     case 4:
-                        ex_4 = _a.sent();
-                        this.logError("Error while running build for " + platform, ex_4);
+                        ex_3 = _a.sent();
+                        this.logError("Error while running build for " + platform, ex_3);
                         return [3 /*break*/, 5];
                     case 5: return [2 /*return*/];
                 }
@@ -374,9 +358,31 @@ var Inited = (function () {
             });
         });
     };
+    Inited.prototype.preDist = function (platform) {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _a = platform;
+                        switch (_a) {
+                            case "ios": return [3 /*break*/, 1];
+                            case "android": return [3 /*break*/, 3];
+                        }
+                        return [3 /*break*/, 4];
+                    case 1: return [4 /*yield*/, utils_1.Utils.exec("security unlock-keychain -p h login.keychain")];
+                    case 2:
+                        _b.sent();
+                        return [3 /*break*/, 4];
+                    case 3: return [3 /*break*/, 4];
+                    case 4: return [2 /*return*/];
+                }
+            });
+        });
+    };
     Inited.prototype.distFor = function (platform) {
         return __awaiter(this, void 0, void 0, function () {
-            var ex_5;
+            var ex_4;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -391,10 +397,41 @@ var Inited = (function () {
                         _a.sent();
                         return [3 /*break*/, 5];
                     case 4:
-                        ex_5 = _a.sent();
-                        this.logError("Error while running dist for " + platform, ex_5);
+                        ex_4 = _a.sent();
+                        this.logError("Error while running dist for " + platform, ex_4);
                         return [3 /*break*/, 5];
                     case 5: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    Inited.prototype.postDist = function (platform) {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _a = platform;
+                        switch (_a) {
+                            case "android": return [3 /*break*/, 1];
+                            case "ios": return [3 /*break*/, 5];
+                        }
+                        return [3 /*break*/, 7];
+                    case 1: return [4 /*yield*/, utils_1.Utils.exec("jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore cert/my-release-key.keystore -storepass Heslo123 platforms/android/build/outputs/apk/android-release-unsigned.apk alias_name")];
+                    case 2:
+                        _b.sent();
+                        return [4 /*yield*/, utils_1.Utils.exec("rm -f " + utils_1.Utils.projectName + ".apk")];
+                    case 3:
+                        _b.sent();
+                        return [4 /*yield*/, utils_1.Utils.exec("$ANDROID_HOME/build-tools/22.0.1/zipalign -v 4 $APP " + utils_1.Utils.projectName + ".apk")];
+                    case 4:
+                        _b.sent();
+                        return [3 /*break*/, 7];
+                    case 5: return [4 /*yield*/, this.buildIOS(utils_1.Utils.projectName)];
+                    case 6:
+                        _b.sent();
+                        return [3 /*break*/, 7];
+                    case 7: return [2 /*return*/];
                 }
             });
         });
@@ -415,9 +452,24 @@ var Inited = (function () {
         console.log(message);
         console.log(error);
     };
+    Inited.prototype.androidMove = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var mvasync;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        mvasync = util.promisify(mv);
+                        return [4 /*yield*/, mvasync(process.cwd() + "/platforms/android/build/outputs/apk/android-debug.apk", process.cwd() + "/" + utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + "-" + utils_1.Utils.buildNumber + ".apk")];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
     Inited.prototype.installAndPrune = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var ex_6;
+            var ex_5;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -430,8 +482,8 @@ var Inited = (function () {
                         _a.sent();
                         return [3 /*break*/, 4];
                     case 3:
-                        ex_6 = _a.sent();
-                        console.log("Failed install and prune: " + ex_6);
+                        ex_5 = _a.sent();
+                        console.log("Failed install and prune: " + ex_5);
                         return [3 /*break*/, 4];
                     case 4: return [2 /*return*/];
                 }
@@ -440,7 +492,7 @@ var Inited = (function () {
     };
     Inited.prototype.removePlatformsAndPlugins = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var ex_7, ex_8, unlink, ex_9;
+            var ex_6, ex_7, unlink, ex_8;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -450,8 +502,8 @@ var Inited = (function () {
                         _a.sent();
                         return [3 /*break*/, 3];
                     case 2:
-                        ex_7 = _a.sent();
-                        console.log("Failed to remove platforms directory: " + ex_7);
+                        ex_6 = _a.sent();
+                        console.log("Failed to remove platforms directory: " + ex_6);
                         return [3 /*break*/, 3];
                     case 3:
                         _a.trys.push([3, 5, , 6]);
@@ -460,8 +512,8 @@ var Inited = (function () {
                         _a.sent();
                         return [3 /*break*/, 6];
                     case 5:
-                        ex_8 = _a.sent();
-                        console.log("Failed to remove plugins directory: " + ex_8);
+                        ex_7 = _a.sent();
+                        console.log("Failed to remove plugins directory: " + ex_7);
                         return [3 /*break*/, 6];
                     case 6:
                         _a.trys.push([6, 8, , 9]);
@@ -471,15 +523,14 @@ var Inited = (function () {
                         _a.sent();
                         return [3 /*break*/, 9];
                     case 8:
-                        ex_9 = _a.sent();
-                        console.log("Failed to remove package-lock.json file: " + ex_9);
+                        ex_8 = _a.sent();
+                        console.log("Failed to remove package-lock.json file: " + ex_8);
                         return [3 /*break*/, 9];
                     case 9: return [2 /*return*/];
                 }
             });
         });
     };
-    Inited.platforms = ["android", "ios", "windows"];
     return Inited;
 }());
 exports.Inited = Inited;
