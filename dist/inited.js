@@ -387,7 +387,7 @@ var Inited = (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, utils_1.Utils.exec(" scp " + src + " inited@ini.inited.cz:public_html/ios/" + dest)];
+                    case 0: return [4 /*yield*/, utils_1.Utils.exec("scp " + src + " inited@ini.inited.cz:public_html/ios/" + dest)];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];

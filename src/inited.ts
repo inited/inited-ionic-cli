@@ -143,7 +143,7 @@ export class Inited {
     }
 
     private async pubFile(src: string, dest: string) {
-        await Utils.exec(" scp " + src + " inited@ini.inited.cz:public_html/ios/" + dest)
+        await Utils.exec("scp " + src + " inited@ini.inited.cz:public_html/ios/" + dest)
     }
 
     private logError(message: string, error: any) {
