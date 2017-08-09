@@ -43,37 +43,53 @@ var mv = require("mv");
 var Inited = (function () {
     function Inited() {
     }
-    Inited.prototype.initialize = function () {
+    Inited.prototype.initialize = function (args) {
         return __awaiter(this, void 0, void 0, function () {
-            var writeFile, actions, _i, actions_1, action, ex_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
+            var actions, _i, args_1, arg, writeFile, _a, actions_1, action, ex_1;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
                     case 0:
-                        writeFile = util.promisify(fs.writeFile);
-                        _a.label = 1;
-                    case 1:
-                        _a.trys.push([1, 6, , 7]);
+                        _b.trys.push([0, 5, , 6]);
                         actions = ["abuild", "adist", "aprepare", "apub", "arelease",
                             "ibuild", "idist", "iprepare", "ipub", "irelease",
                             "wbuild", "wdist", "wprepare", "wpub", "wrelease"];
-                        _i = 0, actions_1 = actions;
-                        _a.label = 2;
+                        if (args) {
+                            actions = [];
+                            for (_i = 0, args_1 = args; _i < args_1.length; _i++) {
+                                arg = args_1[_i];
+                                switch (arg) {
+                                    case "android":
+                                        actions.push("abuild", "adist", "aprepare", "apub", "arelease");
+                                        break;
+                                    case "ios":
+                                        actions.push("ibuild", "idist", "iprepare", "ipub", "irelease");
+                                        break;
+                                    case "windows":
+                                        actions.push("wbuild", "wdist", "wprepare", "wpub", "wrelease");
+                                }
+                            }
+                        }
+                        writeFile = util.promisify(fs.writeFile);
+                        _a = 0, actions_1 = actions;
+                        _b.label = 1;
+                    case 1:
+                        if (!(_a < actions_1.length)) return [3 /*break*/, 4];
+                        action = actions_1[_a];
+                        return [4 /*yield*/, writeFile(process.cwd() + "/" + action + ".sh", "#!/usr/bin/env bash\n\ninited " + action, {
+                                mode: "755"
+                            })];
                     case 2:
-                        if (!(_i < actions_1.length)) return [3 /*break*/, 5];
-                        action = actions_1[_i];
-                        return [4 /*yield*/, writeFile(action + ".sh", "inited " + action, { mode: 755 })];
+                        _b.sent();
+                        _b.label = 3;
                     case 3:
-                        _a.sent();
-                        _a.label = 4;
-                    case 4:
-                        _i++;
-                        return [3 /*break*/, 2];
-                    case 5: return [3 /*break*/, 7];
-                    case 6:
-                        ex_1 = _a.sent();
+                        _a++;
+                        return [3 /*break*/, 1];
+                    case 4: return [3 /*break*/, 6];
+                    case 5:
+                        ex_1 = _b.sent();
                         console.log("Error while initializing: " + ex_1);
-                        return [3 /*break*/, 7];
-                    case 7: return [2 /*return*/];
+                        return [3 /*break*/, 6];
+                    case 6: return [2 /*return*/];
                 }
             });
         });

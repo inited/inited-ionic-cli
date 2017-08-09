@@ -1,6 +1,6 @@
 export declare class Inited {
     private static platforms;
-    initialize(): Promise<any>;
+    initialize(args: any): Promise<any>;
     abuild(): Promise<void>;
     adist(): Promise<void>;
     aprepare(): Promise<any>;

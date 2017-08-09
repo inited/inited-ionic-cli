@@ -9,14 +9,31 @@ export class Inited {
 
     private static platforms: Array<string> = ["android", "ios", "windows"];
 
-    public async initialize(): Promise<any> {
-        let writeFile = util.promisify(fs.writeFile);
+    public async initialize(args): Promise<any> {
         try {
-            const actions: Array<string> = ["abuild", "adist", "aprepare", "apub", "arelease",
+            let actions: Array<string> = ["abuild", "adist", "aprepare", "apub", "arelease",
                                             "ibuild", "idist", "iprepare", "ipub", "irelease",
                                             "wbuild", "wdist", "wprepare", "wpub", "wrelease"];
+            if (args) {
+                actions = [];
+                for(const arg of args) {
+                    switch (arg) {
+                        case "android":
+                            actions.push("abuild", "adist", "aprepare", "apub", "arelease");
+                            break;
+                        case "ios":
+                            actions.push("ibuild", "idist", "iprepare", "ipub", "irelease");
+                            break;
+                        case "windows":
+                            actions.push("wbuild", "wdist", "wprepare", "wpub", "wrelease");
+                    }
+                }
+            }
+            const writeFile = util.promisify(fs.writeFile);
             for(const action of actions) {
-                await writeFile(action + ".sh", "inited " + action, {mode: 755});
+                await writeFile(process.cwd() + "/" + action + ".sh", "#!/usr/bin/env bash\n\ninited " + action, {
+                    mode: "755"
+                });
             }
         } catch (ex) {
             console.log("Error while initializing: " + ex);
