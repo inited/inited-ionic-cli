@@ -448,10 +448,8 @@ var Inited = (function () {
                 return [2 /*return*/, new Promise(function (resolve, reject) {
                         console.log("Executing command: " + command);
                         var commandArr = command.split(" ");
-                        console.log(commandArr);
                         var spawn;
                         if (commandArr.length > 1) {
-                            console.log("Creating spawn with more commands");
                             try {
                                 spawn = child_process.spawn(commandArr[0], commandArr.splice(1));
                             }
