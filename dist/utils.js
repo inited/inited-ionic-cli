@@ -14,15 +14,21 @@ var Utils = (function () {
     });
     Object.defineProperty(Utils, "appVersion", {
         get: function () {
-            return process.env.npm_package_version;
+            return this.config.version();
         },
         enumerable: true,
         configurable: true
     });
     Object.defineProperty(Utils, "appName", {
         get: function () {
-            var appConfig = new cordovaCommon.ConfigParser("./config.xml");
-            return appConfig.name();
+            return this.config.name();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Utils, "buildNumber", {
+        get: function () {
+            return process.env.BUILD_NUMBER ? process.env.BUILD_NUMBER : "";
         },
         enumerable: true,
         configurable: true
@@ -30,8 +36,15 @@ var Utils = (function () {
     Object.defineProperty(Utils, "packageJson", {
         get: function () {
             var pckg = require(process.cwd() + "/package.json");
-            console.log(pckg);
             return pckg;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Utils, "config", {
+        get: function () {
+            var appConfig = new cordovaCommon.ConfigParser(process.cwd() + "/config.xml");
+            return appConfig;
         },
         enumerable: true,
         configurable: true

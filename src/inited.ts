@@ -27,7 +27,7 @@ export class Inited {
     public async abuild() {
         //await this.buildFor("android");
         const mvasync = util.promisify(mv);
-        await mvasync("./platforms/android/build/outputs/apk/android-debug.apk", "./" + Utils.projectName + "-" + Utils.appVersion + "-$BUILD_NUMBER.apk");
+        await mvasync("./platforms/android/build/outputs/apk/android-debug.apk", "./" + Utils.projectName + "-" + Utils.appVersion + "-" + Utils.buildNumber + ".apk");
     }
 
     public async adist() {
@@ -46,19 +46,19 @@ export class Inited {
     }
 
     public async apub() {
-        const fileName: string = Utils.projectName + "-" + Utils.appVersion + "-$BUILD_NUMBER.apk";
+        const fileName: string = Utils.projectName + "-" + Utils.appVersion + "-" + Utils.buildNumber + ".apk";
         await this.pubFile(fileName, fileName);
     }
 
     public async arelease() {
-        const source: string = Utils.projectName + "-" + Utils.appVersion + "-$BUILD_NUMBER.apk";
+        const source: string = Utils.projectName + "-" + Utils.appVersion + "-" + Utils.buildNumber + ".apk";
         const destination: string = Utils.projectName + "-" + Utils.appVersion + ".apk";
         await this.pubFile(source, destination);
     }
 
     public async ibuild() {
         await this.buildFor("ios");
-        await this.buildIOS(Utils.projectName + "-" + Utils.appVersion + "-$BUILD_NUMBER");
+        await this.buildIOS(Utils.projectName + "-" + Utils.appVersion + "-" + Utils.buildNumber);
     }
 
     public async idist() {
@@ -72,12 +72,12 @@ export class Inited {
     }
 
     public async ipub() {
-        const fileName: string = Utils.projectName + "-" + Utils.appVersion + "-$BUILD_NUMBER.ipa";
+        const fileName: string = Utils.projectName + "-" + Utils.appVersion + "-" + Utils.buildNumber + ".ipa";
         await this.pubFile(fileName, fileName);
     }
 
     public async irelease() {
-        const source: string = Utils.projectName + "-" + Utils.appVersion + "-$BUILD_NUMBER.ipa";
+        const source: string = Utils.projectName + "-" + Utils.appVersion + "-" + Utils.buildNumber + ".ipa";
         const destination: string = Utils.projectName + "-" + Utils.appVersion + ".ipa";
         await this.pubFile(source, destination);
     }

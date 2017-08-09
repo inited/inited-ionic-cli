@@ -86,7 +86,7 @@ var Inited = (function () {
                 switch (_a.label) {
                     case 0:
                         mvasync = util.promisify(mv);
-                        return [4 /*yield*/, mvasync("./platforms/android/build/outputs/apk/android-debug.apk", "./" + utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + "-$BUILD_NUMBER.apk")];
+                        return [4 /*yield*/, mvasync("./platforms/android/build/outputs/apk/android-debug.apk", "./" + utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + "-" + utils_1.Utils.buildNumber + ".apk")];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
@@ -142,7 +142,7 @@ var Inited = (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        fileName = utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + "-$BUILD_NUMBER.apk";
+                        fileName = utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + "-" + utils_1.Utils.buildNumber + ".apk";
                         return [4 /*yield*/, this.pubFile(fileName, fileName)];
                     case 1:
                         _a.sent();
@@ -157,7 +157,7 @@ var Inited = (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        source = utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + "-$BUILD_NUMBER.apk";
+                        source = utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + "-" + utils_1.Utils.buildNumber + ".apk";
                         destination = utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + ".apk";
                         return [4 /*yield*/, this.pubFile(source, destination)];
                     case 1:
@@ -174,7 +174,7 @@ var Inited = (function () {
                     case 0: return [4 /*yield*/, this.buildFor("ios")];
                     case 1:
                         _a.sent();
-                        return [4 /*yield*/, this.buildIOS(utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + "-$BUILD_NUMBER")];
+                        return [4 /*yield*/, this.buildIOS(utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + "-" + utils_1.Utils.buildNumber)];
                     case 2:
                         _a.sent();
                         return [2 /*return*/];
@@ -218,7 +218,7 @@ var Inited = (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        fileName = utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + "-$BUILD_NUMBER.ipa";
+                        fileName = utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + "-" + utils_1.Utils.buildNumber + ".ipa";
                         return [4 /*yield*/, this.pubFile(fileName, fileName)];
                     case 1:
                         _a.sent();
@@ -233,7 +233,7 @@ var Inited = (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        source = utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + "-$BUILD_NUMBER.ipa";
+                        source = utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + "-" + utils_1.Utils.buildNumber + ".ipa";
                         destination = utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + ".ipa";
                         return [4 /*yield*/, this.pubFile(source, destination)];
                     case 1:
