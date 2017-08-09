@@ -7,9 +7,7 @@ var Utils = (function () {
     }
     Object.defineProperty(Utils, "projectName", {
         get: function () {
-            console.log(process);
-            console.log(process.env);
-            return process.env.npm_package_name;
+            return this.packageJson.name;
         },
         enumerable: true,
         configurable: true
@@ -25,6 +23,15 @@ var Utils = (function () {
         get: function () {
             var appConfig = new cordovaCommon.ConfigParser("./config.xml");
             return appConfig.name();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Utils, "packageJson", {
+        get: function () {
+            var pckg = require("./package.json");
+            console.log(pckg);
+            return pckg;
         },
         enumerable: true,
         configurable: true

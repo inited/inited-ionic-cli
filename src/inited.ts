@@ -16,7 +16,7 @@ export class Inited {
                                             "ibuild", "idist", "iprepare", "ipub", "irelease",
                                             "wbuild", "wdist", "wprepare", "wpub", "wrelease"];
             for(const action of actions) {
-                await writeFile(action + ".sh", "npm run inited " + action, {mode: 755});
+                await writeFile(action + ".sh", "inited " + action, {mode: 755});
             }
         } catch (ex) {
             console.log("Error while initializing: " + ex);

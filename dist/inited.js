@@ -62,7 +62,7 @@ var Inited = (function () {
                     case 2:
                         if (!(_i < actions_1.length)) return [3 /*break*/, 5];
                         action = actions_1[_i];
-                        return [4 /*yield*/, writeFile(action + ".sh", "npm run inited " + action, { mode: 755 })];
+                        return [4 /*yield*/, writeFile(action + ".sh", "inited " + action, { mode: 755 })];
                     case 3:
                         _a.sent();
                         _a.label = 4;
