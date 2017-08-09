@@ -42,7 +42,9 @@ export class Utils {
             let spawn;
             if (commandArr.length > 1) {
                 try {
-                    spawn = child_process.spawn(commandArr[0], commandArr.splice(1));
+                    const commandParams = commandArr.splice(1);
+                    console.log(commandParams);
+                    spawn = child_process.spawn(commandArr[0], commandParams);
                 } catch (ex) {
                     console.log("Error while creating spawn");
                     console.log(ex);
