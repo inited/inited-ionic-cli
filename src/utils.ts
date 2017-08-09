@@ -17,8 +17,7 @@ export class Utils {
     }
 
     private static get packageJson(): any {
-        console.log(process.cwd());
-        let pckg = require("./package.json");
+        let pckg = require(process.cwd + "/package.json");
         console.log(pckg);
         return pckg;
     }
