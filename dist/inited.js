@@ -285,7 +285,7 @@ var Inited = (function () {
                         return [4 /*yield*/, this.installAndPrune()];
                     case 2:
                         _a.sent();
-                        return [4 /*yield*/, this.exec("ionic cordova platform add " + platform + " --nofetch")];
+                        return [4 /*yield*/, this.exec("cordova platform add " + platform + " --nofetch")];
                     case 3:
                         _a.sent();
                         return [3 /*break*/, 5];
