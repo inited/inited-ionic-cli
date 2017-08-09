@@ -29,6 +29,7 @@ var Utils = (function () {
     });
     Object.defineProperty(Utils, "packageJson", {
         get: function () {
+            console.log(process.cwd());
             var pckg = require("./package.json");
             console.log(pckg);
             return pckg;

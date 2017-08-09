@@ -25,7 +25,7 @@ export class Inited {
     }
 
     public async abuild() {
-        await this.buildFor("android");
+        //await this.buildFor("android");
         const mvasync = util.promisify(mv);
         await mvasync("./platforms/android/build/outputs/apk/android-debug.apk", "./" + Utils.projectName + "-" + Utils.appVersion + "-$BUILD_NUMBER.apk");
     }
