@@ -29,7 +29,7 @@ var Utils = (function () {
     });
     Object.defineProperty(Utils, "packageJson", {
         get: function () {
-            var pckg = require(process.cwd + "/package.json");
+            var pckg = require(process.cwd() + "/package.json");
             console.log(pckg);
             return pckg;
         },
