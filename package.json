@@ -17,6 +17,7 @@
     "@types/node": "^8.0.19",
     "cordova-common": "^2.0.3",
     "mv": "^2.1.1",
+    "replace-in-file": "^2.5.3",
     "rmfr": "^1.0.3"
   },
   "devDependencies": {

@@ -33,9 +33,9 @@ export class Inited {
     public async adist() {
         await this.distFor("android");
         try {
-            await this.exec("jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore cert/my-release-key.keystore -storepass Heslo123 platforms/android/build/outputs/apk/android-release-unsigned.apk alias_name");
-            await this.exec("rm -f " + Utils.projectName + ".apk");
-            await this.exec("$ANDROID_HOME/build-tools/22.0.1/zipalign -v 4 $APP " + Utils.projectName + ".apk")
+            await Utils.exec("jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore cert/my-release-key.keystore -storepass Heslo123 platforms/android/build/outputs/apk/android-release-unsigned.apk alias_name");
+            await Utils.exec("rm -f " + Utils.projectName + ".apk");
+            await Utils.exec("$ANDROID_HOME/build-tools/22.0.1/zipalign -v 4 $APP " + Utils.projectName + ".apk")
         } catch (ex) {
             console.error("Error while running adist: " + ex);
         }
@@ -62,7 +62,7 @@ export class Inited {
     }
 
     public async idist() {
-        await this.exec("security unlock-keychain -p h login.keychain");
+        await Utils.exec("security unlock-keychain -p h login.keychain");
         await this.distFor("ios");
         await this.buildIOS(Utils.projectName)
     }
@@ -80,6 +80,14 @@ export class Inited {
         const source: string = Utils.projectName + "-" + Utils.appVersion + "-" + Utils.buildNumber + ".ipa";
         const destination: string = Utils.projectName + "-" + Utils.appVersion + ".ipa";
         await this.pubFile(source, destination);
+    }
+
+    public async setversion(args) {
+        if (args[0]) {
+            await Utils.setAppVersion(args[0]);
+        } else {
+            console.error("You have to provide version as next argument");
+        }
     }
 
     public async wbuild() {
@@ -102,7 +110,7 @@ export class Inited {
         try {
             await this.removePlatformsAndPlugins();
             await this.installAndPrune();
-            await this.exec("cordova platform add " + platform + " --nofetch");
+            await Utils.exec("cordova platform add " + platform + " --nofetch");
         } catch (ex) {
             this.logError("Error while running prepare for " + platform, ex);
         }
@@ -110,28 +118,32 @@ export class Inited {
 
     private async buildFor(platform: string): Promise<any> {
         try {
-            await this.exec("ionic build " + platform + " --device --prod --aot --minifyjs --minifycss --optimizejs");
-            await this.exec("cordova build " + platform + " --device");
+            if (Utils.isIonicApp()) {
+                await Utils.exec("ionic build " + platform + " --device --prod --aot --minifyjs --minifycss --optimizejs");
+            }
+            await Utils.exec("cordova build " + platform + " --device");
         } catch (ex) {
             this.logError("Error while running build for " + platform, ex);
         }
     }
 
     private async buildIOS(file: string) {
-        await this.exec("/usr/bin/xcrun -v -v -sdk iphoneos PackageApplication \"$(pwd)/platforms/ios/build/device/$APPNAME.app\" -o \"$(pwd)/" + file + ".ipa\"")
+        await Utils.exec("/usr/bin/xcrun -v -v -sdk iphoneos PackageApplication \"$(pwd)/platforms/ios/build/device/$APPNAME.app\" -o \"$(pwd)/" + file + ".ipa\"")
     }
 
     private async distFor(platform: string): Promise<any> {
         try {
-            await this.exec("ionic build " + platform + " --device --prod --aot --minifyjs --minifycss --optimizejs --release");
-            await this.exec("cordova build " + platform + " --device --release");
+            if (Utils.isIonicApp()) {
+                await Utils.exec("ionic build " + platform + " --device --prod --aot --minifyjs --minifycss --optimizejs --release");
+            }
+            await Utils.exec("cordova build " + platform + " --device --release");
         } catch (ex) {
             this.logError("Error while running dist for " + platform, ex);
         }
     }
 
     private async pubFile(src: string, dest: string) {
-        await this.exec(" scp " + src + " inited@ini.inited.cz:public_html/ios/" + dest)
+        await Utils.exec(" scp " + src + " inited@ini.inited.cz:public_html/ios/" + dest)
     }
 
     private logError(message: string, error: any) {
@@ -141,8 +153,8 @@ export class Inited {
 
     private async installAndPrune(): Promise<any> {
         try {
-            await this.exec("npm install");
-            await this.exec("npm prune");
+            await Utils.exec("npm install");
+            await Utils.exec("npm prune");
         } catch (ex) {
             console.log("Failed install and prune: " + ex);
         }
@@ -165,32 +177,5 @@ export class Inited {
         } catch (ex) {
             console.log("Failed to remove package-lock.json file: " + ex);
         }
-    }
-
-    private async exec(command: string): Promise<any> {
-        return new Promise<any>((resolve, reject) => {
-            console.log("Executing command: " + command);
-            const commandArr: Array<string> = command.split(" ");
-            let spawn;
-            if (commandArr.length > 1) {
-                try {
-                    spawn = child_process.spawn(commandArr[0], commandArr.splice(1));
-                } catch (ex) {
-                    console.log("Error while creating spawn");
-                    console.log(ex);
-                }
-            } else {
-                spawn = child_process.spawn(command);
-            }
-            spawn.stdout.on('data', data => {
-                console.log(data.toString());
-            });
-            spawn.stderr.on('data', data => {
-                console.error(data.toString());
-            });
-            spawn.on('exit', code => {
-                resolve();
-            });
-        });
     }
 }

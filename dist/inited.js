@@ -37,7 +37,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var fs = require("fs");
 var util = require("util");
-var child_process = require("child_process");
 var utils_1 = require("./utils");
 var rmfr = require("rmfr");
 var mv = require("mv");
@@ -107,13 +106,13 @@ var Inited = (function () {
                         _a.label = 2;
                     case 2:
                         _a.trys.push([2, 6, , 7]);
-                        return [4 /*yield*/, this.exec("jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore cert/my-release-key.keystore -storepass Heslo123 platforms/android/build/outputs/apk/android-release-unsigned.apk alias_name")];
+                        return [4 /*yield*/, utils_1.Utils.exec("jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore cert/my-release-key.keystore -storepass Heslo123 platforms/android/build/outputs/apk/android-release-unsigned.apk alias_name")];
                     case 3:
                         _a.sent();
-                        return [4 /*yield*/, this.exec("rm -f " + utils_1.Utils.projectName + ".apk")];
+                        return [4 /*yield*/, utils_1.Utils.exec("rm -f " + utils_1.Utils.projectName + ".apk")];
                     case 4:
                         _a.sent();
-                        return [4 /*yield*/, this.exec("$ANDROID_HOME/build-tools/22.0.1/zipalign -v 4 $APP " + utils_1.Utils.projectName + ".apk")];
+                        return [4 /*yield*/, utils_1.Utils.exec("$ANDROID_HOME/build-tools/22.0.1/zipalign -v 4 $APP " + utils_1.Utils.projectName + ".apk")];
                     case 5:
                         _a.sent();
                         return [3 /*break*/, 7];
@@ -188,7 +187,7 @@ var Inited = (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.exec("security unlock-keychain -p h login.keychain")];
+                    case 0: return [4 /*yield*/, utils_1.Utils.exec("security unlock-keychain -p h login.keychain")];
                     case 1:
                         _a.sent();
                         return [4 /*yield*/, this.distFor("ios")];
@@ -245,6 +244,24 @@ var Inited = (function () {
             });
         });
     };
+    Inited.prototype.setversion = function (args) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!args[0]) return [3 /*break*/, 2];
+                        return [4 /*yield*/, utils_1.Utils.setAppVersion(args[0])];
+                    case 1:
+                        _a.sent();
+                        return [3 /*break*/, 3];
+                    case 2:
+                        console.error("You have to provide version as next argument");
+                        _a.label = 3;
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
     Inited.prototype.wbuild = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
@@ -291,7 +308,7 @@ var Inited = (function () {
                         return [4 /*yield*/, this.installAndPrune()];
                     case 2:
                         _a.sent();
-                        return [4 /*yield*/, this.exec("cordova platform add " + platform + " --nofetch")];
+                        return [4 /*yield*/, utils_1.Utils.exec("cordova platform add " + platform + " --nofetch")];
                     case 3:
                         _a.sent();
                         return [3 /*break*/, 5];
@@ -310,19 +327,21 @@ var Inited = (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 3, , 4]);
-                        return [4 /*yield*/, this.exec("ionic build " + platform + " --device --prod --aot --minifyjs --minifycss --optimizejs")];
+                        _a.trys.push([0, 4, , 5]);
+                        if (!utils_1.Utils.isIonicApp()) return [3 /*break*/, 2];
+                        return [4 /*yield*/, utils_1.Utils.exec("ionic build " + platform + " --device --prod --aot --minifyjs --minifycss --optimizejs")];
                     case 1:
                         _a.sent();
-                        return [4 /*yield*/, this.exec("cordova build " + platform + " --device")];
-                    case 2:
-                        _a.sent();
-                        return [3 /*break*/, 4];
+                        _a.label = 2;
+                    case 2: return [4 /*yield*/, utils_1.Utils.exec("cordova build " + platform + " --device")];
                     case 3:
+                        _a.sent();
+                        return [3 /*break*/, 5];
+                    case 4:
                         ex_4 = _a.sent();
                         this.logError("Error while running build for " + platform, ex_4);
-                        return [3 /*break*/, 4];
-                    case 4: return [2 /*return*/];
+                        return [3 /*break*/, 5];
+                    case 5: return [2 /*return*/];
                 }
             });
         });
@@ -331,7 +350,7 @@ var Inited = (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.exec("/usr/bin/xcrun -v -v -sdk iphoneos PackageApplication \"$(pwd)/platforms/ios/build/device/$APPNAME.app\" -o \"$(pwd)/" + file + ".ipa\"")];
+                    case 0: return [4 /*yield*/, utils_1.Utils.exec("/usr/bin/xcrun -v -v -sdk iphoneos PackageApplication \"$(pwd)/platforms/ios/build/device/$APPNAME.app\" -o \"$(pwd)/" + file + ".ipa\"")];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
@@ -345,19 +364,21 @@ var Inited = (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 3, , 4]);
-                        return [4 /*yield*/, this.exec("ionic build " + platform + " --device --prod --aot --minifyjs --minifycss --optimizejs --release")];
+                        _a.trys.push([0, 4, , 5]);
+                        if (!utils_1.Utils.isIonicApp()) return [3 /*break*/, 2];
+                        return [4 /*yield*/, utils_1.Utils.exec("ionic build " + platform + " --device --prod --aot --minifyjs --minifycss --optimizejs --release")];
                     case 1:
                         _a.sent();
-                        return [4 /*yield*/, this.exec("cordova build " + platform + " --device --release")];
-                    case 2:
-                        _a.sent();
-                        return [3 /*break*/, 4];
+                        _a.label = 2;
+                    case 2: return [4 /*yield*/, utils_1.Utils.exec("cordova build " + platform + " --device --release")];
                     case 3:
+                        _a.sent();
+                        return [3 /*break*/, 5];
+                    case 4:
                         ex_5 = _a.sent();
                         this.logError("Error while running dist for " + platform, ex_5);
-                        return [3 /*break*/, 4];
-                    case 4: return [2 /*return*/];
+                        return [3 /*break*/, 5];
+                    case 5: return [2 /*return*/];
                 }
             });
         });
@@ -366,7 +387,7 @@ var Inited = (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.exec(" scp " + src + " inited@ini.inited.cz:public_html/ios/" + dest)];
+                    case 0: return [4 /*yield*/, utils_1.Utils.exec(" scp " + src + " inited@ini.inited.cz:public_html/ios/" + dest)];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
@@ -385,10 +406,10 @@ var Inited = (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 3, , 4]);
-                        return [4 /*yield*/, this.exec("npm install")];
+                        return [4 /*yield*/, utils_1.Utils.exec("npm install")];
                     case 1:
                         _a.sent();
-                        return [4 /*yield*/, this.exec("npm prune")];
+                        return [4 /*yield*/, utils_1.Utils.exec("npm prune")];
                     case 2:
                         _a.sent();
                         return [3 /*break*/, 4];
@@ -439,38 +460,6 @@ var Inited = (function () {
                         return [3 /*break*/, 9];
                     case 9: return [2 /*return*/];
                 }
-            });
-        });
-    };
-    Inited.prototype.exec = function (command) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                return [2 /*return*/, new Promise(function (resolve, reject) {
-                        console.log("Executing command: " + command);
-                        var commandArr = command.split(" ");
-                        var spawn;
-                        if (commandArr.length > 1) {
-                            try {
-                                spawn = child_process.spawn(commandArr[0], commandArr.splice(1));
-                            }
-                            catch (ex) {
-                                console.log("Error while creating spawn");
-                                console.log(ex);
-                            }
-                        }
-                        else {
-                            spawn = child_process.spawn(command);
-                        }
-                        spawn.stdout.on('data', function (data) {
-                            console.log(data.toString());
-                        });
-                        spawn.stderr.on('data', function (data) {
-                            console.error(data.toString());
-                        });
-                        spawn.on('exit', function (code) {
-                            resolve();
-                        });
-                    })];
             });
         });
     };

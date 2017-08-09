@@ -11,6 +11,7 @@ export declare class Inited {
     iprepare(): Promise<void>;
     ipub(): Promise<void>;
     irelease(): Promise<void>;
+    setversion(args: any): Promise<void>;
     wbuild(): Promise<void>;
     wdist(): void;
     wprepare(): Promise<any>;
@@ -23,5 +24,4 @@ export declare class Inited {
     private logError(message, error);
     private installAndPrune();
     private removePlatformsAndPlugins();
-    private exec(command);
 }
