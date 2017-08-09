@@ -4,13 +4,13 @@ export declare class Inited {
     abuild(): Promise<void>;
     adist(): Promise<void>;
     aprepare(): Promise<any>;
-    apub(): void;
-    arelease(): void;
+    apub(): Promise<void>;
+    arelease(): Promise<void>;
     ibuild(): Promise<void>;
     idist(): Promise<void>;
     iprepare(): Promise<void>;
-    ipub(): void;
-    irelease(): void;
+    ipub(): Promise<void>;
+    irelease(): Promise<void>;
     wbuild(): Promise<void>;
     wdist(): void;
     wprepare(): Promise<any>;

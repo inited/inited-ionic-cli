@@ -133,13 +133,35 @@ var Inited = (function () {
         });
     };
     Inited.prototype.apub = function () {
-        var fileName = utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + "-$BUILD_NUMBER.apk";
-        this.pubFile(fileName, fileName);
+        return __awaiter(this, void 0, void 0, function () {
+            var fileName;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        fileName = utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + "-$BUILD_NUMBER.apk";
+                        return [4 /*yield*/, this.pubFile(fileName, fileName)];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
     };
     Inited.prototype.arelease = function () {
-        var source = utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + "-$BUILD_NUMBER.apk";
-        var destination = utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + ".apk";
-        this.pubFile(source, destination);
+        return __awaiter(this, void 0, void 0, function () {
+            var source, destination;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        source = utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + "-$BUILD_NUMBER.apk";
+                        destination = utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + ".apk";
+                        return [4 /*yield*/, this.pubFile(source, destination)];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
     };
     Inited.prototype.ibuild = function () {
         return __awaiter(this, void 0, void 0, function () {
@@ -160,13 +182,14 @@ var Inited = (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0:
-                        this.exec("security unlock-keychain -p h login.keychain");
-                        return [4 /*yield*/, this.distFor("ios")];
+                    case 0: return [4 /*yield*/, this.exec("security unlock-keychain -p h login.keychain")];
                     case 1:
                         _a.sent();
-                        return [4 /*yield*/, this.buildIOS(utils_1.Utils.projectName)];
+                        return [4 /*yield*/, this.distFor("ios")];
                     case 2:
+                        _a.sent();
+                        return [4 /*yield*/, this.buildIOS(utils_1.Utils.projectName)];
+                    case 3:
                         _a.sent();
                         return [2 /*return*/];
                 }
@@ -186,13 +209,35 @@ var Inited = (function () {
         });
     };
     Inited.prototype.ipub = function () {
-        var fileName = utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + "-$BUILD_NUMBER.ipa";
-        this.pubFile(fileName, fileName);
+        return __awaiter(this, void 0, void 0, function () {
+            var fileName;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        fileName = utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + "-$BUILD_NUMBER.ipa";
+                        return [4 /*yield*/, this.pubFile(fileName, fileName)];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
     };
     Inited.prototype.irelease = function () {
-        var source = utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + "-$BUILD_NUMBER.ipa";
-        var destination = utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + ".ipa";
-        this.pubFile(source, destination);
+        return __awaiter(this, void 0, void 0, function () {
+            var source, destination;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        source = utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + "-$BUILD_NUMBER.ipa";
+                        destination = utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + ".ipa";
+                        return [4 /*yield*/, this.pubFile(source, destination)];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
     };
     Inited.prototype.wbuild = function () {
         return __awaiter(this, void 0, void 0, function () {
@@ -276,8 +321,12 @@ var Inited = (function () {
     Inited.prototype.buildIOS = function (file) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                this.exec("/usr/bin/xcrun -v -v -sdk iphoneos PackageApplication \"$(pwd)/platforms/ios/build/device/$APPNAME.app\" -o \"$(pwd)/" + file + ".ipa\"");
-                return [2 /*return*/];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.exec("/usr/bin/xcrun -v -v -sdk iphoneos PackageApplication \"$(pwd)/platforms/ios/build/device/$APPNAME.app\" -o \"$(pwd)/" + file + ".ipa\"")];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
             });
         });
     };
@@ -304,8 +353,12 @@ var Inited = (function () {
     Inited.prototype.pubFile = function (src, dest) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                this.exec(" scp " + src + " inited@ini.inited.cz:public_html/ios/" + dest);
-                return [2 /*return*/];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.exec(" scp " + src + " inited@ini.inited.cz:public_html/ios/" + dest)];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
             });
         });
     };
@@ -338,7 +391,7 @@ var Inited = (function () {
     };
     Inited.prototype.removePlatformsAndPlugins = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var ex_7, ex_8;
+            var ex_7, ex_8, unlink, ex_9;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -361,7 +414,18 @@ var Inited = (function () {
                         ex_8 = _a.sent();
                         console.log("Failed to remove plugins directory: " + ex_8);
                         return [3 /*break*/, 6];
-                    case 6: return [2 /*return*/];
+                    case 6:
+                        _a.trys.push([6, 8, , 9]);
+                        unlink = util.promisify(fs.unlink);
+                        return [4 /*yield*/, unlink("package-lock.json")];
+                    case 7:
+                        _a.sent();
+                        return [3 /*break*/, 9];
+                    case 8:
+                        ex_9 = _a.sent();
+                        console.log("Failed to remove package-lock.json file: " + ex_9);
+                        return [3 /*break*/, 9];
+                    case 9: return [2 /*return*/];
                 }
             });
         });

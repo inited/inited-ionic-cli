@@ -42,15 +42,15 @@ export class Inited {
         await this.prepareFor("android");
     }
 
-    public apub() {
+    public async apub() {
         const fileName: string = Utils.projectName + "-" + Utils.appVersion + "-$BUILD_NUMBER.apk";
-        this.pubFile(fileName, fileName);
+        await this.pubFile(fileName, fileName);
     }
 
-    public arelease() {
+    public async arelease() {
         const source: string = Utils.projectName + "-" + Utils.appVersion + "-$BUILD_NUMBER.apk";
         const destination: string = Utils.projectName + "-" + Utils.appVersion + ".apk";
-        this.pubFile(source, destination);
+        await this.pubFile(source, destination);
     }
 
     public async ibuild() {
@@ -59,7 +59,7 @@ export class Inited {
     }
 
     public async idist() {
-        this.exec("security unlock-keychain -p h login.keychain");
+        await this.exec("security unlock-keychain -p h login.keychain");
         await this.distFor("ios");
         await this.buildIOS(Utils.projectName)
     }
@@ -68,15 +68,15 @@ export class Inited {
         await this.prepareFor("ios");
     }
 
-    public ipub() {
+    public async ipub() {
         const fileName: string = Utils.projectName + "-" + Utils.appVersion + "-$BUILD_NUMBER.ipa";
-        this.pubFile(fileName, fileName);
+        await this.pubFile(fileName, fileName);
     }
 
-    public irelease() {
+    public async irelease() {
         const source: string = Utils.projectName + "-" + Utils.appVersion + "-$BUILD_NUMBER.ipa";
         const destination: string = Utils.projectName + "-" + Utils.appVersion + ".ipa";
-        this.pubFile(source, destination);
+        await this.pubFile(source, destination);
     }
 
     public async wbuild() {
@@ -114,7 +114,7 @@ export class Inited {
     }
 
     private async buildIOS(file: string) {
-        this.exec("/usr/bin/xcrun -v -v -sdk iphoneos PackageApplication \"$(pwd)/platforms/ios/build/device/$APPNAME.app\" -o \"$(pwd)/" + file + ".ipa\"")
+        await this.exec("/usr/bin/xcrun -v -v -sdk iphoneos PackageApplication \"$(pwd)/platforms/ios/build/device/$APPNAME.app\" -o \"$(pwd)/" + file + ".ipa\"")
     }
 
     private async distFor(platform: string): Promise<any> {
@@ -126,7 +126,7 @@ export class Inited {
     }
 
     private async pubFile(src: string, dest: string) {
-        this.exec(" scp " + src + " inited@ini.inited.cz:public_html/ios/" + dest)
+        await this.exec(" scp " + src + " inited@ini.inited.cz:public_html/ios/" + dest)
     }
 
     private logError(message: string, error: any) {
@@ -153,6 +153,12 @@ export class Inited {
             await rmfr("plugins");
         } catch (ex) {
             console.log("Failed to remove plugins directory: " + ex);
+        }
+        try {
+            const unlink: any = util.promisify(fs.unlink);
+            await unlink("package-lock.json");
+        } catch (ex) {
+            console.log("Failed to remove package-lock.json file: " + ex);
         }
     }
 
