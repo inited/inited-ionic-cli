@@ -157,7 +157,7 @@ export class Inited {
     private async buildFor(platform: string): Promise<any> {
         try {
             if (Utils.isIonicApp()) {
-                await Utils.exec("ionic build " + platform + " --device --prod --aot --minifyjs --minifycss --optimizejs");
+                await Utils.exec("ionic build " + platform + " --device --prod --aot --minifyjs --minifycss --optimizejs --no-interactive --confirm");
             } else if (Utils.isAngularApp()) {
                 await this.buildAngular();
             }
@@ -188,7 +188,7 @@ export class Inited {
     private async distFor(platform: string): Promise<any> {
         try {
             if (Utils.isIonicApp()) {
-                await Utils.exec("ionic build " + platform + " --device --prod --aot --minifyjs --minifycss --optimizejs --release");
+                await Utils.exec("ionic build " + platform + " --device --prod --aot --minifyjs --minifycss --optimizejs --release --no-interactive --confirm");
             } else if (Utils.isAngularApp()) {
                 await this.buildAngular();
             }

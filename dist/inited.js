@@ -334,7 +334,7 @@ var Inited = (function () {
                     case 0:
                         _a.trys.push([0, 6, , 7]);
                         if (!utils_1.Utils.isIonicApp()) return [3 /*break*/, 2];
-                        return [4 /*yield*/, utils_1.Utils.exec("ionic build " + platform + " --device --prod --aot --minifyjs --minifycss --optimizejs")];
+                        return [4 /*yield*/, utils_1.Utils.exec("ionic build " + platform + " --device --prod --aot --minifyjs --minifycss --optimizejs --no-interactive --confirm")];
                     case 1:
                         _a.sent();
                         return [3 /*break*/, 4];
@@ -411,7 +411,7 @@ var Inited = (function () {
                     case 0:
                         _a.trys.push([0, 6, , 7]);
                         if (!utils_1.Utils.isIonicApp()) return [3 /*break*/, 2];
-                        return [4 /*yield*/, utils_1.Utils.exec("ionic build " + platform + " --device --prod --aot --minifyjs --minifycss --optimizejs --release")];
+                        return [4 /*yield*/, utils_1.Utils.exec("ionic build " + platform + " --device --prod --aot --minifyjs --minifycss --optimizejs --release --no-interactive --confirm")];
                     case 1:
                         _a.sent();
                         return [3 /*break*/, 4];
