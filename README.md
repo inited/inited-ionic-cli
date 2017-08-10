@@ -118,6 +118,7 @@ Available keys
 
 ###### usage
 ```
+
 inited set version 1.0.0
 
 inited set appName Stánkař
@@ -125,4 +126,5 @@ inited set appName Stánkař
 inited set projectName stankar
 
 inited set id cz.inited.stankar
+
 ```
