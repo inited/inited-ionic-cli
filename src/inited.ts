@@ -48,7 +48,7 @@ export class Inited {
                     await this.androidMove();
                     break;
                 case "ios":
-                    await this.buildIOS(Utils.projectName + "-" + Utils.appVersion + "-" + Utils.buildNumber);
+                    await this.buildIOS(Utils.projectName + "-" + Utils.appVersion.replace(".", "_") + "-" + Utils.buildNumber);
                     break;
             }
         } else {
@@ -79,10 +79,10 @@ export class Inited {
             let fileName: string = "";
             switch (args[0]) {
                 case "android":
-                    fileName = Utils.projectName + "-" + Utils.appVersion + "-" + Utils.buildNumber + ".apk";
+                    fileName = Utils.projectName + "-" + Utils.appVersion.replace(".", "_") + "-" + Utils.buildNumber + ".apk";
                     break;
                 case "ios":
-                    fileName = Utils.projectName + "-" + Utils.appVersion + "-" + Utils.buildNumber + ".ipa";
+                    fileName = Utils.projectName + "-" + Utils.appVersion.replace(".", "_") + "-" + Utils.buildNumber + ".ipa";
                     break;
             }
             if (fileName.trim() != "") {
@@ -222,7 +222,7 @@ export class Inited {
 
     private async androidMove() {
         const mvasync = util.promisify(mv);
-        await mvasync(process.cwd() + "/platforms/android/build/outputs/apk/android-debug.apk", process.cwd() + "/" + Utils.projectName + "-" + Utils.appVersion + "-" + Utils.buildNumber + ".apk");
+        await mvasync(process.cwd() + "/platforms/android/build/outputs/apk/android-debug.apk", process.cwd() + "/" + Utils.projectName + "-" + Utils.appVersion.replace(".", "_") + "-" + Utils.buildNumber + ".apk");
     }
 
     private async installAndPrune(): Promise<any> {
