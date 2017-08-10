@@ -199,10 +199,10 @@ var Inited = (function () {
                         fileName = "";
                         switch (args[0]) {
                             case "android":
-                                fileName = utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion.replace(".", "_") + "-" + utils_1.Utils.buildNumber + ".apk";
+                                fileName = utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion.replace(/\./g, "_") + "-" + utils_1.Utils.buildNumber + ".apk";
                                 break;
                             case "ios":
-                                fileName = utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion.replace(".", "_") + "-" + utils_1.Utils.buildNumber + ".ipa";
+                                fileName = utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion.replace(/\./g, "_") + "-" + utils_1.Utils.buildNumber + ".ipa";
                                 break;
                         }
                         if (!(fileName.trim() != "")) return [3 /*break*/, 2];

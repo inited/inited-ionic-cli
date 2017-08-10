@@ -79,10 +79,10 @@ export class Inited {
             let fileName: string = "";
             switch (args[0]) {
                 case "android":
-                    fileName = Utils.projectName + "-" + Utils.appVersion.replace(".", "_") + "-" + Utils.buildNumber + ".apk";
+                    fileName = Utils.projectName + "-" + Utils.appVersion.replace(/\./g, "_") + "-" + Utils.buildNumber + ".apk";
                     break;
                 case "ios":
-                    fileName = Utils.projectName + "-" + Utils.appVersion.replace(".", "_") + "-" + Utils.buildNumber + ".ipa";
+                    fileName = Utils.projectName + "-" + Utils.appVersion.replace(/\./g, "_") + "-" + Utils.buildNumber + ".ipa";
                     break;
             }
             if (fileName.trim() != "") {
