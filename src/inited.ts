@@ -172,7 +172,7 @@ export class Inited {
     }
 
     private async buildAngular() {
-        await Utils.exec("ng build -e=prod --prod --no-sourcemap --aot");
+        await Utils.exec("ng build --prod");
     }
 
     private async preDist(platform: string): Promise<any> {
