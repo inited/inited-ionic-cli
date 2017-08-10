@@ -167,6 +167,9 @@ var Utils = (function () {
     Utils.isIonicApp = function () {
         return fs.existsSync(process.cwd() + "/ionic.config.json");
     };
+    Utils.isAngularApp = function () {
+        return fs.existsSync(process.cwd() + "/.angular-cli.json");
+    };
     Object.defineProperty(Utils, "packageJson", {
         get: function () {
             var pckg = require(process.cwd() + "/package.json");

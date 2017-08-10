@@ -327,21 +327,27 @@ var Inited = (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 4, , 5]);
+                        _a.trys.push([0, 6, , 7]);
                         if (!utils_1.Utils.isIonicApp()) return [3 /*break*/, 2];
                         return [4 /*yield*/, utils_1.Utils.exec("ionic build " + platform + " --device --prod --aot --minifyjs --minifycss --optimizejs")];
                     case 1:
                         _a.sent();
-                        _a.label = 2;
-                    case 2: return [4 /*yield*/, utils_1.Utils.exec("cordova build " + platform + " --device")];
+                        return [3 /*break*/, 4];
+                    case 2:
+                        if (!utils_1.Utils.isAngularApp()) return [3 /*break*/, 4];
+                        return [4 /*yield*/, utils_1.Utils.exec("ng build -e=prod --prod --no-sourcemap --aot")];
                     case 3:
                         _a.sent();
-                        return [3 /*break*/, 5];
-                    case 4:
+                        _a.label = 4;
+                    case 4: return [4 /*yield*/, utils_1.Utils.exec("cordova build " + platform + " --device")];
+                    case 5:
+                        _a.sent();
+                        return [3 /*break*/, 7];
+                    case 6:
                         ex_3 = _a.sent();
                         this.logError("Error while running build for " + platform, ex_3);
-                        return [3 /*break*/, 5];
-                    case 5: return [2 /*return*/];
+                        return [3 /*break*/, 7];
+                    case 7: return [2 /*return*/];
                 }
             });
         });
@@ -386,21 +392,27 @@ var Inited = (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 4, , 5]);
+                        _a.trys.push([0, 6, , 7]);
                         if (!utils_1.Utils.isIonicApp()) return [3 /*break*/, 2];
                         return [4 /*yield*/, utils_1.Utils.exec("ionic build " + platform + " --device --prod --aot --minifyjs --minifycss --optimizejs --release")];
                     case 1:
                         _a.sent();
-                        _a.label = 2;
-                    case 2: return [4 /*yield*/, utils_1.Utils.exec("cordova build " + platform + " --device --release")];
+                        return [3 /*break*/, 4];
+                    case 2:
+                        if (!utils_1.Utils.isAngularApp()) return [3 /*break*/, 4];
+                        return [4 /*yield*/, utils_1.Utils.exec("ng build -e=prod --prod --no-sourcemap --aot")];
                     case 3:
                         _a.sent();
-                        return [3 /*break*/, 5];
-                    case 4:
+                        _a.label = 4;
+                    case 4: return [4 /*yield*/, utils_1.Utils.exec("cordova build " + platform + " --device --release")];
+                    case 5:
+                        _a.sent();
+                        return [3 /*break*/, 7];
+                    case 6:
                         ex_4 = _a.sent();
                         this.logError("Error while running dist for " + platform, ex_4);
-                        return [3 /*break*/, 5];
-                    case 5: return [2 /*return*/];
+                        return [3 /*break*/, 7];
+                    case 7: return [2 /*return*/];
                 }
             });
         });

@@ -95,6 +95,10 @@ export class Utils {
         return fs.existsSync(process.cwd() + "/ionic.config.json");
     }
 
+    public static isAngularApp(): boolean {
+        return fs.existsSync(process.cwd() + "/.angular-cli.json")
+    }
+
     private static get packageJson(): any {
         let pckg = require(process.cwd() + "/package.json");
         return pckg;

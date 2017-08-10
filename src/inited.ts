@@ -155,6 +155,8 @@ export class Inited {
         try {
             if (Utils.isIonicApp()) {
                 await Utils.exec("ionic build " + platform + " --device --prod --aot --minifyjs --minifycss --optimizejs");
+            } else if (Utils.isAngularApp()) {
+                await Utils.exec("ng build -e=prod --prod --no-sourcemap --aot");
             }
             await Utils.exec("cordova build " + platform + " --device");
         } catch (ex) {
@@ -180,6 +182,8 @@ export class Inited {
         try {
             if (Utils.isIonicApp()) {
                 await Utils.exec("ionic build " + platform + " --device --prod --aot --minifyjs --minifycss --optimizejs --release");
+            } else if (Utils.isAngularApp()) {
+                await Utils.exec("ng build -e=prod --prod --no-sourcemap --aot");
             }
             await Utils.exec("cordova build " + platform + " --device --release");
         } catch (ex) {

@@ -9,6 +9,7 @@ export declare class Utils {
     static setId(value: string): void;
     static exec(command: string): Promise<any>;
     static isIonicApp(): boolean;
+    static isAngularApp(): boolean;
     private static readonly packageJson;
     private static readonly config;
 }
