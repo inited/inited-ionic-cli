@@ -9,6 +9,7 @@ export declare class Inited {
     private prepareFor(platform);
     private buildFor(platform);
     private buildIOS(file);
+    private buildAngular();
     private preDist(platform);
     private distFor(platform);
     private postDist(platform);

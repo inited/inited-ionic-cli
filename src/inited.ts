@@ -145,6 +145,9 @@ export class Inited {
         try {
             await this.removePlatformsAndPlugins();
             await this.installAndPrune();
+            if (Utils.isAngularApp()) {
+                await this.buildAngular();
+            }
             await Utils.exec("cordova platform add " + platform + " --nofetch");
         } catch (ex) {
             this.logError("Error while running prepare for " + platform, ex);
@@ -156,7 +159,7 @@ export class Inited {
             if (Utils.isIonicApp()) {
                 await Utils.exec("ionic build " + platform + " --device --prod --aot --minifyjs --minifycss --optimizejs");
             } else if (Utils.isAngularApp()) {
-                await Utils.exec("ng build -e=prod --prod --no-sourcemap --aot");
+                await this.buildAngular();
             }
             await Utils.exec("cordova build " + platform + " --device");
         } catch (ex) {
@@ -166,6 +169,10 @@ export class Inited {
 
     private async buildIOS(file: string) {
         await Utils.exec("/usr/bin/xcrun -v -v -sdk iphoneos PackageApplication \"$(pwd)/platforms/ios/build/device/$APPNAME.app\" -o \"$(pwd)/" + file + ".ipa\"")
+    }
+
+    private async buildAngular() {
+        await Utils.exec("ng build -e=prod --prod --no-sourcemap --aot");
     }
 
     private async preDist(platform: string): Promise<any> {
@@ -183,7 +190,7 @@ export class Inited {
             if (Utils.isIonicApp()) {
                 await Utils.exec("ionic build " + platform + " --device --prod --aot --minifyjs --minifycss --optimizejs --release");
             } else if (Utils.isAngularApp()) {
-                await Utils.exec("ng build -e=prod --prod --no-sourcemap --aot");
+                await this.buildAngular();
             }
             await Utils.exec("cordova build " + platform + " --device --release");
         } catch (ex) {

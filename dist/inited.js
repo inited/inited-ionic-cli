@@ -301,22 +301,27 @@ var Inited = (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 4, , 5]);
+                        _a.trys.push([0, 6, , 7]);
                         return [4 /*yield*/, this.removePlatformsAndPlugins()];
                     case 1:
                         _a.sent();
                         return [4 /*yield*/, this.installAndPrune()];
                     case 2:
                         _a.sent();
-                        return [4 /*yield*/, utils_1.Utils.exec("cordova platform add " + platform + " --nofetch")];
+                        if (!utils_1.Utils.isAngularApp()) return [3 /*break*/, 4];
+                        return [4 /*yield*/, this.buildAngular()];
                     case 3:
                         _a.sent();
-                        return [3 /*break*/, 5];
-                    case 4:
+                        _a.label = 4;
+                    case 4: return [4 /*yield*/, utils_1.Utils.exec("cordova platform add " + platform + " --nofetch")];
+                    case 5:
+                        _a.sent();
+                        return [3 /*break*/, 7];
+                    case 6:
                         ex_2 = _a.sent();
                         this.logError("Error while running prepare for " + platform, ex_2);
-                        return [3 /*break*/, 5];
-                    case 5: return [2 /*return*/];
+                        return [3 /*break*/, 7];
+                    case 7: return [2 /*return*/];
                 }
             });
         });
@@ -335,7 +340,7 @@ var Inited = (function () {
                         return [3 /*break*/, 4];
                     case 2:
                         if (!utils_1.Utils.isAngularApp()) return [3 /*break*/, 4];
-                        return [4 /*yield*/, utils_1.Utils.exec("ng build -e=prod --prod --no-sourcemap --aot")];
+                        return [4 /*yield*/, this.buildAngular()];
                     case 3:
                         _a.sent();
                         _a.label = 4;
@@ -357,6 +362,18 @@ var Inited = (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, utils_1.Utils.exec("/usr/bin/xcrun -v -v -sdk iphoneos PackageApplication \"$(pwd)/platforms/ios/build/device/$APPNAME.app\" -o \"$(pwd)/" + file + ".ipa\"")];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    Inited.prototype.buildAngular = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, utils_1.Utils.exec("ng build -e=prod --prod --no-sourcemap --aot")];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
@@ -400,7 +417,7 @@ var Inited = (function () {
                         return [3 /*break*/, 4];
                     case 2:
                         if (!utils_1.Utils.isAngularApp()) return [3 /*break*/, 4];
-                        return [4 /*yield*/, utils_1.Utils.exec("ng build -e=prod --prod --no-sourcemap --aot")];
+                        return [4 /*yield*/, this.buildAngular()];
                     case 3:
                         _a.sent();
                         _a.label = 4;
