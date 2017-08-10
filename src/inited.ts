@@ -168,7 +168,7 @@ export class Inited {
     }
 
     private async buildIOS(file: string) {
-        await Utils.exec("/usr/bin/xcrun -v -v -sdk iphoneos PackageApplication \"$(pwd)/platforms/ios/build/device/$APPNAME.app\" -o \"$(pwd)/" + file + ".ipa\"")
+        await Utils.exec("/usr/bin/xcrun -v -v -sdk iphoneos PackageApplication \"$(pwd)/platforms/ios/build/device/" + Utils.appName + ".app\" -o \"$(pwd)/" + file + ".ipa\"")
     }
 
     private async buildAngular() {
