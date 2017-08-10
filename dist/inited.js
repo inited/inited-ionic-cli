@@ -134,7 +134,7 @@ var Inited = (function () {
                     case 3:
                         _b.sent();
                         return [3 /*break*/, 6];
-                    case 4: return [4 /*yield*/, this.buildIOS(utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion.replace(".", "_") + "-" + utils_1.Utils.buildNumber)];
+                    case 4: return [4 /*yield*/, this.buildIOS(utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion.replace(/\./g, "_") + "-" + utils_1.Utils.buildNumber)];
                     case 5:
                         _b.sent();
                         return [3 /*break*/, 6];
@@ -488,7 +488,7 @@ var Inited = (function () {
                 switch (_a.label) {
                     case 0:
                         mvasync = util.promisify(mv);
-                        return [4 /*yield*/, mvasync(process.cwd() + "/platforms/android/build/outputs/apk/android-debug.apk", process.cwd() + "/" + utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion.replace(".", "_") + "-" + utils_1.Utils.buildNumber + ".apk")];
+                        return [4 /*yield*/, mvasync(process.cwd() + "/platforms/android/build/outputs/apk/android-debug.apk", process.cwd() + "/" + utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion.replace(/\./g, "_") + "-" + utils_1.Utils.buildNumber + ".apk")];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];

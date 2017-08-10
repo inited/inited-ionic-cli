@@ -48,7 +48,7 @@ export class Inited {
                     await this.androidMove();
                     break;
                 case "ios":
-                    await this.buildIOS(Utils.projectName + "-" + Utils.appVersion.replace(".", "_") + "-" + Utils.buildNumber);
+                    await this.buildIOS(Utils.projectName + "-" + Utils.appVersion.replace(/\./g, "_") + "-" + Utils.buildNumber);
                     break;
             }
         } else {
@@ -222,7 +222,7 @@ export class Inited {
 
     private async androidMove() {
         const mvasync = util.promisify(mv);
-        await mvasync(process.cwd() + "/platforms/android/build/outputs/apk/android-debug.apk", process.cwd() + "/" + Utils.projectName + "-" + Utils.appVersion.replace(".", "_") + "-" + Utils.buildNumber + ".apk");
+        await mvasync(process.cwd() + "/platforms/android/build/outputs/apk/android-debug.apk", process.cwd() + "/" + Utils.projectName + "-" + Utils.appVersion.replace(/\./g, "_") + "-" + Utils.buildNumber + ".apk");
     }
 
     private async installAndPrune(): Promise<any> {
