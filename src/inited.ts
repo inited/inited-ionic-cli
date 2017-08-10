@@ -49,7 +49,7 @@ export class Inited {
                     break;
                 case "ios":
                     if (fs.existsSync(process.cwd() + "/platforms/ios/build/device/" + Utils.appName + ".ipa")) {
-                        await this.move(process.cwd() + "/platforms/ios/build/device/" + Utils.appName + ".ipa", process.cwd() + "/" + Utils.projectName + "_" + Utils.appVersion.replace(/\./g, "_") + "-" + Utils.buildNumber + ".ipa");
+                        await this.move(process.cwd() + "/platforms/ios/build/device/" + Utils.appName + ".ipa", process.cwd() + "/" + Utils.projectName + "-" + Utils.appVersion.replace(/\./g, "_") + "-" + Utils.buildNumber + ".ipa");
                     } else {
                         await Utils.exec("/usr/bin/xcrun -v -v -sdk iphoneos PackageApplication \"" + process.cwd() + "/platforms/ios/build/device/" + Utils.appName + ".app\" -o \"" + process.cwd() + "/" + Utils.projectName + "-" + Utils.appVersion + "-" + Utils.buildNumber + ".ipa\"")
                     }

@@ -136,7 +136,7 @@ var Inited = (function () {
                         return [3 /*break*/, 9];
                     case 4:
                         if (!fs.existsSync(process.cwd() + "/platforms/ios/build/device/" + utils_1.Utils.appName + ".ipa")) return [3 /*break*/, 6];
-                        return [4 /*yield*/, this.move(process.cwd() + "/platforms/ios/build/device/" + utils_1.Utils.appName + ".ipa", process.cwd() + "/" + utils_1.Utils.projectName + "_" + utils_1.Utils.appVersion.replace(/\./g, "_") + "-" + utils_1.Utils.buildNumber + ".ipa")];
+                        return [4 /*yield*/, this.move(process.cwd() + "/platforms/ios/build/device/" + utils_1.Utils.appName + ".ipa", process.cwd() + "/" + utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion.replace(/\./g, "_") + "-" + utils_1.Utils.buildNumber + ".ipa")];
                     case 5:
                         _b.sent();
                         return [3 /*break*/, 8];
