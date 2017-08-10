@@ -14,6 +14,7 @@ Initializes project - creates build, dist, prepare, pub scripts
 Mainly creates scripts for android and ios, you can specify platforms in parameters
 
 Optional parameters
+
 * one word parameter will always be used as platform eg.
   * android - creates a* scripts form android
   * ios - creates i* scripts for ios
