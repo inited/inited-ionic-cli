@@ -120,7 +120,7 @@ var Inited = (function () {
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
-                        if (!args) return [3 /*break*/, 7];
+                        if (!args) return [3 /*break*/, 10];
                         return [4 /*yield*/, this.buildFor(args[0])];
                     case 1:
                         _b.sent();
@@ -129,20 +129,27 @@ var Inited = (function () {
                             case "android": return [3 /*break*/, 2];
                             case "ios": return [3 /*break*/, 4];
                         }
-                        return [3 /*break*/, 6];
+                        return [3 /*break*/, 9];
                     case 2: return [4 /*yield*/, this.move(process.cwd() + "/platforms/android/build/outputs/apk/android-debug.apk", process.cwd() + "/" + utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion.replace(/\./g, "_") + "-" + utils_1.Utils.buildNumber + ".apk")];
                     case 3:
                         _b.sent();
-                        return [3 /*break*/, 6];
-                    case 4: return [4 /*yield*/, this.move(process.cwd() + "/platforms/ios/build/device/" + utils_1.Utils.appName + ".ipa", process.cwd() + "/" + utils_1.Utils.projectName + "_" + utils_1.Utils.appVersion.replace(/\./g, "_") + "-" + utils_1.Utils.buildNumber + ".ipa")];
+                        return [3 /*break*/, 9];
+                    case 4:
+                        if (!fs.existsSync(process.cwd() + "/platforms/ios/build/device/" + utils_1.Utils.appName + ".ipa")) return [3 /*break*/, 6];
+                        return [4 /*yield*/, this.move(process.cwd() + "/platforms/ios/build/device/" + utils_1.Utils.appName + ".ipa", process.cwd() + "/" + utils_1.Utils.projectName + "_" + utils_1.Utils.appVersion.replace(/\./g, "_") + "-" + utils_1.Utils.buildNumber + ".ipa")];
                     case 5:
                         _b.sent();
-                        return [3 /*break*/, 6];
-                    case 6: return [3 /*break*/, 8];
+                        return [3 /*break*/, 8];
+                    case 6: return [4 /*yield*/, utils_1.Utils.exec("/usr/bin/xcrun -v -v -sdk iphoneos PackageApplication \"" + process.cwd() + "/platforms/ios/build/device/" + utils_1.Utils.appName + ".app\" -o \"" + process.cwd() + "/" + utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + "-" + utils_1.Utils.buildNumber + ".ipa\"")];
                     case 7:
-                        console.error("Tell me platform to build");
+                        _b.sent();
                         _b.label = 8;
-                    case 8: return [2 /*return*/];
+                    case 8: return [3 /*break*/, 9];
+                    case 9: return [3 /*break*/, 11];
+                    case 10:
+                        console.error("Tell me platform to build");
+                        _b.label = 11;
+                    case 11: return [2 /*return*/];
                 }
             });
         });
