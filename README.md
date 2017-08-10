@@ -8,7 +8,7 @@ npm install -g ssh://git@ini.inited.cz/inited-ionic-cli.git
 
 ### Use:
 
-#### initialize
+#### init
 Initializes project - creates build, dist, prepare, pub scripts
 
 Mainly creates scripts for android and ios, you can specify platforms in parameters

@@ -43,7 +43,7 @@ var mv = require("mv");
 var Inited = (function () {
     function Inited() {
     }
-    Inited.prototype.initialize = function (args) {
+    Inited.prototype.init = function (args) {
         return __awaiter(this, void 0, void 0, function () {
             var platforms, argPlatforms, _i, args_1, arg, keyValue, writeFile, _a, platforms_1, platform, prefix, ex_1;
             return __generator(this, function (_b) {

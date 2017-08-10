@@ -1,5 +1,5 @@
 export declare class Inited {
-    initialize(args: Array<any>): Promise<any>;
+    init(args: Array<any>): Promise<any>;
     build(args: Array<string>): Promise<void>;
     dist(args: Array<string>): Promise<void>;
     prepare(args: Array<string>): Promise<void>;

@@ -7,7 +7,7 @@ import mv = require("mv");
 
 export class Inited {
 
-    public async initialize(args: Array<any>): Promise<any> {
+    public async init(args: Array<any>): Promise<any> {
         try {
             let platforms: Array<string> = ["android", "ios"];
             let argPlatforms: Array<string> = [];
