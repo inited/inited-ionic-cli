@@ -108,9 +108,7 @@ Available keys
 
 ```
 <ion-toolbar>
-
     <ion-title><small id="app-version">/*This will be replaced by version*/</small></ion-title>
-    
 </ion-toolbar>
 ```
 
