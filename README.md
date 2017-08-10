@@ -23,6 +23,7 @@ Optional parameters
   * mac - creates m* scripts for mac
 
 
+
 * version - sets app version - for more info see "set" function in the bottom
 * appName - sets application name in config.xml
 * projectName - sets project name in package.json, if config name is same as package.json name, sets this name also in config.xml
@@ -37,6 +38,7 @@ inited initialize android windows version=1.0.0 appName=testApp
 Builds project - provides ionic and cordova build and then compiles app and renames by project name, version and build number
 
 Parameters
+
 * platform to build
 
 ###### usage
@@ -48,6 +50,7 @@ inited build android
 Builds project as release and signs it
 
 Parameters
+
 * platform to build
 
 ###### usage
@@ -59,6 +62,7 @@ inited dist android
 Prepares project - deletes platform and plugins folders and package-lock.json file, then runs npm install and npm prune and then adds platform given in parameter
 
 Parameters
+
 * platform to prepare
 
 ###### usage
@@ -70,6 +74,7 @@ inited prepare android
 Publishes built application to the web for developers
 
 Parameters
+
 * platform to publish
 
 ###### usage
@@ -81,6 +86,7 @@ inited pub android
 Releases built to the web as release for clients
 
 Parameters
+
 * platform to publish
 
 ###### usage
@@ -92,11 +98,28 @@ inited release android
 Sets informations about project to package.json, config.xml and to app
 
 Parameters
+
 * key to set
 * value of key
 
 Available keys
-* version - sets projects version in package.json, config.xml and html tag with id="app-version", id="app-version" has to be last attribute in tag followed right by closing html tag (id="app-version">)
+
+* version - sets projects version in package.json, config.xml and html tag with id="app-version", id="app-version" has to be last attribute in tag followed right by closing html tag (id="app-version">) eg.
+
+```
+<ion-toolbar>
+    <ion-title><small id="app-version">/*This will be replaced by version*/</small></ion-title>
+</ion-toolbar>
+```
+
 * appName - sets application name to the config.xml - this name is shown in phone
 * projectName - sets project name to the package.json and to the config.xml if config.xml name equals package.json name - this name is used in app build and release
 * id - sets project id in the config.xml
+
+###### usage
+```
+inited set version 1.0.0
+inited set appName Stánkař
+inited set projectName stankar
+inited set id cz.inited.stankar
+```
