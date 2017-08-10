@@ -107,11 +107,13 @@ Available keys
 * version - sets projects version in package.json, config.xml and html tag with id="app-version", id="app-version" has to be last attribute in tag followed right by closing html tag (id="app-version">) eg.
 
 ```
+
 <ion-toolbar>
 
     <ion-title><small id="app-version">/*This will be replaced by version*/</small></ion-title>
     
 </ion-toolbar>
+
 ```
 
 * appName - sets application name to the config.xml - this name is shown in phone
@@ -120,8 +122,10 @@ Available keys
 
 ###### usage
 ```
+
 inited set version 1.0.0
 inited set appName Stánkař
 inited set projectName stankar
 inited set id cz.inited.stankar
+
 ```
