@@ -202,7 +202,7 @@ export class Inited {
                 await Utils.exec("$ANDROID_HOME/build-tools/22.0.1/zipalign -v 4 $APP " + Utils.projectName + ".apk");
                 break;
             case "ios":
-                this.move(process.cwd() + "/platforms/ios/build/device/" + Utils.appName + ".ipa", process.cwd() + "/" + Utils.projectName + "_" + ".ipa");
+                await this.move(process.cwd() + "/platforms/ios/build/device/" + Utils.appName + ".ipa", process.cwd() + "/" + Utils.projectName + "_" + ".ipa");
                 break;
         }
     }
@@ -218,6 +218,7 @@ export class Inited {
 
     private async move(source, destination) {
         const mvasync = util.promisify(mv);
+        console.log("Moving " + source + " to " + destination);
         await mvasync(source, destination);
     }
 

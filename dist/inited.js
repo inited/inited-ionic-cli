@@ -433,7 +433,7 @@ var Inited = (function () {
                             case "android": return [3 /*break*/, 1];
                             case "ios": return [3 /*break*/, 5];
                         }
-                        return [3 /*break*/, 6];
+                        return [3 /*break*/, 7];
                     case 1: return [4 /*yield*/, utils_1.Utils.exec("jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore cert/my-release-key.keystore -storepass Heslo123 platforms/android/build/outputs/apk/android-release-unsigned.apk alias_name")];
                     case 2:
                         _b.sent();
@@ -443,11 +443,12 @@ var Inited = (function () {
                         return [4 /*yield*/, utils_1.Utils.exec("$ANDROID_HOME/build-tools/22.0.1/zipalign -v 4 $APP " + utils_1.Utils.projectName + ".apk")];
                     case 4:
                         _b.sent();
-                        return [3 /*break*/, 6];
-                    case 5:
-                        this.move(process.cwd() + "/platforms/ios/build/device/" + utils_1.Utils.appName + ".ipa", process.cwd() + "/" + utils_1.Utils.projectName + "_" + ".ipa");
-                        return [3 /*break*/, 6];
-                    case 6: return [2 /*return*/];
+                        return [3 /*break*/, 7];
+                    case 5: return [4 /*yield*/, this.move(process.cwd() + "/platforms/ios/build/device/" + utils_1.Utils.appName + ".ipa", process.cwd() + "/" + utils_1.Utils.projectName + "_" + ".ipa")];
+                    case 6:
+                        _b.sent();
+                        return [3 /*break*/, 7];
+                    case 7: return [2 /*return*/];
                 }
             });
         });
@@ -475,6 +476,7 @@ var Inited = (function () {
                 switch (_a.label) {
                     case 0:
                         mvasync = util.promisify(mv);
+                        console.log("Moving " + source + " to " + destination);
                         return [4 /*yield*/, mvasync(source, destination)];
                     case 1:
                         _a.sent();
