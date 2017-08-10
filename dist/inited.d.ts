@@ -8,14 +8,13 @@ export declare class Inited {
     set(args: any): Promise<void>;
     private prepareFor(platform);
     private buildFor(platform);
-    private buildIOS(file);
     private buildAngular();
     private preDist(platform);
     private distFor(platform);
     private postDist(platform);
     private pubFile(src, dest);
     private logError(message, error);
-    private androidMove();
+    private move(source, destination);
     private installAndPrune();
     private removePlatformsAndPlugins();
 }

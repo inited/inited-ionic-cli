@@ -45,10 +45,10 @@ export class Inited {
             await this.buildFor(args[0]);
             switch (args[0]) {
                 case "android":
-                    await this.androidMove();
+                    await this.move(process.cwd() + "/platforms/android/build/outputs/apk/android-debug.apk", process.cwd() + "/" + Utils.projectName + "-" + Utils.appVersion.replace(/\./g, "_") + "-" + Utils.buildNumber + ".apk");
                     break;
                 case "ios":
-                    await this.buildIOS(Utils.projectName + "-" + Utils.appVersion.replace(/\./g, "_") + "-" + Utils.buildNumber);
+                    await this.move(process.cwd() + "/platforms/ios/build/device/" + Utils.appName + ".ipa", process.cwd() + "/" + Utils.projectName + "_" + Utils.appVersion.replace(/\./g, "_") + "-" + Utils.buildNumber + ".ipa");
                     break;
             }
         } else {
@@ -167,10 +167,6 @@ export class Inited {
         }
     }
 
-    private async buildIOS(file: string) {
-        await Utils.exec("/usr/bin/xcrun -v -v -sdk iphoneos PackageApplication " + process.cwd() + "/platforms/ios/build/device/" + Utils.appName + ".app -o " + process.cwd() + "/" + file + ".ipa")
-    }
-
     private async buildAngular() {
         await Utils.exec("ng build --prod");
     }
@@ -206,7 +202,7 @@ export class Inited {
                 await Utils.exec("$ANDROID_HOME/build-tools/22.0.1/zipalign -v 4 $APP " + Utils.projectName + ".apk");
                 break;
             case "ios":
-                await this.buildIOS(Utils.projectName);
+                this.move(process.cwd() + "/platforms/ios/build/device/" + Utils.appName + ".ipa", process.cwd() + "/" + Utils.projectName + "_" + ".ipa");
                 break;
         }
     }
@@ -220,9 +216,9 @@ export class Inited {
         console.log(error);
     }
 
-    private async androidMove() {
+    private async move(source, destination) {
         const mvasync = util.promisify(mv);
-        await mvasync(process.cwd() + "/platforms/android/build/outputs/apk/android-debug.apk", process.cwd() + "/" + Utils.projectName + "-" + Utils.appVersion.replace(/\./g, "_") + "-" + Utils.buildNumber + ".apk");
+        await mvasync(source, destination);
     }
 
     private async installAndPrune(): Promise<any> {

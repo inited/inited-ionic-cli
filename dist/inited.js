@@ -130,11 +130,11 @@ var Inited = (function () {
                             case "ios": return [3 /*break*/, 4];
                         }
                         return [3 /*break*/, 6];
-                    case 2: return [4 /*yield*/, this.androidMove()];
+                    case 2: return [4 /*yield*/, this.move(process.cwd() + "/platforms/android/build/outputs/apk/android-debug.apk", process.cwd() + "/" + utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion.replace(/\./g, "_") + "-" + utils_1.Utils.buildNumber + ".apk")];
                     case 3:
                         _b.sent();
                         return [3 /*break*/, 6];
-                    case 4: return [4 /*yield*/, this.buildIOS(utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion.replace(/\./g, "_") + "-" + utils_1.Utils.buildNumber)];
+                    case 4: return [4 /*yield*/, this.move(process.cwd() + "/platforms/ios/build/device/" + utils_1.Utils.appName + ".ipa", process.cwd() + "/" + utils_1.Utils.projectName + "_" + utils_1.Utils.appVersion.replace(/\./g, "_") + "-" + utils_1.Utils.buildNumber + ".ipa")];
                     case 5:
                         _b.sent();
                         return [3 /*break*/, 6];
@@ -357,18 +357,6 @@ var Inited = (function () {
             });
         });
     };
-    Inited.prototype.buildIOS = function (file) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, utils_1.Utils.exec("/usr/bin/xcrun -v -v -sdk iphoneos PackageApplication " + process.cwd() + "/platforms/ios/build/device/" + utils_1.Utils.appName + ".app -o " + process.cwd() + "/" + file + ".ipa")];
-                    case 1:
-                        _a.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
     Inited.prototype.buildAngular = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
@@ -445,7 +433,7 @@ var Inited = (function () {
                             case "android": return [3 /*break*/, 1];
                             case "ios": return [3 /*break*/, 5];
                         }
-                        return [3 /*break*/, 7];
+                        return [3 /*break*/, 6];
                     case 1: return [4 /*yield*/, utils_1.Utils.exec("jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore cert/my-release-key.keystore -storepass Heslo123 platforms/android/build/outputs/apk/android-release-unsigned.apk alias_name")];
                     case 2:
                         _b.sent();
@@ -455,12 +443,11 @@ var Inited = (function () {
                         return [4 /*yield*/, utils_1.Utils.exec("$ANDROID_HOME/build-tools/22.0.1/zipalign -v 4 $APP " + utils_1.Utils.projectName + ".apk")];
                     case 4:
                         _b.sent();
-                        return [3 /*break*/, 7];
-                    case 5: return [4 /*yield*/, this.buildIOS(utils_1.Utils.projectName)];
-                    case 6:
-                        _b.sent();
-                        return [3 /*break*/, 7];
-                    case 7: return [2 /*return*/];
+                        return [3 /*break*/, 6];
+                    case 5:
+                        this.move(process.cwd() + "/platforms/ios/build/device/" + utils_1.Utils.appName + ".ipa", process.cwd() + "/" + utils_1.Utils.projectName + "_" + ".ipa");
+                        return [3 /*break*/, 6];
+                    case 6: return [2 /*return*/];
                 }
             });
         });
@@ -481,14 +468,14 @@ var Inited = (function () {
         console.log(message);
         console.log(error);
     };
-    Inited.prototype.androidMove = function () {
+    Inited.prototype.move = function (source, destination) {
         return __awaiter(this, void 0, void 0, function () {
             var mvasync;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         mvasync = util.promisify(mv);
-                        return [4 /*yield*/, mvasync(process.cwd() + "/platforms/android/build/outputs/apk/android-debug.apk", process.cwd() + "/" + utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion.replace(/\./g, "_") + "-" + utils_1.Utils.buildNumber + ".apk")];
+                        return [4 /*yield*/, mvasync(source, destination)];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
