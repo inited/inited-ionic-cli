@@ -30,6 +30,7 @@ Optional parameters
 * id - sets application id in config.xml
 
 ###### usage
+
 ```
 inited initialize android windows version=1.0.0 appName=testApp
 ```
@@ -42,8 +43,23 @@ Parameters
 * platform to build
 
 ###### usage
+
 ```
 inited build android
+```
+
+#### debug
+Debugs project - runs project on the device with debug build
+
+Parameters
+
+* platform to build
+* live - if running ionic app, this will perform livereload right to the device, with server logs
+
+###### usage
+
+```
+inited debug android live
 ```
 
 #### dist
@@ -54,6 +70,7 @@ Parameters
 * platform to build
 
 ###### usage
+
 ```
 inited dist android
 ```
@@ -66,6 +83,7 @@ Parameters
 * platform to prepare
 
 ###### usage
+
 ```
 inited prepare android
 ```
@@ -78,6 +96,7 @@ Parameters
 * platform to publish
 
 ###### usage
+
 ```
 inited pub android
 ```
@@ -90,8 +109,22 @@ Parameters
 * platform to publish
 
 ###### usage
+
 ```
 inited release android
+```
+
+#### run
+Runs app as production build on the device
+
+Parameters
+
+* platform to run
+
+###### usage
+
+```
+inited run android
 ```
 
 #### set
@@ -106,6 +139,7 @@ Available keys
 
 * version - sets projects version in package.json, config.xml and html tag with id="app-version", id="app-version" has to be last attribute in tag followed right by closing html tag (id="app-version">) eg.
 
+
 ```
 <ion-toolbar>
     <ion-title><small id="app-version">/*This will be replaced by version*/</small></ion-title>
@@ -117,8 +151,8 @@ Available keys
 * id - sets project id in the config.xml
 
 ###### usage
-```
 
+```
 inited set version 1.0.0
 
 inited set appName Stánkař
@@ -126,5 +160,4 @@ inited set appName Stánkař
 inited set projectName stankar
 
 inited set id cz.inited.stankar
-
 ```

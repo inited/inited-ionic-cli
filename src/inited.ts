@@ -56,7 +56,30 @@ export class Inited {
                     break;
             }
         } else {
-            console.error("Tell me platform to build");
+            console.error("Tell me platform to build eg.\n" +
+                "inited build android");
+        }
+    }
+
+    public async debug(args: Array<any>) {
+        if (args) {
+            const live: boolean = args.indexOf("live") != -1;
+            if (Utils.isIonicApp()) {
+                await Utils.exec("ionic cordova run " + args[0] + " --debug --device" + live? " -l -c -s": "");
+                return;
+            }
+            if (Utils.isAngularApp()) {
+                await this.buildAngular(false);
+            }
+            if (live) {
+                console.warn("Not ionic app, can't perform livereload.");
+            }
+            await Utils.exec("cordova run " + args[0] + " --debug --device")
+        } else {
+            console.error("Tell me platform to debug eg.\n" +
+                "inited debug android\n" +
+                "If you are debugging ionic application you can also debug app with livereload eg.\n" +
+                "inited debug android live");
         }
     }
 
@@ -66,7 +89,8 @@ export class Inited {
             await this.distFor(args[0]);
             await this.postDist(args[0]);
         } else {
-            console.error("Tell me platform to dist");
+            console.error("Tell me platform to dist eg.\n" +
+                "inited dist android");
         }
     }
 
@@ -74,7 +98,8 @@ export class Inited {
         if (args) {
             await this.prepareFor(args[0]);
         } else {
-            console.error("Tell me platform to prepare");
+            console.error("Tell me platform to prepare eg.\n" +
+                "inited prepare android");
         }
     }
 
@@ -92,10 +117,13 @@ export class Inited {
             if (fileName.trim() != "") {
                 await this.pubFile(fileName, fileName);
             } else {
-                console.error("Sorry, don´t know what to upload");
+                console.error("Sorry, don´t know what to upload\n" +
+                    "Found no file to publish. Looking for:\n" +
+                    Utils.projectName + "-" + Utils.appVersion.replace(/\./g, "_") + "-" + Utils.buildNumber + "(.apk|.ipa)");
             }
         } else {
-            console.error("Tell me platform to publish");
+            console.error("Tell me platform to publish eg.\n" +
+                "inited pub android");
         }
     }
 
@@ -117,16 +145,42 @@ export class Inited {
             if (source.trim() != "" && destination.trim() != "") {
                 await this.pubFile(source, destination);
             } else {
-                console.error("Sorry, don´t know what to upload");
+                console.error("Sorry, don´t know what to upload\n" +
+                    "Found no file to release. Looking for:\n" +
+                    Utils.projectName + "-" + Utils.appVersion + "-" + Utils.buildNumber + "(.apk|.ipa)");
             }
         } else {
-            console.error("Tell me platform to release");
+            console.error("Tell me platform to release eg.\n" +
+                "inited release android");
+        }
+    }
+
+    public async run(args: Array<string>) {
+        if (args) {
+            console.log("Running production version, for development version run: inited run " + args[0]);
+            if (args.indexOf("live") != -1) {
+                console.warn("Running productions version, if you want to use live reload use: \n" +
+                    "inited debug " + args[0] + " live");
+            }
+            if (Utils.isIonicApp()) {
+                await Utils.exec("ionic cordova run " + args[0] + " --device --prod --aot --minifyjs --minifycss --optimizejs --no-interactive --confirm");
+                return;
+            } else if (Utils.isAngularApp()) {
+                await this.buildAngular();
+            }
+            await Utils.exec("cordova run " + args[0] + " --device");
+        } else {
+            console.error("Tell me platform to run eg.\n" +
+                "inited run android")
         }
     }
 
     public async set(args) {
         if (!args || args.length < 2) {
-            console.error("You have to provide key and value to change");
+            console.error("You have to provide key and value to change, you can provide this keys:\n" +
+                "- version\n- appName\n- projectName\n- id\n" +
+                "Example:\n" +
+                "inited set id cz.inited.app");
         } else {
             switch (args[0]) {
                 case "version":
@@ -171,8 +225,8 @@ export class Inited {
         }
     }
 
-    private async buildAngular() {
-        await Utils.exec("ng build --prod");
+    private async buildAngular(prod: boolean = true) {
+        await Utils.exec("ng build" + prod? " --prod": "");
     }
 
     private async preDist(platform: string): Promise<any> {

@@ -147,9 +147,48 @@ var Inited = (function () {
                     case 8: return [3 /*break*/, 9];
                     case 9: return [3 /*break*/, 11];
                     case 10:
-                        console.error("Tell me platform to build");
+                        console.error("Tell me platform to build eg.\n" +
+                            "inited build android");
                         _b.label = 11;
                     case 11: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    Inited.prototype.debug = function (args) {
+        return __awaiter(this, void 0, void 0, function () {
+            var live;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!args) return [3 /*break*/, 6];
+                        live = args.indexOf("live") != -1;
+                        if (!utils_1.Utils.isIonicApp()) return [3 /*break*/, 2];
+                        return [4 /*yield*/, utils_1.Utils.exec("ionic cordova run " + args[0] + " --debug --device" + live ? " -l -c -s" : "")];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                    case 2:
+                        if (!utils_1.Utils.isAngularApp()) return [3 /*break*/, 4];
+                        return [4 /*yield*/, this.buildAngular(false)];
+                    case 3:
+                        _a.sent();
+                        _a.label = 4;
+                    case 4:
+                        if (live) {
+                            console.warn("Not ionic app, can't perform livereload.");
+                        }
+                        return [4 /*yield*/, utils_1.Utils.exec("cordova run " + args[0] + " --debug --device")];
+                    case 5:
+                        _a.sent();
+                        return [3 /*break*/, 7];
+                    case 6:
+                        console.error("Tell me platform to debug eg.\n" +
+                            "inited debug android\n" +
+                            "If you are debugging ionic application you can also debug app with livereload eg.\n" +
+                            "inited debug android live");
+                        _a.label = 7;
+                    case 7: return [2 /*return*/];
                 }
             });
         });
@@ -171,7 +210,8 @@ var Inited = (function () {
                         _a.sent();
                         return [3 /*break*/, 5];
                     case 4:
-                        console.error("Tell me platform to dist");
+                        console.error("Tell me platform to dist eg.\n" +
+                            "inited dist android");
                         _a.label = 5;
                     case 5: return [2 /*return*/];
                 }
@@ -189,7 +229,8 @@ var Inited = (function () {
                         _a.sent();
                         return [3 /*break*/, 3];
                     case 2:
-                        console.error("Tell me platform to prepare");
+                        console.error("Tell me platform to prepare eg.\n" +
+                            "inited prepare android");
                         _a.label = 3;
                     case 3: return [2 /*return*/];
                 }
@@ -218,11 +259,14 @@ var Inited = (function () {
                         _a.sent();
                         return [3 /*break*/, 3];
                     case 2:
-                        console.error("Sorry, don´t know what to upload");
+                        console.error("Sorry, don´t know what to upload\n" +
+                            "Found no file to publish. Looking for:\n" +
+                            utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion.replace(/\./g, "_") + "-" + utils_1.Utils.buildNumber + "(.apk|.ipa)");
                         _a.label = 3;
                     case 3: return [3 /*break*/, 5];
                     case 4:
-                        console.error("Tell me platform to publish");
+                        console.error("Tell me platform to publish eg.\n" +
+                            "inited pub android");
                         _a.label = 5;
                     case 5: return [2 /*return*/];
                 }
@@ -254,13 +298,51 @@ var Inited = (function () {
                         _a.sent();
                         return [3 /*break*/, 3];
                     case 2:
-                        console.error("Sorry, don´t know what to upload");
+                        console.error("Sorry, don´t know what to upload\n" +
+                            "Found no file to release. Looking for:\n" +
+                            utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + "-" + utils_1.Utils.buildNumber + "(.apk|.ipa)");
                         _a.label = 3;
                     case 3: return [3 /*break*/, 5];
                     case 4:
-                        console.error("Tell me platform to release");
+                        console.error("Tell me platform to release eg.\n" +
+                            "inited release android");
                         _a.label = 5;
                     case 5: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    Inited.prototype.run = function (args) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!args) return [3 /*break*/, 6];
+                        console.log("Running production version, for development version run: inited run " + args[0]);
+                        if (args.indexOf("live") != -1) {
+                            console.warn("Running productions version, if you want to use live reload use: \n" +
+                                "inited debug " + args[0] + " live");
+                        }
+                        if (!utils_1.Utils.isIonicApp()) return [3 /*break*/, 2];
+                        return [4 /*yield*/, utils_1.Utils.exec("ionic cordova run " + args[0] + " --device --prod --aot --minifyjs --minifycss --optimizejs --no-interactive --confirm")];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                    case 2:
+                        if (!utils_1.Utils.isAngularApp()) return [3 /*break*/, 4];
+                        return [4 /*yield*/, this.buildAngular()];
+                    case 3:
+                        _a.sent();
+                        _a.label = 4;
+                    case 4: return [4 /*yield*/, utils_1.Utils.exec("cordova run " + args[0] + " --device")];
+                    case 5:
+                        _a.sent();
+                        return [3 /*break*/, 7];
+                    case 6:
+                        console.error("Tell me platform to run eg.\n" +
+                            "inited run android");
+                        _a.label = 7;
+                    case 7: return [2 /*return*/];
                 }
             });
         });
@@ -272,7 +354,10 @@ var Inited = (function () {
                 switch (_b.label) {
                     case 0:
                         if (!(!args || args.length < 2)) return [3 /*break*/, 1];
-                        console.error("You have to provide key and value to change");
+                        console.error("You have to provide key and value to change, you can provide this keys:\n" +
+                            "- version\n- appName\n- projectName\n- id\n" +
+                            "Example:\n" +
+                            "inited set id cz.inited.app");
                         return [3 /*break*/, 8];
                     case 1:
                         _a = args[0];
@@ -364,11 +449,12 @@ var Inited = (function () {
             });
         });
     };
-    Inited.prototype.buildAngular = function () {
+    Inited.prototype.buildAngular = function (prod) {
+        if (prod === void 0) { prod = true; }
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, utils_1.Utils.exec("ng build --prod")];
+                    case 0: return [4 /*yield*/, utils_1.Utils.exec("ng build" + prod ? " --prod" : "")];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
