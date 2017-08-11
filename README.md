@@ -3,7 +3,7 @@
 ### Installation:
 
 ```
-npm install -g ssh://git@ini.inited.cz/inited-ionic-cli.git
+npm install -g git+ssh://git@ini.inited.cz/inited-ionic-cli.git
 ```
 
 ### Use:
