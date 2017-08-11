@@ -75,6 +75,15 @@ Parameters
 inited dist android
 ```
 
+#### help
+Shows help message
+
+###### usage
+
+```
+inited help
+```
+
 #### prepare
 Prepares project - deletes platform and plugins folders and package-lock.json file, then runs npm install and npm prune and then adds platform given in parameter
 
