@@ -5,7 +5,9 @@ var process = require("process");
 function run() {
     var arg = process.argv[2];
     if (!arg) {
-        console.log("Don't know, what to do.");
+        console.log("Don't know, what to do. Here are some suggestions:");
+        console.log();
+        (new inited_1.Inited()).help();
     }
     else {
         var inited = new inited_1.Inited();
@@ -20,7 +22,9 @@ function run() {
             }
         }
         else {
-            console.log("Don't know, what to do.");
+            console.log("Don't know, what to do. Here are some suggestions:");
+            console.log();
+            inited.help();
         }
     }
 }

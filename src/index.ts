@@ -4,7 +4,9 @@ import process = require("process");
 export function run() {
     const arg: string = process.argv[2];
     if (!arg) {
-        console.log("Don't know, what to do.");
+        console.log("Don't know, what to do. Here are some suggestions:");
+        console.log();
+        (new Inited()).help();
     } else {
         let inited: Inited = new Inited();
         console.log(inited);
@@ -16,7 +18,9 @@ export function run() {
                 inited[arg].call(inited);
             }
         } else {
-            console.log("Don't know, what to do.");
+            console.log("Don't know, what to do. Here are some suggestions:");
+            console.log();
+            inited.help();
         }
     }
 }

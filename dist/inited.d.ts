@@ -3,6 +3,7 @@ export declare class Inited {
     build(args: Array<string>): Promise<void>;
     debug(args: Array<any>): Promise<void>;
     dist(args: Array<string>): Promise<void>;
+    help(): void;
     prepare(args: Array<string>): Promise<void>;
     pub(args: Array<string>): Promise<void>;
     release(args: Array<string>): Promise<void>;

@@ -94,6 +94,53 @@ export class Inited {
         }
     }
 
+    public help() {
+        console.log("Inited cli is cli for running ionic, cordova commands also with angular 2 and helps to init projects.\n" +
+            "Commands for use:\n" +
+            "- init - Initializes projects, creates *prepare, *pub etc. files.\n" +
+            "   - Defaults platforms are android and ios, you can also specify platforms to add eg. android, ios, windows...\n" +
+            "   - You can also specify other parameters as version, appName, projectName or id\n" +
+            "   - Example:\n" +
+            "       - inited init android ios windows id=cz.inited.app appName=app\n" +
+            "- prepare - Prepares project for specified platform\n" +
+            "   - Removes platforms and plugins folder and package-lock.json file\n" +
+            "   - Runs npm install and npm prune\n" +
+            "   - Adds selected platform\n" +
+            "   - Example:\n" +
+            "       - inited prepare android\n" +
+            "- build - Builds selected platform and copies package to the project folder\n" +
+            "   - Example:\n" +
+            "       - inited build android\n" +
+            "- debug - Starts app on device in debug mode\n" +
+            "   - If \"live\" parameter is presents, starts live reload with console logs\n" +
+            "   - Example:\n" +
+            "       - inited debug android live\n" +
+            "- dist - Builds and signs app for specified platform\n" +
+            "   - Example:\n" +
+            "       - inited dist android\n" +
+            "- help - Shows this\n" +
+            "   - Example:\n" +
+            "       - inited help\n" +
+            "- pub - Publishes app package to the web - developer package\n" +
+            "   - Package has to be created before by build\n" +
+            "   - Example:\n" +
+            "       - inited pub android\n" +
+            "- release - Publishes released package to the web - package to test for clients\n" +
+            "   - Package has to be created before by build\n" +
+            "   - Example:\n" +
+            "       - inited release android\n" +
+            "- run - Runs app on device as release build with production optimized - as created by build\n" +
+            "   - Example:\n" +
+            "       - inited run android\n" +
+            "- set - Sets info in the app eg.\n" +
+            "   - version - sets app version in config.xml, package.json and in html in tag ending with id=\"app-version\">\n" +
+            "   - appName - sets app name in config.xml\n" +
+            "   - projectName - sets project name in package.json and if package.json and config.xml names are same, sets it also in config.xml\n" +
+            "   - id - sets id of the app in config.xml\n" +
+            "   - Example:\n" +
+            "       - inited set id cz.inited.app")
+    }
+
     public async prepare(args: Array<string>) {
         if (args) {
             await this.prepareFor(args[0]);
