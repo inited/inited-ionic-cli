@@ -42,19 +42,9 @@ export class Inited {
 
     public async build(args: Array<string>) {
         if (args) {
+            await this.preBuild(args[0]);
             await this.buildFor(args[0]);
-            switch (args[0]) {
-                case "android":
-                    await this.move(process.cwd() + "/platforms/android/build/outputs/apk/android-debug.apk", process.cwd() + "/" + Utils.projectName + "-" + Utils.appVersion.replace(/\./g, "_") + "-" + Utils.buildNumber + ".apk");
-                    break;
-                case "ios":
-                    if (fs.existsSync(process.cwd() + "/platforms/ios/build/device/" + Utils.appName + ".ipa")) {
-                        await this.move(process.cwd() + "/platforms/ios/build/device/" + Utils.appName + ".ipa", process.cwd() + "/" + Utils.projectName + "-" + Utils.appVersion.replace(/\./g, "_") + "-" + Utils.buildNumber + ".ipa");
-                    } else {
-                        await Utils.exec("/usr/bin/xcrun -v -v -sdk iphoneos PackageApplication \"" + process.cwd() + "/platforms/ios/build/device/" + Utils.appName + ".app\" -o \"" + process.cwd() + "/" + Utils.projectName + "-" + Utils.appVersion + "-" + Utils.buildNumber + ".ipa\"")
-                    }
-                    break;
-            }
+            await this.postBuild(args[0]);
         } else {
             console.error("Tell me platform to build eg.\n" +
                 "inited build android");
@@ -283,10 +273,33 @@ export class Inited {
         await Utils.exec("ng build" + (prod? " --prod": ""));
     }
 
+    private async preBuild(platform: string) {
+        switch (platform) {
+            case "ios":
+                await this.unlockKeychain();
+                break;
+        }
+    }
+
+    private async postBuild(platform: string) {
+        switch (platform) {
+            case "android":
+                await this.move(process.cwd() + "/platforms/android/build/outputs/apk/android-debug.apk", process.cwd() + "/" + Utils.projectName + "-" + Utils.appVersion.replace(/\./g, "_") + "-" + Utils.buildNumber + ".apk");
+                break;
+            case "ios":
+                if (fs.existsSync(process.cwd() + "/platforms/ios/build/device/" + Utils.appName + ".ipa")) {
+                    await this.move(process.cwd() + "/platforms/ios/build/device/" + Utils.appName + ".ipa", process.cwd() + "/" + Utils.projectName + "-" + Utils.appVersion.replace(/\./g, "_") + "-" + Utils.buildNumber + ".ipa");
+                } else {
+                    await Utils.exec("/usr/bin/xcrun -v -v -sdk iphoneos PackageApplication \"" + process.cwd() + "/platforms/ios/build/device/" + Utils.appName + ".app\" -o \"" + process.cwd() + "/" + Utils.projectName + "-" + Utils.appVersion + "-" + Utils.buildNumber + ".ipa\"")
+                }
+                break;
+        }
+    }
+
     private async preDist(platform: string): Promise<any> {
         switch (platform) {
             case "ios":
-                await Utils.exec("security unlock-keychain -p h login.keychain");
+                await this.unlockKeychain();
                 break;
             case "android":
                 break;
@@ -332,6 +345,10 @@ export class Inited {
         const mvasync = util.promisify(mv);
         console.log("Moving " + source + " to " + destination);
         await mvasync(source, destination);
+    }
+
+    private async unlockKeychain(): Promise<any> {
+        await Utils.exec("security unlock-keychain -p h login.keychain");
     }
 
     private async installAndPrune(): Promise<any> {

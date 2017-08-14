@@ -116,41 +116,25 @@ var Inited = (function () {
     };
     Inited.prototype.build = function (args) {
         return __awaiter(this, void 0, void 0, function () {
-            var _a;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
                     case 0:
-                        if (!args) return [3 /*break*/, 10];
-                        return [4 /*yield*/, this.buildFor(args[0])];
+                        if (!args) return [3 /*break*/, 4];
+                        return [4 /*yield*/, this.preBuild(args[0])];
                     case 1:
-                        _b.sent();
-                        _a = args[0];
-                        switch (_a) {
-                            case "android": return [3 /*break*/, 2];
-                            case "ios": return [3 /*break*/, 4];
-                        }
-                        return [3 /*break*/, 9];
-                    case 2: return [4 /*yield*/, this.move(process.cwd() + "/platforms/android/build/outputs/apk/android-debug.apk", process.cwd() + "/" + utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion.replace(/\./g, "_") + "-" + utils_1.Utils.buildNumber + ".apk")];
+                        _a.sent();
+                        return [4 /*yield*/, this.buildFor(args[0])];
+                    case 2:
+                        _a.sent();
+                        return [4 /*yield*/, this.postBuild(args[0])];
                     case 3:
-                        _b.sent();
-                        return [3 /*break*/, 9];
+                        _a.sent();
+                        return [3 /*break*/, 5];
                     case 4:
-                        if (!fs.existsSync(process.cwd() + "/platforms/ios/build/device/" + utils_1.Utils.appName + ".ipa")) return [3 /*break*/, 6];
-                        return [4 /*yield*/, this.move(process.cwd() + "/platforms/ios/build/device/" + utils_1.Utils.appName + ".ipa", process.cwd() + "/" + utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion.replace(/\./g, "_") + "-" + utils_1.Utils.buildNumber + ".ipa")];
-                    case 5:
-                        _b.sent();
-                        return [3 /*break*/, 8];
-                    case 6: return [4 /*yield*/, utils_1.Utils.exec("/usr/bin/xcrun -v -v -sdk iphoneos PackageApplication \"" + process.cwd() + "/platforms/ios/build/device/" + utils_1.Utils.appName + ".app\" -o \"" + process.cwd() + "/" + utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + "-" + utils_1.Utils.buildNumber + ".ipa\"")];
-                    case 7:
-                        _b.sent();
-                        _b.label = 8;
-                    case 8: return [3 /*break*/, 9];
-                    case 9: return [3 /*break*/, 11];
-                    case 10:
                         console.error("Tell me platform to build eg.\n" +
                             "inited build android");
-                        _b.label = 11;
-                    case 11: return [2 /*return*/];
+                        _a.label = 5;
+                    case 5: return [2 /*return*/];
                 }
             });
         });
@@ -520,6 +504,58 @@ var Inited = (function () {
             });
         });
     };
+    Inited.prototype.preBuild = function (platform) {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _a = platform;
+                        switch (_a) {
+                            case "ios": return [3 /*break*/, 1];
+                        }
+                        return [3 /*break*/, 3];
+                    case 1: return [4 /*yield*/, this.unlockKeychain()];
+                    case 2:
+                        _b.sent();
+                        return [3 /*break*/, 3];
+                    case 3: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    Inited.prototype.postBuild = function (platform) {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _a = platform;
+                        switch (_a) {
+                            case "android": return [3 /*break*/, 1];
+                            case "ios": return [3 /*break*/, 3];
+                        }
+                        return [3 /*break*/, 8];
+                    case 1: return [4 /*yield*/, this.move(process.cwd() + "/platforms/android/build/outputs/apk/android-debug.apk", process.cwd() + "/" + utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion.replace(/\./g, "_") + "-" + utils_1.Utils.buildNumber + ".apk")];
+                    case 2:
+                        _b.sent();
+                        return [3 /*break*/, 8];
+                    case 3:
+                        if (!fs.existsSync(process.cwd() + "/platforms/ios/build/device/" + utils_1.Utils.appName + ".ipa")) return [3 /*break*/, 5];
+                        return [4 /*yield*/, this.move(process.cwd() + "/platforms/ios/build/device/" + utils_1.Utils.appName + ".ipa", process.cwd() + "/" + utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion.replace(/\./g, "_") + "-" + utils_1.Utils.buildNumber + ".ipa")];
+                    case 4:
+                        _b.sent();
+                        return [3 /*break*/, 7];
+                    case 5: return [4 /*yield*/, utils_1.Utils.exec("/usr/bin/xcrun -v -v -sdk iphoneos PackageApplication \"" + process.cwd() + "/platforms/ios/build/device/" + utils_1.Utils.appName + ".app\" -o \"" + process.cwd() + "/" + utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + "-" + utils_1.Utils.buildNumber + ".ipa\"")];
+                    case 6:
+                        _b.sent();
+                        _b.label = 7;
+                    case 7: return [3 /*break*/, 8];
+                    case 8: return [2 /*return*/];
+                }
+            });
+        });
+    };
     Inited.prototype.preDist = function (platform) {
         return __awaiter(this, void 0, void 0, function () {
             var _a;
@@ -532,7 +568,7 @@ var Inited = (function () {
                             case "android": return [3 /*break*/, 3];
                         }
                         return [3 /*break*/, 4];
-                    case 1: return [4 /*yield*/, utils_1.Utils.exec("security unlock-keychain -p h login.keychain")];
+                    case 1: return [4 /*yield*/, this.unlockKeychain()];
                     case 2:
                         _b.sent();
                         return [3 /*break*/, 4];
@@ -629,6 +665,18 @@ var Inited = (function () {
                         mvasync = util.promisify(mv);
                         console.log("Moving " + source + " to " + destination);
                         return [4 /*yield*/, mvasync(source, destination)];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    Inited.prototype.unlockKeychain = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, utils_1.Utils.exec("security unlock-keychain -p h login.keychain")];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];

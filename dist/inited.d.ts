@@ -12,12 +12,15 @@ export declare class Inited {
     private prepareFor(platform, clean?);
     private buildFor(platform);
     private buildAngular(prod?);
+    private preBuild(platform);
+    private postBuild(platform);
     private preDist(platform);
     private distFor(platform);
     private postDist(platform);
     private pubFile(src, dest);
     private logError(message, error);
     private move(source, destination);
+    private unlockKeychain();
     private installAndPrune();
     private removePlatformsAndPlugins();
 }
