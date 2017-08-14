@@ -320,12 +320,12 @@ var Inited = (function () {
                         destination = "";
                         switch (args[0]) {
                             case "android":
-                                source = utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + "-" + utils_1.Utils.buildNumber + ".apk";
-                                destination = utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + ".apk";
+                                source = utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion.replace(/\./g, "_") + "-" + utils_1.Utils.buildNumber + ".apk";
+                                destination = utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion.replace(/\./g, "_") + ".apk";
                                 break;
                             case "ios":
-                                source = utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + "-" + utils_1.Utils.buildNumber + ".ipa";
-                                destination = utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + ".ipa";
+                                source = utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion.replace(/\./g, "_") + "-" + utils_1.Utils.buildNumber + ".ipa";
+                                destination = utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion.replace(/\./g, "_") + ".ipa";
                                 break;
                         }
                         if (!(source.trim() != "" && destination.trim() != "")) return [3 /*break*/, 2];

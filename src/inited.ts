@@ -174,12 +174,12 @@ export class Inited {
             let destination: string = "";
             switch (args[0]) {
                 case "android":
-                    source = Utils.projectName + "-" + Utils.appVersion + "-" + Utils.buildNumber + ".apk";
-                    destination = Utils.projectName + "-" + Utils.appVersion + ".apk";
+                    source = Utils.projectName + "-" + Utils.appVersion.replace(/\./g, "_") + "-" + Utils.buildNumber + ".apk";
+                    destination = Utils.projectName + "-" + Utils.appVersion.replace(/\./g, "_") + ".apk";
                     break;
                 case "ios":
-                    source = Utils.projectName + "-" + Utils.appVersion + "-" + Utils.buildNumber + ".ipa";
-                    destination = Utils.projectName + "-" + Utils.appVersion + ".ipa";
+                    source = Utils.projectName + "-" + Utils.appVersion.replace(/\./g, "_") + "-" + Utils.buildNumber + ".ipa";
+                    destination = Utils.projectName + "-" + Utils.appVersion.replace(/\./g, "_") + ".ipa";
                     break;
             }
 
