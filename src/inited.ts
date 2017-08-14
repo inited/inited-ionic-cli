@@ -273,7 +273,7 @@ export class Inited {
     }
 
     private async buildAngular(prod: boolean = true) {
-        await Utils.exec("ng build" + prod? " --prod": "");
+        await Utils.exec("ng build" + (prod? " --prod": ""));
     }
 
     private async preDist(platform: string): Promise<any> {
