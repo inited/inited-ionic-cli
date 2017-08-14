@@ -20,7 +20,7 @@ export class Utils {
         await replace({
             files: process.cwd() + "/package.json",
             from: /"name": ".*"/,
-            to: "\"name\": " + value + "\""
+            to: "\"name\": \"" + value + "\""
         });
     }
 

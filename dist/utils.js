@@ -64,7 +64,7 @@ var Utils = (function () {
                         return [4 /*yield*/, replace({
                                 files: process.cwd() + "/package.json",
                                 from: /"name": ".*"/,
-                                to: "\"name\": " + value + "\""
+                                to: "\"name\": \"" + value + "\""
                             })];
                     case 1:
                         _a.sent();
