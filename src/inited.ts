@@ -30,7 +30,7 @@ export class Inited {
                 const prefix: string = process.cwd() + "/" + platform.charAt(0);
                 await writeFile(prefix + "build.sh", "#!/usr/bin/env bash\n\ninited build " + platform, {mode: "755"});
                 await writeFile(prefix + "dist.sh", "#!/usr/bin/env bash\n\ninited dist " + platform, {mode: "755"});
-                await writeFile(prefix + "prepare.sh", "#!/usr/bin/env bash\n\ninited prepare " + platform, {mode: "755"});
+                await writeFile(prefix + "prepare.sh", "#!/usr/bin/env bash\n\ninited prepare " + platform + " clean", {mode: "755"});
                 await writeFile(prefix + "pub.sh", "#!/usr/bin/env bash\n\ninited pub " + platform, {mode: "755"});
                 await writeFile(prefix + "release.sh", "#!/usr/bin/env bash\n\ninited release " + platform, {mode: "755"});
             }
@@ -143,7 +143,11 @@ export class Inited {
 
     public async prepare(args: Array<string>) {
         if (args) {
-            await this.prepareFor(args[0]);
+            if (args.indexOf("clean") != -1) {
+                await this.prepareFor(args[0], true);
+            } else {
+                await this.prepareFor(args[0])
+            }
         } else {
             console.error("Tell me platform to prepare eg.\n" +
                 "inited prepare android");
@@ -246,8 +250,11 @@ export class Inited {
         }
     }
 
-    private async prepareFor(platform: string): Promise<any> {
+    private async prepareFor(platform: string, clean: boolean = false): Promise<any> {
         try {
+            if (clean) {
+                await rmfr("node_modules");
+            }
             await this.removePlatformsAndPlugins();
             await this.installAndPrune();
             if (Utils.isAngularApp()) {

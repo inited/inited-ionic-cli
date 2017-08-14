@@ -91,7 +91,7 @@ var Inited = (function () {
                         return [4 /*yield*/, writeFile(prefix + "dist.sh", "#!/usr/bin/env bash\n\ninited dist " + platform, { mode: "755" })];
                     case 9:
                         _b.sent();
-                        return [4 /*yield*/, writeFile(prefix + "prepare.sh", "#!/usr/bin/env bash\n\ninited prepare " + platform, { mode: "755" })];
+                        return [4 /*yield*/, writeFile(prefix + "prepare.sh", "#!/usr/bin/env bash\n\ninited prepare " + platform + " clean", { mode: "755" })];
                     case 10:
                         _b.sent();
                         return [4 /*yield*/, writeFile(prefix + "pub.sh", "#!/usr/bin/env bash\n\ninited pub " + platform, { mode: "755" })];
@@ -269,16 +269,22 @@ var Inited = (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (!args) return [3 /*break*/, 2];
-                        return [4 /*yield*/, this.prepareFor(args[0])];
+                        if (!args) return [3 /*break*/, 5];
+                        if (!(args.indexOf("clean") != -1)) return [3 /*break*/, 2];
+                        return [4 /*yield*/, this.prepareFor(args[0], true)];
                     case 1:
                         _a.sent();
-                        return [3 /*break*/, 3];
-                    case 2:
+                        return [3 /*break*/, 4];
+                    case 2: return [4 /*yield*/, this.prepareFor(args[0])];
+                    case 3:
+                        _a.sent();
+                        _a.label = 4;
+                    case 4: return [3 /*break*/, 6];
+                    case 5:
                         console.error("Tell me platform to prepare eg.\n" +
                             "inited prepare android");
-                        _a.label = 3;
-                    case 3: return [2 /*return*/];
+                        _a.label = 6;
+                    case 6: return [2 /*return*/];
                 }
             });
         });
@@ -433,33 +439,39 @@ var Inited = (function () {
             });
         });
     };
-    Inited.prototype.prepareFor = function (platform) {
+    Inited.prototype.prepareFor = function (platform, clean) {
+        if (clean === void 0) { clean = false; }
         return __awaiter(this, void 0, void 0, function () {
             var ex_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 6, , 7]);
-                        return [4 /*yield*/, this.removePlatformsAndPlugins()];
+                        _a.trys.push([0, 8, , 9]);
+                        if (!clean) return [3 /*break*/, 2];
+                        return [4 /*yield*/, rmfr("node_modules")];
                     case 1:
                         _a.sent();
-                        return [4 /*yield*/, this.installAndPrune()];
-                    case 2:
-                        _a.sent();
-                        if (!utils_1.Utils.isAngularApp()) return [3 /*break*/, 4];
-                        return [4 /*yield*/, this.buildAngular()];
+                        _a.label = 2;
+                    case 2: return [4 /*yield*/, this.removePlatformsAndPlugins()];
                     case 3:
                         _a.sent();
-                        _a.label = 4;
-                    case 4: return [4 /*yield*/, utils_1.Utils.exec("cordova platform add " + platform + " --nofetch")];
+                        return [4 /*yield*/, this.installAndPrune()];
+                    case 4:
+                        _a.sent();
+                        if (!utils_1.Utils.isAngularApp()) return [3 /*break*/, 6];
+                        return [4 /*yield*/, this.buildAngular()];
                     case 5:
                         _a.sent();
-                        return [3 /*break*/, 7];
-                    case 6:
+                        _a.label = 6;
+                    case 6: return [4 /*yield*/, utils_1.Utils.exec("cordova platform add " + platform + " --nofetch")];
+                    case 7:
+                        _a.sent();
+                        return [3 /*break*/, 9];
+                    case 8:
                         ex_2 = _a.sent();
                         this.logError("Error while running prepare for " + platform, ex_2);
-                        return [3 /*break*/, 7];
-                    case 7: return [2 /*return*/];
+                        return [3 /*break*/, 9];
+                    case 9: return [2 /*return*/];
                 }
             });
         });

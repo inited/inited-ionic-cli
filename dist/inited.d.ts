@@ -9,7 +9,7 @@ export declare class Inited {
     release(args: Array<string>): Promise<void>;
     run(args: Array<string>): Promise<void>;
     set(args: any): Promise<void>;
-    private prepareFor(platform);
+    private prepareFor(platform, clean?);
     private buildFor(platform);
     private buildAngular(prod?);
     private preDist(platform);

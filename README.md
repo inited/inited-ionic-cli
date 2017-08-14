@@ -90,6 +90,7 @@ Prepares project - deletes platform and plugins folders and package-lock.json fi
 Parameters
 
 * platform to prepare
+* clean - if clean is passed, inited will remove node_modules and perform clean npm install
 
 ###### usage
 
