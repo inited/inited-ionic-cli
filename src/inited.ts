@@ -204,7 +204,7 @@ export class Inited {
                     "inited debug " + args[0] + " live");
             }
             if (Utils.isIonicApp()) {
-                await Utils.exec("ionic cordova run " + args[0] + " --device --prod --aot --minifyjs --minifycss --optimizejs --no-interactive --confirm");
+                await Utils.exec("ionic cordova run " + args[0] + " --device --prod --aot --minifyjs --minifycss --optimizejs --no-interactive");
                 return;
             } else if (Utils.isAngularApp()) {
                 await this.buildAngular();

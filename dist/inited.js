@@ -360,7 +360,7 @@ var Inited = (function () {
                                 "inited debug " + args[0] + " live");
                         }
                         if (!utils_1.Utils.isIonicApp()) return [3 /*break*/, 2];
-                        return [4 /*yield*/, utils_1.Utils.exec("ionic cordova run " + args[0] + " --device --prod --aot --minifyjs --minifycss --optimizejs --no-interactive --confirm")];
+                        return [4 /*yield*/, utils_1.Utils.exec("ionic cordova run " + args[0] + " --device --prod --aot --minifyjs --minifycss --optimizejs --no-interactive")];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
