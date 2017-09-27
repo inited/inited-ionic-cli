@@ -55,7 +55,7 @@ export class Inited {
         if (args) {
             const live: boolean = args.indexOf("live") != -1;
             if (Utils.isIonicApp()) {
-                await Utils.exec("ionic cordova run " + args[0] + " --debug --device" + live? " -l -c -s": "");
+                await Utils.exec("ionic cordova run " + args[0] + " --debug --device --no-interactive" + live? " -l -c -s": "");
                 return;
             }
             if (Utils.isAngularApp()) {
@@ -259,11 +259,11 @@ export class Inited {
     private async buildFor(platform: string): Promise<any> {
         try {
             if (Utils.isIonicApp()) {
-                await Utils.exec("ionic build " + platform + " --device --prod --aot --minifyjs --minifycss --optimizejs --no-interactive --confirm");
+                await Utils.exec("ionic cordova build " + platform + " --device --prod --aot --minifyjs --minifycss --optimizejs --no-interactive");
             } else if (Utils.isAngularApp()) {
                 await this.buildAngular();
+                await Utils.exec("cordova build " + platform + " --device");
             }
-            await Utils.exec("cordova build " + platform + " --device");
         } catch (ex) {
             this.logError("Error while running build for " + platform, ex);
         }
@@ -309,11 +309,11 @@ export class Inited {
     private async distFor(platform: string): Promise<any> {
         try {
             if (Utils.isIonicApp()) {
-                await Utils.exec("ionic build " + platform + " --device --prod --aot --minifyjs --minifycss --optimizejs --release --no-interactive --confirm");
+                await Utils.exec("ionic cordova build " + platform + " --device --prod --aot --minifyjs --minifycss --optimizejs --release --no-interactive");
             } else if (Utils.isAngularApp()) {
                 await this.buildAngular();
+                await Utils.exec("cordova build " + platform + " --device --release");
             }
-            await Utils.exec("cordova build " + platform + " --device --release");
         } catch (ex) {
             this.logError("Error while running dist for " + platform, ex);
         }

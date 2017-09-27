@@ -148,7 +148,7 @@ var Inited = (function () {
                         if (!args) return [3 /*break*/, 6];
                         live = args.indexOf("live") != -1;
                         if (!utils_1.Utils.isIonicApp()) return [3 /*break*/, 2];
-                        return [4 /*yield*/, utils_1.Utils.exec("ionic cordova run " + args[0] + " --debug --device" + live ? " -l -c -s" : "")];
+                        return [4 /*yield*/, utils_1.Utils.exec("ionic cordova run " + args[0] + " --debug --device --no-interactive" + live ? " -l -c -s" : "")];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
@@ -468,20 +468,20 @@ var Inited = (function () {
                     case 0:
                         _a.trys.push([0, 6, , 7]);
                         if (!utils_1.Utils.isIonicApp()) return [3 /*break*/, 2];
-                        return [4 /*yield*/, utils_1.Utils.exec("ionic build " + platform + " --device --prod --aot --minifyjs --minifycss --optimizejs --no-interactive --confirm")];
+                        return [4 /*yield*/, utils_1.Utils.exec("ionic cordova build " + platform + " --device --prod --aot --minifyjs --minifycss --optimizejs --no-interactive")];
                     case 1:
                         _a.sent();
-                        return [3 /*break*/, 4];
+                        return [3 /*break*/, 5];
                     case 2:
-                        if (!utils_1.Utils.isAngularApp()) return [3 /*break*/, 4];
+                        if (!utils_1.Utils.isAngularApp()) return [3 /*break*/, 5];
                         return [4 /*yield*/, this.buildAngular()];
                     case 3:
                         _a.sent();
-                        _a.label = 4;
-                    case 4: return [4 /*yield*/, utils_1.Utils.exec("cordova build " + platform + " --device")];
-                    case 5:
+                        return [4 /*yield*/, utils_1.Utils.exec("cordova build " + platform + " --device")];
+                    case 4:
                         _a.sent();
-                        return [3 /*break*/, 7];
+                        _a.label = 5;
+                    case 5: return [3 /*break*/, 7];
                     case 6:
                         ex_3 = _a.sent();
                         this.logError("Error while running build for " + platform, ex_3);
@@ -586,20 +586,20 @@ var Inited = (function () {
                     case 0:
                         _a.trys.push([0, 6, , 7]);
                         if (!utils_1.Utils.isIonicApp()) return [3 /*break*/, 2];
-                        return [4 /*yield*/, utils_1.Utils.exec("ionic build " + platform + " --device --prod --aot --minifyjs --minifycss --optimizejs --release --no-interactive --confirm")];
+                        return [4 /*yield*/, utils_1.Utils.exec("ionic cordova build " + platform + " --device --prod --aot --minifyjs --minifycss --optimizejs --release --no-interactive")];
                     case 1:
                         _a.sent();
-                        return [3 /*break*/, 4];
+                        return [3 /*break*/, 5];
                     case 2:
-                        if (!utils_1.Utils.isAngularApp()) return [3 /*break*/, 4];
+                        if (!utils_1.Utils.isAngularApp()) return [3 /*break*/, 5];
                         return [4 /*yield*/, this.buildAngular()];
                     case 3:
                         _a.sent();
-                        _a.label = 4;
-                    case 4: return [4 /*yield*/, utils_1.Utils.exec("cordova build " + platform + " --device --release")];
-                    case 5:
+                        return [4 /*yield*/, utils_1.Utils.exec("cordova build " + platform + " --device --release")];
+                    case 4:
                         _a.sent();
-                        return [3 /*break*/, 7];
+                        _a.label = 5;
+                    case 5: return [3 /*break*/, 7];
                     case 6:
                         ex_4 = _a.sent();
                         this.logError("Error while running dist for " + platform, ex_4);
