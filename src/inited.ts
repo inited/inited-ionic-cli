@@ -284,7 +284,12 @@ export class Inited {
     private async postBuild(platform: string) {
         switch (platform) {
             case "android":
-                await this.move(process.cwd() + "/platforms/android/build/outputs/apk/android-debug.apk", process.cwd() + "/" + Utils.projectName + "-" + Utils.appVersion.replace(/\./g, "_") + "-" + Utils.buildNumber + ".apk");
+                const destination: string = process.cwd() + "/" + Utils.projectName + "-" + Utils.appVersion.replace(/\./g, "_") + "-" + Utils.buildNumber + ".apk";
+                if (fs.existsSync(process.cwd() + "/platforms/android/build/outputs/apk/android-debug.apk")) {
+                    await this.move(process.cwd() + "/platforms/android/build/outputs/apk/android-debug.apk", destination);
+                } else {
+                    await this.move(process.cwd() + "/platforms/android/build/outputs/apk/debug/android-debug.apk", destination);
+                }
                 break;
             case "ios":
                 if (fs.existsSync(process.cwd() + "/platforms/ios/build/device/" + Utils.appName + ".ipa")) {

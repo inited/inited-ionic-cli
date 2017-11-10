@@ -526,32 +526,40 @@ var Inited = (function () {
     };
     Inited.prototype.postBuild = function (platform) {
         return __awaiter(this, void 0, void 0, function () {
-            var _a;
+            var _a, destination;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
                         _a = platform;
                         switch (_a) {
                             case "android": return [3 /*break*/, 1];
-                            case "ios": return [3 /*break*/, 3];
+                            case "ios": return [3 /*break*/, 6];
                         }
-                        return [3 /*break*/, 8];
-                    case 1: return [4 /*yield*/, this.move(process.cwd() + "/platforms/android/build/outputs/apk/android-debug.apk", process.cwd() + "/" + utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion.replace(/\./g, "_") + "-" + utils_1.Utils.buildNumber + ".apk")];
+                        return [3 /*break*/, 11];
+                    case 1:
+                        destination = process.cwd() + "/" + utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion.replace(/\./g, "_") + "-" + utils_1.Utils.buildNumber + ".apk";
+                        if (!fs.existsSync(process.cwd() + "/platforms/android/build/outputs/apk/android-debug.apk")) return [3 /*break*/, 3];
+                        return [4 /*yield*/, this.move(process.cwd() + "/platforms/android/build/outputs/apk/android-debug.apk", destination)];
                     case 2:
                         _b.sent();
-                        return [3 /*break*/, 8];
-                    case 3:
-                        if (!fs.existsSync(process.cwd() + "/platforms/ios/build/device/" + utils_1.Utils.appName + ".ipa")) return [3 /*break*/, 5];
-                        return [4 /*yield*/, this.move(process.cwd() + "/platforms/ios/build/device/" + utils_1.Utils.appName + ".ipa", process.cwd() + "/" + utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion.replace(/\./g, "_") + "-" + utils_1.Utils.buildNumber + ".ipa")];
+                        return [3 /*break*/, 5];
+                    case 3: return [4 /*yield*/, this.move(process.cwd() + "/platforms/android/build/outputs/apk/debug/android-debug.apk", destination)];
                     case 4:
                         _b.sent();
-                        return [3 /*break*/, 7];
-                    case 5: return [4 /*yield*/, utils_1.Utils.exec("/usr/bin/xcrun -v -v -sdk iphoneos PackageApplication \"" + process.cwd() + "/platforms/ios/build/device/" + utils_1.Utils.appName + ".app\" -o \"" + process.cwd() + "/" + utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + "-" + utils_1.Utils.buildNumber + ".ipa\"")];
+                        _b.label = 5;
+                    case 5: return [3 /*break*/, 11];
                     case 6:
+                        if (!fs.existsSync(process.cwd() + "/platforms/ios/build/device/" + utils_1.Utils.appName + ".ipa")) return [3 /*break*/, 8];
+                        return [4 /*yield*/, this.move(process.cwd() + "/platforms/ios/build/device/" + utils_1.Utils.appName + ".ipa", process.cwd() + "/" + utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion.replace(/\./g, "_") + "-" + utils_1.Utils.buildNumber + ".ipa")];
+                    case 7:
                         _b.sent();
-                        _b.label = 7;
-                    case 7: return [3 /*break*/, 8];
-                    case 8: return [2 /*return*/];
+                        return [3 /*break*/, 10];
+                    case 8: return [4 /*yield*/, utils_1.Utils.exec("/usr/bin/xcrun -v -v -sdk iphoneos PackageApplication \"" + process.cwd() + "/platforms/ios/build/device/" + utils_1.Utils.appName + ".app\" -o \"" + process.cwd() + "/" + utils_1.Utils.projectName + "-" + utils_1.Utils.appVersion + "-" + utils_1.Utils.buildNumber + ".ipa\"")];
+                    case 9:
+                        _b.sent();
+                        _b.label = 10;
+                    case 10: return [3 /*break*/, 11];
+                    case 11: return [2 /*return*/];
                 }
             });
         });

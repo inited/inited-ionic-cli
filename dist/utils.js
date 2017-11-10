@@ -94,7 +94,7 @@ var Utils = (function () {
                         _a.sent();
                         return [4 /*yield*/, replace({
                                 files: process.cwd() + "/**/*.html",
-                                from: /id="app-version">.*</,
+                                from: /id="app-version">.*?</,
                                 to: "id=\"app-version\">" + value + "<"
                             })];
                     case 2:

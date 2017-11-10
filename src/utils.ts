@@ -35,7 +35,7 @@ export class Utils {
         await this.exec("npm --no-git-tag-version --allow-same-version version " + value);
         await replace({
             files: process.cwd() + "/**/*.html",
-            from: /id="app-version">.*</,
+            from: /id="app-version">.*?</,
             to: "id=\"app-version\">" + value + "<"
         });
     }
