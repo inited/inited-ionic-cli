@@ -287,8 +287,10 @@ export class Inited {
                 const destination: string = process.cwd() + "/" + Utils.projectName + "-" + Utils.appVersion.replace(/\./g, "_") + "-" + Utils.buildNumber + ".apk";
                 if (fs.existsSync(process.cwd() + "/platforms/android/build/outputs/apk/android-debug.apk")) {
                     await this.move(process.cwd() + "/platforms/android/build/outputs/apk/android-debug.apk", destination);
-                } else {
+                } else if (fs.existsSync(process.cwd() + "/platforms/android/build/outputs/apk/debug/android-debug.apk")) {
                     await this.move(process.cwd() + "/platforms/android/build/outputs/apk/debug/android-debug.apk", destination);
+                } else {
+                    await this.move(process.cwd() + "/platforms/android/app/build/outputs/apk/debug/android-debug.apk", destination)
                 }
                 break;
             case "ios":

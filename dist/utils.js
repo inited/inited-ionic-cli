@@ -40,7 +40,7 @@ var process = require("process");
 var replace = require("replace-in-file");
 var child_process = require("child_process");
 var fs = require("fs");
-var Utils = (function () {
+var Utils = /** @class */ (function () {
     function Utils() {
     }
     Object.defineProperty(Utils, "projectName", {
