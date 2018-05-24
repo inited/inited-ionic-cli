@@ -290,7 +290,7 @@ export class Inited {
                 } else if (fs.existsSync(process.cwd() + "/platforms/android/build/outputs/apk/debug/android-debug.apk")) {
                     await this.move(process.cwd() + "/platforms/android/build/outputs/apk/debug/android-debug.apk", destination);
                 } else {
-                    await this.move(process.cwd() + "/platforms/android/app/build/outputs/apk/debug/android-debug.apk", destination)
+                    await this.move(process.cwd() + "/platforms/android/app/build/outputs/apk/app-debug.apk", destination)
                 }
                 break;
             case "ios":
