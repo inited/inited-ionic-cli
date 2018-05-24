@@ -549,7 +549,7 @@ var Inited = /** @class */ (function () {
                     case 4:
                         _b.sent();
                         return [3 /*break*/, 7];
-                    case 5: return [4 /*yield*/, this.move(process.cwd() + "/platforms/android/app/build/outputs/apk/app-debug.apk", destination)];
+                    case 5: return [4 /*yield*/, this.move(process.cwd() + "/platforms/android/app/build/outputs/apk/debug/app-debug.apk", destination)];
                     case 6:
                         _b.sent();
                         _b.label = 7;
